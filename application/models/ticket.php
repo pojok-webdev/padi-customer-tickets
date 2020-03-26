@@ -86,9 +86,9 @@ Class Ticket extends CI_Model{
         }
         $sql = 'insert into '.$tablename.' ('.implode(',',$keys).') ';
         $sql.= 'values ';
-        $sql.= '('.implode(',',$vals).') ';
+        $sql.= '("'.implode('","',$vals).'") ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
-        return $que->db->insert_id();
+        return $ci->db->insert_id();
     }
 }

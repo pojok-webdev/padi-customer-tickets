@@ -30,28 +30,21 @@
                         <div class="row-form clearfix">
                             <div class="span3">Penyebab:</div>
                             <div class="span9">
-                                <select name="select">
-                                        <option value="0">choose a option...</option>
-                                        <option value="1">Andorra</option>
-                                        <option value="2">Antarctica</option>
-                                        <option value="3">Bulgaria</option>
-                                        <option value="4">Germany</option>
-                                        <option value="5">Dominican Republic</option>
-                                        <option value="6">Micronesia</option>
-                                        <option value="7">United Kingdom</option>
-                                        <option value="8">Greece</option>
-                                        <option value="9">Italy</option>
-                                        <option value="10">Ukraine</option>   
+                                <select name="cause_id">
+                                    <option value="0">choose a option...</option>
+                                    <?php foreach($ticketcauses['res'] as $cause){?>
+                                        <option value="<?php echo $cause->id;?>"><?php echo $cause->name;?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span3">Ticket start:</div>
-                            <div class="span9"><input type="text" placeholder="Ticket Start ..."/></div>
+                            <div class="span9"><input type="text" name="ticketstart" placeholder="Ticket Start ..."/></div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span3">Ticket end:</div>
-                            <div class="span9"><input type="text" placeholder="Ticket End ..."/></div>
+                            <div class="span9"><input type="text" name="ticketend" placeholder="Ticket End ..."/></div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span3"><button class="btn btn-primary" type="submit">Save</button></div>

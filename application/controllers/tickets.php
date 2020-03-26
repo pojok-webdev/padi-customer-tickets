@@ -24,10 +24,12 @@ Class Tickets extends CI_Controller{
         echo '{"aaData": ['. implode(",",$arr).']}';
     }
     function insert(){
-        $this->load->view('ticket-insert/index');
+        $this->load->model('ticketcause');
+        $data['ticketcauses'] = $this->ticketcause->getCauses();
+        $this->load->view('ticket-insert/index',$data);
     }
     function save(){
         $params = $this->input->post();
-        echo $this->ticket->save($params);
+        echo $this->ticket->save($params,'ticketmains');
     }
 }
