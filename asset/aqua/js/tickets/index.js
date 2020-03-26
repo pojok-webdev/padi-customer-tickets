@@ -4,7 +4,7 @@
         bProcessing:true,
         sAjaxSource:'/tickets/ajaxsource',
         aoColumns: [
-            { "sClass": "kdticket" },
+            { "sClass": "kdticket","asSorting": [ "desc" ]  },
             { "sClass": "name" },
             { "sClass": "status" },
             { "sClass": "cause" },
