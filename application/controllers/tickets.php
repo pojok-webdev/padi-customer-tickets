@@ -21,7 +21,13 @@ Class Tickets extends CI_Controller{
                 "dura"
               ]');
         }
-        
         echo '{"aaData": ['. implode(",",$arr).']}';
+    }
+    function insert(){
+        $this->load->view('ticket-insert/index');
+    }
+    function save(){
+        $params = $this->input->post();
+        echo $this->ticket->save($params);
     }
 }

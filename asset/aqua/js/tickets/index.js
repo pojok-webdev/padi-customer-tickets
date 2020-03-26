@@ -102,26 +102,12 @@ getjsdate = function(dttime){
                         _end = new Date();
                     break;
                 }
-                //days = getdayduration(_start,_end);
                 dura = getduration2(_start,_end,function(x){
                     if(status==="ticketOpen"){
                         console.log("DAYS",id,status,_start,_end,days);
                     }
-                    //console.log("Day duration",x.dayval);
-              //      tr.find("[fieldName='duration']").html(x.str);
-              //      tr.find("[fieldName='escalation']").html(x.dayval);
                     tr.find(".dura").html(x.str);
                 });
-                /*if((days>1)&&(showalert)&&(days<7)&&(status=="ticketOpen")){
-                    $(this).addClass('yellow')
-                    console.log("yellow")
-                }
-                if((days>6)&&(showalert)&&(status=="ticketOpen")){
-                //	console.log("IT SHOULD SHOW ALERT");
-                    $(this).addClass('red')
-                }*/
-                //duration = $(this).find("[fieldName='duration']").html(dura);
-
             }
         });
     }}

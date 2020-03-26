@@ -54,8 +54,6 @@ Class Ticket extends CI_Model{
         $sql.= ' left outer join ticketcauses e on e.id=a.cause_id ';
         $sql.= ' left outer join ticketcausecategories f on f.id=e.category_id ';
         $sql.= ' where b.id is not null ';
-
-
         $sql.= 'union ';
         $sql.= 'select a.id,a.kdticket,e.name subrootcause,f.name mainrootcause,ticketstart,ticketend,"datacenter" requesttype,';
         $sql.= '"-" clientcategory,';
@@ -74,11 +72,23 @@ Class Ticket extends CI_Model{
         $sql.= ' left outer join ticketcauses e on e.id=a.cause_id ';
         $sql.= ' left outer join ticketcausecategories f on f.id=e.category_id ';
         $sql.= ' where b.id is not null ';
-
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return array(
             'res'=>$que->result(),'cnt'=>$que->num_rows()
         );
+    }
+    function save($params,$tablename){
+        $keys = array();$vals = array();
+        foreach($params as $key=>$val){
+            array_push($keys,$key);
+            array_push($vals,$val);
+        }
+        $sql = 'insert into '.$tablename.' ('.implode(',',$keys).') ';
+        $sql.= 'values ';
+        $sql.= '('.implode(',',$vals).') ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $que->db->insert_id();
     }
 }
