@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <![endif]-->
     
-    <title>Tables - Aquarius - responsive admin panel</title>
+    <title>Tickets</title>
 
     <link rel="icon" type="image/ico" href="favicon.ico"/>
     
