@@ -16,19 +16,7 @@
                 <div class="span12">                    
                     <div class="head clearfix">
                         <div class="isw-grid"></div>
-                        <h1>Sortable table</h1>
-                        <ul class="buttons">
-                            <li><a href="#" class="isw-download"></a></li>                                                        
-                            <li><a href="#" class="isw-attachment"></a></li>
-                            <li>
-                                <a href="#" class="isw-settings"></a>
-                                <ul class="dd-list">
-                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
-                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
-                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
-                                </ul>
-                            </li>
-                        </ul>                        
+                        <h1>Tickets</h1>
                     </div>
                     <div class="block-fluid table-sorting clearfix">
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tTicket">
