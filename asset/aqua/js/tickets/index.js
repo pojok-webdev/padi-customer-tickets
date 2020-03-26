@@ -3,6 +3,7 @@
     tTicket = $("#tTicket").dataTable({
         bProcessing:true,
         sAjaxSource:'/tickets/ajaxsource',
+        "aaSorting": [[ 0, "desc" ]],
         aoColumns: [
             { "sClass": "kdticket","asSorting": [ "desc" ]  },
             { "sClass": "name" },
