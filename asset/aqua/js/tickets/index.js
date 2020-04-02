@@ -4,6 +4,7 @@
         bProcessing:true,
         sAjaxSource:'/tickets/ajaxsource',
         "aaSorting": [[ 0, "desc" ]],
+        "iDeferLoading": 57,
         aoColumns: [
             { "sClass": "kdticket","asSorting": [ "desc" ]  },
             { "sClass": "name" },
