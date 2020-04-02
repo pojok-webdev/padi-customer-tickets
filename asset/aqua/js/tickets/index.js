@@ -2,6 +2,7 @@
     console.log("jued");
     tTicket = $("#tTicket").dataTable({
         bProcessing:true,
+        bServerSide:true,
         sAjaxSource:'/tickets/ajaxsource',
         "aaSorting": [[ 0, "desc" ]],
         "iDeferLoading": 57,
