@@ -26,6 +26,8 @@
                 str+= '</td>';
                 str+= '<td>';
                 str+= b.mainrootcause;
+                str+= '<br >';
+                str+= b.subrootcause;
                 str+= '</td>';
                 str+= '<td class="ticketstart">';
                 str+= b.ticketstart;
@@ -95,19 +97,21 @@
 
     getjsdate = function(dttime){
         console.log("dttime adalah",dttime);
-        if(!dttime){
+        if(!dttime||(dttime==null)||(dttime=='null')){
             return false;
         }else{
-            dttimesplit = dttime.split(" ");
-            dt = dttimesplit[0].split("-");
-            year = dt[0];
-            month = dt[1]-1;
-            day = dt[2];
-            tm = dttimesplit[1].split(":");
-            hour = tm[0];
-            minute = tm[1];
-            second = tm[2];
-            return new Date(year,month,day,hour,minute,second);	
+            //if(!dttime){
+                dttimesplit = dttime.split(" ");
+                dt = dttimesplit[0].split("-");
+                year = dt[0];
+                month = dt[1]-1;
+                day = dt[2];
+                tm = dttimesplit[1].split(":");
+                hour = tm[0];
+                minute = tm[1];
+                second = tm[2];
+                return new Date(year,month,day,hour,minute,second);	    
+            //}
         }
     }
 
@@ -117,7 +121,7 @@
         $("#tTicket tbody tr").each(function(){
             tr = $(this);
             dr = $(this).find(".ticketstart").text();
-            console.log("DR Value",dr);
+            //console.log("DR Value",dr);
             //drend = $(this).attr("ticketend");
             //drend  = new Date();
             drend = $(this).find(".ticketend").text();
@@ -137,12 +141,12 @@
                 minute = tm[1];
                 second = tm[2];
                 _start = new Date(year,month,day,hour,minute,second);
-                console.log("Year",year);
-                console.log("Month",month);
-                console.log("Day",day);
-                console.log("Hour",hour);
-                console.log("Minute",minute);
-                console.log("Second",second);
+                //console.log("Year",year);
+                //console.log("Month",month);
+                //console.log("Day",day);
+                //console.log("Hour",hour);
+                //console.log("Minute",minute);
+                //console.log("Second",second);
 
                 status = $(this).hasClass("Open")?"ticketOpen":"ticketClosed";
                 showalert= $(this).hasClass("showalert")?true:false;
@@ -154,6 +158,7 @@
                     case "ticketClosed":
                             console.log("TicketClosed");
                         _end = getjsdate(drend);
+                        console.log("END of TICKET",drend);
                         //_end = new Date();
                     break;
                 }
