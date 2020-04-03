@@ -2,7 +2,7 @@
     clearTable = function(){
         $("#tTicket tbody").empty();
     }
-    initMe = function(segment,offset,callback){
+    loadTicketData = function(segment,offset,callback){
         $.ajax({
             url:'/paginateds/ajaxsource',
             data:{
@@ -46,7 +46,7 @@
             console.log("Err",err);
         });
     }
-    initMe(0,10,function(str){
+    loadTicketData(0,10,function(str){
         $('#tTicket tbody').append(str);
     })
     $("#tTicket_next").on("click",function(){
@@ -55,7 +55,11 @@
         let nextpage = 1*pageid+1;
         $("#pageid").text(nextpage);
         clearTable();
-        initMe(pageid*10,10,function(str){
+        loadPagination(nextpage,function(result){
+            console.log("loadPage",result);
+            $("#pagination").append(result);
+        });
+        loadTicketData(pageid*10,10,function(str){
             $('#tTicket tbody').append(str);
         })
     })
@@ -64,16 +68,18 @@
         console.log("ticket-previous clicked",pageid);
         if(pageid>1){
             let prevpage = 1*pageid-1;
+            loadPagination(prevpage,function(result){
+                console.log("loadPage",result);
+                $("#pagination").append(result);
+            });
             $("#pageid").text(prevpage);
         }
         clearTable();
-        initMe(pageid*10,10,function(str){
+        loadTicketData(pageid*10,10,function(str){
             $('#tTicket tbody').append(str);
         })
     })
     getduration = function(_start,_end,callback){
-        console.log("Start",_start);
-        console.log("End",_end);
         if(!_end){
             return _start;
         }else{
@@ -87,48 +93,36 @@
             sisamenit = parseInt(minutes % 60);
             sisadetik = parseInt(seconds % 60);
             sisajam = parseInt(hours % 24);
-            console.log("sisajam+sisadetik "+sisajam+':'+sisadetik);
             callback({
                 dayval:days,
                 str:days + " hari,"+ sisajam + " jam,"+ sisamenit + " menit," + sisadetik + " detik"
             });
         }
     }
-
     getjsdate = function(dttime){
-        console.log("dttime adalah",dttime);
         if(!dttime||(dttime==null)||(dttime=='null')){
             return false;
         }else{
-            //if(!dttime){
-                dttimesplit = dttime.split(" ");
-                dt = dttimesplit[0].split("-");
-                year = dt[0];
-                month = dt[1]-1;
-                day = dt[2];
-                tm = dttimesplit[1].split(":");
-                hour = tm[0];
-                minute = tm[1];
-                second = tm[2];
-                return new Date(year,month,day,hour,minute,second);	    
-            //}
+            dttimesplit = dttime.split(" ");
+            dt = dttimesplit[0].split("-");
+            year = dt[0];
+            month = dt[1]-1;
+            day = dt[2];
+            tm = dttimesplit[1].split(":");
+            hour = tm[0];
+            minute = tm[1];
+            second = tm[2];
+            return new Date(year,month,day,hour,minute,second);	    
         }
     }
-
-
-
     setdura = function(){
         $("#tTicket tbody tr").each(function(){
             tr = $(this);
             dr = $(this).find(".ticketstart").text();
-            //console.log("DR Value",dr);
-            //drend = $(this).attr("ticketend");
-            //drend  = new Date();
             drend = $(this).find(".ticketend").text();
             id = $(this).attr("thisid");
-            //drend = false;
             if(!drend){
-    //			console.log(id,"Drend undefined");
+    
             }else{
                 dttime = dr;
                 dttimesplit = dttime.split(" ");
@@ -141,36 +135,53 @@
                 minute = tm[1];
                 second = tm[2];
                 _start = new Date(year,month,day,hour,minute,second);
-                //console.log("Year",year);
-                //console.log("Month",month);
-                //console.log("Day",day);
-                //console.log("Hour",hour);
-                //console.log("Minute",minute);
-                //console.log("Second",second);
-
                 status = $(this).hasClass("Open")?"ticketOpen":"ticketClosed";
                 showalert= $(this).hasClass("showalert")?true:false;
                 switch(status){
                     case "ticketOpen":
-                        console.log("TicketOpen");
                         _end = new Date();
                     break;
                     case "ticketClosed":
-                            console.log("TicketClosed");
                         _end = getjsdate(drend);
-                        console.log("END of TICKET",drend);
-                        //_end = new Date();
                     break;
                 }
                 dura = getduration(_start,_end,function(x){
                     if(status==="ticketOpen"){
-                        console.log("DAYS",id,status,_start,_end,days);
                     }
                     tr.find(".dura").html(x.str);
                 });
             }
         });
-//    }
-}
+    }
+    createPages = function(activePage){
+        out = '';
+        if(activePage<3){
+            for(x=1;x<6;x++){
+                if(1*x===1*activePage){
+                    out+='<span class="btn btn-warning">'+x+'</span>';
+                }else{
+                    out+='<span class="btn">'+x+'</span>';
+                }            
+            }
+        }else if(activePage>=3){
+            for(x=1*activePage-2;x<=1*activePage+2;x++){
+                console.log("XXX",activePage,x);
+                if(1*x===1*activePage){
+                    out+='<span class="btn btn-warning">'+x+'</span>';
+                }else{
+                    out+='<span class="btn">'+x+'</span>';
+                }            
+            }
+        }
+        return out;
+    }
+    loadPagination = function(pageid,callback){
+        $("#pagination").empty();
+        callback(createPages(pageid));
+    }
+    loadPagination(1,function(result){
+        console.log("loadPage",result);
+        $("#pagination").append(result);
+    });
     setInterval(function(){ setdura(); }, 3000);
 }(jQuery))
