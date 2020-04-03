@@ -3,7 +3,6 @@
     <?php $this->load->view('tickets/head');?>
     <link rel="stylesheet" href="/asset/aqua/css/app/paginated/padicustom.css" />
 <body>
-    
     <div class="header">
         <a class="logo" href="index.html"><img src="/asset/aqua/img/logo.png" alt="Ticket" title="Tikets"/></a>
         <ul class="header_menu">
@@ -11,18 +10,14 @@
         </ul>    
     </div>
     <?php $this->load->view('tickets/menu');?>        
-        
     <div class="content">
     <?php $this->load->view('tickets/breadline');?>        
-        
         <div class="workplace">
-            
             <div class="row-fluid">
-                
                 <div class="span12">                    
                     <div class="head clearfix">
                         <div class="isw-grid"></div>
-                        <h1>Simple table</h1>      
+                        <h1>Ticket PadiApp</h1>      
                         <ul class="buttons">
                             <li><a href="#" class="isw-download"></a></li>                                                        
                             <li><a href="#" class="isw-attachment"></a></li>
@@ -39,7 +34,6 @@
                     <div class="block-fluid">
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tTicket">
                             <thead>
-                                <tr>                                    
                                 <tr>
                                     <th width="8%">Kdticket</th>
                                     <th width="20%">Name</th>
@@ -49,19 +43,18 @@
                                     <th width="10%">End</th>
                                     <th>Dura</th>
                                 </tr>
-                                </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
                     </div>
-                    <div class="dataTables_info" id="tTicket_info">showin 1-5 tkcets</div>
+                    <div class="dataTables_info" id="tTicket_info"></div>
                         <div class="dataTables_paginate paging_two_button" id="tTicket_paginate">
                             <span id="pageid">1</span>
                             <button class="btn" id="tTicket_previous">Previous</button>
                             <button class="btn" id="tTicket_next">Next</button>
                         </div>
-                </div>                                
+                </div>
             </div>
         </div>        
     </div>
