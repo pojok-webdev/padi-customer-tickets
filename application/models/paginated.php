@@ -18,7 +18,7 @@ Class Paginated extends CI_Model{
         $sql.= ' left outer join clients d on d.id=a.client_id ';
         $sql.= ' left outer join ticketcauses e on e.id=a.cause_id ';
         $sql.= ' left outer join ticketcausecategories f on f.id=e.category_id ';
- 
+        $sql.= 'order by a.create_date desc ';
         $sql.= 'limit ' . $segment . ',' . $offset;
         $ci = & get_instance();
         $que = $ci->db->query($sql);
