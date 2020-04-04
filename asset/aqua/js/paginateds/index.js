@@ -216,4 +216,8 @@
             $("#pageoption").append('<option value='+x+'>'+x+'</option>');
         }
     }
+    $("#pageoption").change(function(){
+        pageid = $(this).val();
+        loadNextPage(1*pageid-1,pageid);
+    });
 }(jQuery))
