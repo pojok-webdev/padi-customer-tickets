@@ -56,6 +56,7 @@
                             <span id="paginationbuttons" class="btn-group"></span>
                             <button class="btn" id="tTicket_next">Next</button>
                             <button class="btn" id="btnLast" disabled>Last</button>
+                            <?php echo form_dropdown('pageoption',array(1=>"1",2=>"2"),'2','id="pageoption" class="pageoption"');?>
                         </div>
                 </div>
             </div>

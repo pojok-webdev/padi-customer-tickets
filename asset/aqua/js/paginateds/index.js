@@ -10,6 +10,7 @@
         $("#btnLast").attr("lastpage",res.lastpage);
         $("#btnLast").removeAttr("disabled");
         _lastpage = res.lastpage;
+        populatePageOptions(_lastpage);
     })
     .fail(function(err){
         console.log("Error getlastpage",err);
@@ -210,4 +211,9 @@
         pageid = $(this).text();
         loadNextPage(1*pageid-1,pageid);
     })
+    populatePageOptions = function(lastpage){
+        for(x=1;x<=lastpage;x++){
+            $("#pageoption").append('<option value='+x+'>'+x+'</option>');
+        }
+    }
 }(jQuery))
