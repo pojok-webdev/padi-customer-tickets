@@ -32,6 +32,18 @@
             $.each(res,function(a,b){
                 str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
                 str+= '<td>';
+                str+= '<div class="btn-group">';
+                str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
+                str+= '<ul class="dropdown-menu">';
+                str+= '<li><a href="/followups/create/'+b.id+'">Follow Up</a></li>';
+                str+= '<li><a href="#">Troubleshoot</a></li>';
+                str+= '<li><a href="#">History</a></li>';
+                str+= '<li class="divider"></li>';
+                str+= '<li><a href="#">Remove</a></li>';
+                str+= '</ul>';
+                str+= '</div>';
+                str+= '</td>';
+                str+= '<td>';
                 str+= b.kdticket;
                 str+= '</td>';
                 str+= '<td>';

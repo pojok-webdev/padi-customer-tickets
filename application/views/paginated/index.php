@@ -11,7 +11,7 @@
     </div>
     <?php $this->load->view('tickets/menu');?>        
     <div class="content">
-    <?php $this->load->view('tickets/breadline');?>        
+    <?php $this->load->view('tickets/breadline');?>
         <div class="workplace">
             <div class="row-fluid">
                 <div class="span12">                    
@@ -35,6 +35,7 @@
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tTicket">
                             <thead>
                                 <tr>
+                                    <th width=5%>Act</th>
                                     <th width="8%">Kdticket</th>
                                     <th width="20%">Name</th>
                                     <th width="10%">Status</th>
@@ -56,7 +57,7 @@
                             <span id="paginationbuttons" class="btn-group"></span>
                             <button class="btn" id="tTicket_next">Next</button>
                             <button class="btn" id="btnLast" disabled>Last</button>
-                            <?php echo form_dropdown('pageoption',array(1=>"1",2=>"2"),'2','id="pageoption" class="pageoption"');?>
+                            <?php echo form_dropdown('pageoption',array(),'1','id="pageoption" class="pageoption" width="40" ');?>
                         </div>
                 </div>
             </div>
