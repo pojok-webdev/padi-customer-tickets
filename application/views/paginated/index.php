@@ -52,7 +52,7 @@
                         <div class="dataTables_paginate paging_two_button" id="tTicket_paginate">
                             <span id="pageid">1</span>
                             <button class="btn" id="tTicket_previous">Previous</button>
-                            <span id="pagination" class="btn-group"></span>
+                            <span id="paginationbuttons" class="btn-group"></span>
                             <button class="btn" id="tTicket_next">Next</button>
                         </div>
                 </div>

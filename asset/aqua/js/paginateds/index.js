@@ -49,35 +49,27 @@
     loadTicketData(0,10,function(str){
         $('#tTicket tbody').append(str);
     })
-    $("#tTicket_next").on("click",function(){
-        let pageid = $("#pageid").text();
-        console.log("ticket-next clicked",pageid);
-        let nextpage = 1*pageid+1;
+    loadNextPage = function(pageid,nextpage){
+        loadPagination(nextpage,function(result){
+            $("#paginationbuttons").append(result);
+        });
         $("#pageid").text(nextpage);
         clearTable();
-        loadPagination(nextpage,function(result){
-            console.log("loadPage",result);
-            $("#pagination").append(result);
-        });
         loadTicketData(pageid*10,10,function(str){
             $('#tTicket tbody').append(str);
         })
+    }
+    $("#tTicket_next").on("click",function(){
+        let pageid = $("#pageid").text();
+        let nextpage = 1*pageid+1;
+        loadNextPage(pageid,nextpage);
     })
     $("#tTicket_previous").on("click",function(){
         let pageid = $("#pageid").text();
-        console.log("ticket-previous clicked",pageid);
-        if(pageid>1){
+        if(1*pageid>1){
             let prevpage = 1*pageid-1;
-            loadPagination(prevpage,function(result){
-                console.log("loadPage",result);
-                $("#pagination").append(result);
-            });
-            $("#pageid").text(prevpage);
+            loadNextPage(pageid,prevpage);
         }
-        clearTable();
-        loadTicketData(pageid*10,10,function(str){
-            $('#tTicket tbody').append(str);
-        })
     })
     getduration = function(_start,_end,callback){
         if(!_end){
@@ -158,30 +150,32 @@
         if(activePage<3){
             for(x=1;x<6;x++){
                 if(1*x===1*activePage){
-                    out+='<span class="btn btn-warning">'+x+'</span>';
+                    out+='<span class="btn btn-warning pagebutton">'+x+'</span>';
                 }else{
-                    out+='<span class="btn">'+x+'</span>';
+                    out+='<span class="btn pagebutton">'+x+'</span>';
                 }            
             }
         }else if(activePage>=3){
             for(x=1*activePage-2;x<=1*activePage+2;x++){
-                console.log("XXX",activePage,x);
                 if(1*x===1*activePage){
-                    out+='<span class="btn btn-warning">'+x+'</span>';
+                    out+='<span class="btn btn-warning pagebutton">'+x+'</span>';
                 }else{
-                    out+='<span class="btn">'+x+'</span>';
+                    out+='<span class="btn pagebutton">'+x+'</span>';
                 }            
             }
         }
         return out;
     }
     loadPagination = function(pageid,callback){
-        $("#pagination").empty();
+        $("#paginationbuttons").empty();
         callback(createPages(pageid));
     }
     loadPagination(1,function(result){
-        console.log("loadPage",result);
-        $("#pagination").append(result);
+        $("#paginationbuttons").append(result);
     });
     setInterval(function(){ setdura(); }, 3000);
+    $(".paging_two_button").on("click",".pagebutton",function(){
+        pageid = $(this).text();
+        loadNextPage(1*pageid-1,pageid);
+    })
 }(jQuery))
