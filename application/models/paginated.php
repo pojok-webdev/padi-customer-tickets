@@ -24,4 +24,15 @@ Class Paginated extends CI_Model{
         $que = $ci->db->query($sql);
         return array('res'=>$que->result());
     }
+    function getRowAmount(){
+        $sql = 'select count(id) cnt from tickets ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $obj = $que->result();
+        return $obj[0]->cnt;
+    }
+    function getPageAmount(){
+        $rowamount = $this->getRowAmount();
+        return ceil($rowamount/10);
+    }
 }

@@ -13,4 +13,11 @@ Class Paginateds extends CI_Controller{
         $arr = array();
         echo json_encode($objs['res']);
     }
+    function pageamount(){
+        echo $this->paginated->getPageAmount();
+    }
+    function lastpage(){
+        $lastpage = $this->paginated->getPageAmount();
+        echo '{"lastpage":'.$lastpage.'}';
+    }
 }

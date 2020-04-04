@@ -1,4 +1,19 @@
 (function($){
+    _lastpage = 0;
+    $.ajax({
+        url:'/paginateds/lastpage',
+        type:'post',
+        dataType:'json'
+    })
+    .done(function(res){
+        console.log("Success getlastpage",res);
+        $("#btnLast").attr("lastpage",res.lastpage);
+        $("#btnLast").removeAttr("disabled");
+        _lastpage = res.lastpage;
+    })
+    .fail(function(err){
+        console.log("Error getlastpage",err);
+    });
     clearTable = function(){
         $("#tTicket tbody").empty();
     }
@@ -59,6 +74,13 @@
             $('#tTicket tbody').append(str);
         })
     }
+    $('#btnFirst').click(function(){
+        loadNextPage(0,1);
+    });
+    $('#btnLast').click(function(){
+        lastpage = $(this).attr('lastpage');
+        loadNextPage(lastpage-1,lastpage)
+    });
     $("#tTicket_next").on("click",function(){
         let pageid = $("#pageid").text();
         let nextpage = 1*pageid+1;
@@ -66,9 +88,10 @@
     })
     $("#tTicket_previous").on("click",function(){
         let pageid = $("#pageid").text();
+        console.log("PaageID",pageid);
         if(1*pageid>1){
             let prevpage = 1*pageid-1;
-            loadNextPage(pageid,prevpage);
+            loadNextPage(prevpage-1,prevpage);
         }
     })
     getduration = function(_start,_end,callback){
@@ -155,13 +178,22 @@
                     out+='<span class="btn pagebutton">'+x+'</span>';
                 }            
             }
-        }else if(activePage>=3){
+        }else if((activePage>=3)&&(activePage<_lastpage-2)){
             for(x=1*activePage-2;x<=1*activePage+2;x++){
                 if(1*x===1*activePage){
                     out+='<span class="btn btn-warning pagebutton">'+x+'</span>';
                 }else{
                     out+='<span class="btn pagebutton">'+x+'</span>';
                 }            
+            }
+        }else if(activePage>=_lastpage-2){
+            console.log("Last page invoked");
+            for(x=1*_lastpage-5;x<=1*_lastpage;x++){
+                if(1*x===1*activePage){
+                    out+='<span class="btn btn-warning pagebutton">'+x+'</span>';
+                }else{
+                    out+='<span class="btn pagebutton">'+x+'</span>';
+                }
             }
         }
         return out;
