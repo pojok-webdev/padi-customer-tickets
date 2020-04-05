@@ -17,7 +17,7 @@
                 <div class="span6">
                     <div class="head clearfix">
                         <div class="isw-list"></div>
-                        <h1></h1>
+                        <h1><?php echo $obj->kdticket.'-'.$obj->clientname;?></h1>
                     </div>
                     <div class="block-fluid">
                         <div class="row-form clearfix">
@@ -49,57 +49,41 @@
                 <div class="span6">
                     <div class="head clearfix">
                         <div class="isw-target"></div>
-                        <h1></h1>
+                        <h1><?php echo $obj->kdticket.'-'.$obj->clientname;?></h1>
                     </div>
                     <div class="block-fluid">
                     <div class="row-form clearfix">
                             <div class="span5">Main Root Cause:</div>
-                            <div class="span7">
-                                <select name="select">
+                                <div class="span7">
+                                    <select name="mainrootcause" id="mainrootcause">
                                         <option value="0">choose a option...</option>
-                                        <option value="1">Andorra</option>
-                                        <option value="2">Antarctica</option>
-                                        <option value="3">Bulgaria</option>
-                                        <option value="4">Germany</option>
-                                        <option value="5">Dominican Republic</option>
-                                        <option value="6">Micronesia</option>
-                                        <option value="7">United Kingdom</option>
-                                        <option value="8">Greece</option>
-                                        <option value="9">Italy</option>
-                                        <option value="10">Ukraine</option>   
-                                </select>
+                                        <?php foreach($categories['res'] as $cause){?>
+                                            <option value="<?php echo $cause->id;?>">
+                                                <?php echo $cause->name;?>
+                                            </option>
+                                        <?php }?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
                         <div class="row-form clearfix">
                             <div class="span5">Sub Root Cause:</div>
                             <div class="span7">
-                                <select name="select">
-                                        <option value="0">choose a option...</option>
-                                        <option value="1">Andorra</option>
-                                        <option value="2">Antarctica</option>
-                                        <option value="3">Bulgaria</option>
-                                        <option value="4">Germany</option>
-                                        <option value="5">Dominican Republic</option>
-                                        <option value="6">Micronesia</option>
-                                        <option value="7">United Kingdom</option>
-                                        <option value="8">Greece</option>
-                                        <option value="9">Italy</option>
-                                        <option value="10">Ukraine</option>   
+                                <select name="cause" id="subcause">
                                 </select>
                             </div>
                         </div>                                            
                         <div class="row-form clearfix">
                             <div class="span5">Kesimpulan:</div>
                             <div class="span7">
-                                <div class="block-fluid" id="wysiwyg_container">
-                                    <textarea id="wysiwyg" name="text" style="height: 300px;"></textarea>
+                                <div class="block-fluid" id="wysiwyg_container2">
+                                    <textarea id="wysiwyg2" name="text" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">PIC:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Nama PIC..."/>
+                                <input type="text" placeholder="Nama PIC..."/ value="<?php echo $obj->reporter;?>">
                             </div>
                         </div>                                 
                         <div class="row-form clearfix">
@@ -117,8 +101,8 @@
                         <div class="row-form clearfix">
                             <div class="span5">Hasil Konfirmasi:</div>
                             <div class="span7">
-                                <div class="block-fluid" id="wysiwyg_container">
-                                    <textarea id="wysiwyg" name="text" style="height: 300px;"></textarea>
+                                <div class="block-fluid" id="wysiwyg_container3">
+                                    <textarea id="wysiwyg3" name="text" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -150,6 +134,7 @@
                 </div>                
             </div>
         </div>
-    </div>   
+    </div>
+    <script src="/asset/aqua/js/followups/index.js"></script>
 </body>
 </html>

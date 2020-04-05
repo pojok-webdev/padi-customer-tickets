@@ -7,20 +7,16 @@
 
     <title>FollowUp</title>
 
-    <link rel="icon" type="image/ico" href="favicon.ico"/>
+    <link rel="icon" type="image/ico" href="/favicon.ico"/>
     
     <link href="/asset/aqua/css/stylesheets.css" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
-        <link href="/asset/css/ie7.css" rel="stylesheet" type="text/css" />
+        <link href="/asset/aqua/css/ie7.css" rel="stylesheet" type="text/css" />
     <![endif]-->    
     <link rel='stylesheet' type='text/css' href='/asset/aqua/css/fullcalendar.print.css' media='print' />
     
-<!--    
-    <script type='text/javascript' src='/asset/aqua/jquery-1.7.min.js'></script>
-    <script type='text/javascript' src='/asset/aqua/jqueryui-1.8.min.js'></script>
-    -->
-    <script type='text/javascript' src='/asset/aqua/js/jquery-1.8.2.min.js'></script>
-    <script type='text/javascript' src='/asset/aqua/js/jquery-ui-1.8.14.custom.min.js'></script>
+    <script type='text/javascript' src='/asset/jquery-1.7.min.js'></script>
+    <script type='text/javascript' src='/asset/jqueryui-1.8.min.js'></script>
     <script type='text/javascript' src='/asset/aqua/js/plugins/jquery/jquery.mousewheel.min.js'></script>
     
     <script type='text/javascript' src='/asset/aqua/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
