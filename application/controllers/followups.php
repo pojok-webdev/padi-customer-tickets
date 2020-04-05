@@ -17,4 +17,8 @@ Class Followups extends CI_Controller{
         $objs = $this->followup->getticketcauses($category_id);
         echo json_encode($objs['res']);
     }
+    function save(){
+        $params = $this->input->post();
+        print_r($params);
+    }
 }

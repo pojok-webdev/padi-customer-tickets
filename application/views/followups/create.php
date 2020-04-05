@@ -6,11 +6,12 @@
         <a class="logo" href="#"><img src="/asset/aqua/img/logo.png" alt="PadiApp Ticket" title="PadiApp Ticket"/></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
-        </ul>    
+        </ul>
     </div>
     <?php $this->load->view('tickets/menu');?>
     <div class="content">
-    <?php $this->load->view('tickets/breadline');?>
+        <form action='/followups/save' method='post'>
+        <?php $this->load->view('followups/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
                 <div class="span6">
@@ -32,14 +33,14 @@
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" id="ticketdate" class="mask_date"/> <span>Example: 31/12/2020
+                                <input type="text" name="ticketdate" id="ticketdate" class="mask_date"/> <span>Example: 31/12/2020
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Action:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container">
-                                    <textarea id="wysiwyg" name="text" style="height: 300px;"></textarea>
+                                    <textarea id="wysiwyg" name="action" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -70,42 +71,42 @@
                                 <select name="cause" id="subcause">
                                 </select>
                             </div>
-                        </div>                                            
+                        </div>
                         <div class="row-form clearfix">
                             <div class="span5">Kesimpulan:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container2">
-                                    <textarea id="wysiwyg2" class="wysiwyg" name="text" style="height: 300px;"></textarea>
+                                    <textarea id="wysiwyg2" class="wysiwyg" name="solution" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">PIC:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Nama PIC..."/ value="<?php echo $obj->reporter;?>">
+                                <input type="text" placeholder="Nama PIC..." name="reporter" value="<?php echo $obj->reporter;?>" />
                             </div>
-                        </div>                                 
+                        </div>
                         <div class="row-form clearfix">
                             <div class="span5">Jabatan:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Jabatan..."/>
+                                <input type="text" placeholder="Jabatan..." name="role" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telepon:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Telepon..."/>
+                                <input type="text" placeholder="Telepon..." name="phone" />
                             </div>
-                        </div>                                 
+                        </div>
                         <div class="row-form clearfix">
                             <div class="span5">Hasil Konfirmasi:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container3">
-                                    <textarea id="wysiwyg3" class="wysiwyg" name="text" style="height: 300px;"></textarea>
+                                    <textarea id="wysiwyg3" class="wysiwyg" name="confirmationresult" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row-form clearfix">
                             <div class="span5">Konfirmasi Pelanggan:</div>
                             <div class="span7">
@@ -117,7 +118,6 @@
                             </div>
                         </div>
 
-                        
                         <div class="row-form clearfix">
                             <div class="span5">Konfirmasi Pelanggan:</div>
                             <div class="span7">
@@ -126,14 +126,15 @@
                                     <button class="btn" type="button">History</button>
                                     <button class="btn" type="button">Tutup Ticket</button>
                                     <button class="btn" type="button">Progress</button>
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
+    </form>
     <script src="/asset/aqua/js/followups/index.js"></script>
     <script src="/asset/aqua/js/followups/wysiwygs.js"></script>
 </body>
