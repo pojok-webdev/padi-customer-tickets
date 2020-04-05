@@ -8,8 +8,7 @@
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>    
     </div>
-    
-    <?php $this->load->view('tickets/menu');?>        
+    <?php $this->load->view('tickets/menu');?>
     <div class="content">
     <?php $this->load->view('tickets/breadline');?>
         <div class="workplace">            
@@ -33,7 +32,7 @@
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" id="mask_date"/> <span>Example: 31/12/2020
+                                <input type="text" id="ticketdate" class="mask_date"/> <span>Example: 31/12/2020
                             </div>
                         </div>
                         <div class="row-form clearfix">
@@ -76,7 +75,7 @@
                             <div class="span5">Kesimpulan:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container2">
-                                    <textarea id="wysiwyg2" name="text" style="height: 300px;"></textarea>
+                                    <textarea id="wysiwyg2" class="wysiwyg" name="text" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +101,7 @@
                             <div class="span5">Hasil Konfirmasi:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container3">
-                                    <textarea id="wysiwyg3" name="text" style="height: 300px;"></textarea>
+                                    <textarea id="wysiwyg3" class="wysiwyg" name="text" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -136,5 +135,6 @@
         </div>
     </div>
     <script src="/asset/aqua/js/followups/index.js"></script>
+    <script src="/asset/aqua/js/followups/wysiwygs.js"></script>
 </body>
 </html>

@@ -18,9 +18,9 @@
         populateCauses($(this).val(),function(res){
             console.log("mainrootchange",res);
             $.each(res,function(a,b){
-                $("#subcause").append('<option value='+b.id+'>'+b.name+'<option>');
+                $("#subcause").append('<option value='+b.id+'>'+b.name+'</option>');
             })
             
         });
-    });
+    });    
 }(jQuery))
