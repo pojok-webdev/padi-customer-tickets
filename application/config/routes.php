@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "tickets";
+$route['default_controller'] = "paginateds";
 $route['404_override'] = 'NotFound';
 $route['administrator'] = 'back_end';
 
