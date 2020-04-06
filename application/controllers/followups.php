@@ -17,8 +17,29 @@ Class Followups extends CI_Controller{
         $objs = $this->followup->getticketcauses($category_id);
         echo json_encode($objs['res']);
     }
+    function fixdateformat($params){
+        $temp = explode(' ',$params);
+        $dt = $temp[0];$tm = $temp[1];
+        $date = explode("/",$dt);
+        return $date[2].'-'.$date[1].'-'.$date[0].' '.$tm;
+    }
     function save(){
         $params = $this->input->post();
-        print_r($params);
+        $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
+        $this->updateticket($params);
+        $this->followup->save($params);
+        redirect('/paginateds/2');
+    }
+    function updateticket($params){
+        echo $this->followup->updateticket($params);
+    }
+    function save_(){
+        $allowable = array('ticket_id','picname','picphone','followUpDate','description');
+        $params = $this->input->post();
+        $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
+        foreach($allowable as $alw){
+            $obj[$alw] = $params[$alw];
+        }
+        echo $this->followup->save($obj);
     }
 }

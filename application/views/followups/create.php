@@ -11,6 +11,7 @@
     <?php $this->load->view('tickets/menu');?>
     <div class="content">
         <form action='/followups/save' method='post'>
+        <input type="hidden" name="ticket_id" value="<?php echo $obj->ticket_id;?>" />
         <?php $this->load->view('followups/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
@@ -23,24 +24,27 @@
                         <div class="row-form clearfix">
                             <div class="span5">Pelapor:</div>
                             <div class="span7">
+                                <input type="text" name="picname" id="picname" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telp:</div>
                             <div class="span7">
+                            <input type="text" name="picphone" id="picphone" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" name="ticketdate" id="ticketdate" class="mask_date"/> <span>Example: 31/12/2020
+                                <input type="text" name="followUpDate" id="followUpDate" class="mask_date"/> 
+                                <span>Example: 31/12/2020 12:15</span>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Action:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container">
-                                    <textarea id="wysiwyg" name="action" style="height: 300px;"></textarea>
+                                    <textarea id="description" class="wysiwyg" name="description" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -83,19 +87,19 @@
                         <div class="row-form clearfix">
                             <div class="span5">PIC:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Nama PIC..." name="reporter" value="<?php echo $obj->reporter;?>" />
+                                <input type="text" placeholder="Nama PIC..." name="picname" value="<?php echo $obj->reporter;?>" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Jabatan:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Jabatan..." name="role" />
+                                <input type="text" placeholder="Jabatan..." name="position" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telepon:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Telepon..." name="phone" />
+                                <input type="text" placeholder="Telepon..." name="picphone" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
@@ -106,7 +110,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row-form clearfix">
                             <div class="span5">Konfirmasi Pelanggan:</div>
                             <div class="span7">
@@ -117,7 +120,6 @@
                                 </div>                                
                             </div>
                         </div>
-
                         <div class="row-form clearfix">
                             <div class="span5">Konfirmasi Pelanggan:</div>
                             <div class="span7">

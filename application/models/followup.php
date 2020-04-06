@@ -4,7 +4,7 @@ Class Followup extends CI_Model{
         parent::__construct();
     }
     function getbyticketid($ticketid){
-        $sql = 'select a.kdticket,a.clientname,reporter,complaint,reporterphone,solution from tickets a ';
+        $sql = 'select a.id ticket_id,a.kdticket,a.clientname,reporter,complaint,reporterphone,solution from tickets a ';
         $sql.= 'left outer join ticket_followups b on b.ticket_id=a.id  ';
         $sql.= 'where a.id = ' . $ticketid . ' ';
         $ci = & get_instance();
@@ -34,5 +34,35 @@ Class Followup extends CI_Model{
             'res'=>$que->result(),'cnt'=>$que->num_rows()
         );
     }
-    
+    function save($params){
+        $sql = 'insert into ticket_followups ';
+        $sql.= '(ticket_id,picname,picphone,followUpDate,description) ';
+        $sql.= 'values ';
+        $sql.= '('.$params['ticket_id'].',"'.$params['picname'].'","'.$params['picphone'].'","'.$params['followUpDate'].'","'.$params['description'].'") ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
+    function updateticket($params){
+        $sql = 'update tickets ';
+        $sql = 'set solution="'.$params['solution'].'" ';
+        $sql.= 'where id='.$params['ticket_id'].' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
+    function save_($params){
+        $keys = array();$vals = array();
+        foreach($params as $key=>$val){
+            array_push($keys,$key);
+            array_push($vals,$val);
+        }
+        $sql = 'insert into ticket_followups ';
+        $sql.= '('.implode(',',$keys).') ';
+        $sql.= 'values ';
+        $sql.= '("'.implode('","',$vals).'")';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
 }
