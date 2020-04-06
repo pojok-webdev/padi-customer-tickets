@@ -20,4 +20,13 @@ Class Paginateds extends CI_Controller{
         $lastpage = $this->paginated->getPageAmount();
         echo '{"lastpage":'.$lastpage.'}';
     }
+    function add(){
+        $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Ticket'),
+                '1'=>array('url'=>'/','label'=>'Add')
+            ),
+        );
+        $this->load->view('paginated/add',$data);
+    }
 }

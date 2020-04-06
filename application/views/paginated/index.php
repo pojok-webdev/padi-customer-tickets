@@ -19,16 +19,7 @@
                         <div class="isw-grid"></div>
                         <h1>Ticket PadiApp</h1>      
                         <ul class="buttons">
-                            <li><a href="#" class="isw-download"></a></li>                                                        
-                            <li><a href="#" class="isw-attachment"></a></li>
-                            <li>
-                                <a href="#" class="isw-settings"></a>
-                                <ul class="dd-list">
-                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
-                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
-                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/paginateds/add" class="isw-plus"></a></li>                                                        
                         </ul>
                     </div>
                     <div class="block-fluid">
