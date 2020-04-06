@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/asset/aqua/css/app/paginated/padicustom.css" />
 <body>
     <div class="header">
-        <a class="logo" href="index.html"><img src="/asset/aqua/img/logo.png" alt="Ticket" title="Tikets"/></a>
+        <a class="logo" href="/"><img src="/asset/aqua/img/logo.png" alt="Ticket" title="Tikets"/></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>    

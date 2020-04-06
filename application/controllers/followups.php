@@ -42,4 +42,21 @@ Class Followups extends CI_Controller{
         }
         echo $this->followup->save($obj);
     }
+    function history(){
+        $ticketid = $this->uri->segment(3);
+        $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Follow Up'),
+                '1'=>array('url'=>'/','label'=>'History')
+            ),
+            'ticketid'=>$ticketid,
+            'objs'=>$this->followup->getbyticketid($ticketid)
+        );
+        $this->load->view('followups/history',$data);
+    }
+    function historyajaxsource(){
+        $ticketid = $this->uri->segment(3);
+        $objs = $this->followup->getfollowupsbyticketid($ticketid);
+        echo json_encode($objs['res']);
+    }
 }

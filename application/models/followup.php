@@ -4,7 +4,7 @@ Class Followup extends CI_Model{
         parent::__construct();
     }
     function getbyticketid($ticketid){
-        $sql = 'select a.id ticket_id,a.kdticket,a.clientname,reporter,complaint,reporterphone,solution from tickets a ';
+        $sql = 'select a.id ticket_id,a.kdticket,a.clientname,reporter,complaint,reporterphone,solution,b.followUpDate from tickets a ';
         $sql.= 'left outer join ticket_followups b on b.ticket_id=a.id  ';
         $sql.= 'where a.id = ' . $ticketid . ' ';
         $ci = & get_instance();
@@ -14,6 +14,17 @@ Class Followup extends CI_Model{
             return $res[0];
         }
         return false;
+    }
+    function getfollowupsbyticketid($ticketid){
+        $sql = 'select a.id,a.kdticket,a.clientname,a.reporter,a.complaint,a.reporterphone,a.solution,b.followupDate,username ';
+        $sql.= 'from tickets a left outer join ticket_followups b on b.ticket_id=a.id ';
+        $sql.= 'where a.id = ' . $ticketid . ' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $res = $que->result();
+        return array(
+            'res'=>$que->result(),'cnt'=>$que->num_rows()
+        );
     }
     function getticketcauses($category_id){
         $sql = 'select * from ticketcauses ';
