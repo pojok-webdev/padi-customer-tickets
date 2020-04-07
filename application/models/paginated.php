@@ -35,4 +35,14 @@ Class Paginated extends CI_Model{
         $rowamount = $this->getRowAmount();
         return ceil($rowamount/10);
     }
+    function save($params){
+        $sql = 'insert into tickets ';
+        $sql.= '() ';
+        $sql.= 'values ';
+        $sql.= '()';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $obj = $que->result();
+        return $obj[0]->cnt;
+    }
 }

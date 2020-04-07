@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <![endif]-->
     
-    <title>Tickets</title>
+    <title><?php echo $pagetitle;?></title>
 
     <link rel="icon" type="image/ico" href="favicon.ico"/>
     

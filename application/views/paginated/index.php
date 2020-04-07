@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $this->load->view('tickets/head');?>
+    <?php $this->load->view('paginated/head');?>
     <link rel="stylesheet" href="/asset/aqua/css/app/paginated/padicustom.css" />
 <body>
     <div class="header">
@@ -9,17 +9,17 @@
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>    
     </div>
-    <?php $this->load->view('tickets/menu');?>        
+    <?php $this->load->view('tickets/menu');?>
     <div class="content">
     <?php $this->load->view('tickets/breadline');?>
         <div class="workplace">
             <div class="row-fluid">
-                <div class="span12">                    
+                <div class="span12">
                     <div class="head clearfix">
                         <div class="isw-grid"></div>
-                        <h1>Ticket PadiApp</h1>      
+                        <h1>Ticket PadiApp</h1>
                         <ul class="buttons">
-                            <li><a href="/paginateds/add" class="isw-plus"></a></li>                                                        
+                            <li><a href="/paginateds/add" target="_blank" class="isw-plus"></a></li>
                         </ul>
                     </div>
                     <div class="block-fluid">
@@ -52,7 +52,7 @@
                         </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
     <script src="/asset/aqua/js/paginateds/index.js"></script>
 </body>
