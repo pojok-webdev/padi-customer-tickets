@@ -4,10 +4,7 @@
     loadTicketData = function(segment,offset,callback){
         $.ajax({
             url:'/followups/historyajaxsource/'+$('#ticketid').val(),
-            data:{
-                segment:segment,offset:offset
-            },
-            type:'post',
+            type:'get',
             dataType:'json'
         })
         .done(function(res){
@@ -47,7 +44,7 @@
                 str+= b.followupDate;
                 str+= '</td>';
                 str+= '<td class="dura">';
-                str+= 'Wait ...';
+                str+= atob(b.description);
                 str+= '</td>';
                 str+= '</tr>';    
                 callback(str)

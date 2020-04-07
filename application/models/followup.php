@@ -16,7 +16,8 @@ Class Followup extends CI_Model{
         return false;
     }
     function getfollowupsbyticketid($ticketid){
-        $sql = 'select a.id,a.kdticket,a.clientname,a.reporter,a.complaint,a.reporterphone,a.solution,b.followupDate,username ';
+        $sql = 'select a.id,a.kdticket,a.clientname,a.reporter,a.complaint,a.reporterphone,a.solution,b.followupDate,username, ';
+        $sql.= 'a.base64description description ';
         $sql.= 'from tickets a left outer join ticket_followups b on b.ticket_id=a.id ';
         $sql.= 'where a.id = ' . $ticketid . ' ';
         $ci = & get_instance();
@@ -47,16 +48,22 @@ Class Followup extends CI_Model{
     }
     function save($params){
         $sql = 'insert into ticket_followups ';
-        $sql.= '(ticket_id,picname,picphone,followUpDate,description) ';
+        $sql.= '(ticket_id,picname,picphone,followUpDate,base64description) ';
         $sql.= 'values ';
-        $sql.= '('.$params['ticket_id'].',"'.$params['picname'].'","'.$params['picphone'].'","'.$params['followUpDate'].'","'.$params['description'].'") ';
+        $sql.= '(';
+        $sql.= ''.$params['ticket_id'].',';
+        $sql.= '"'.$params['picname'].'",';
+        $sql.= '"'.$params['picphone'].'",';
+        $sql.= '"'.$params['followUpDate'].'",';
+        $sql.= '"'.base64_encode($params['description']).'"';
+        $sql.= ') ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }
     function updateticket($params){
         $sql = 'update tickets ';
-        $sql = 'set solution="'.$params['solution'].'" ';
+        $sql.= 'set base64solution="'.base64_encode($params['solution']).'" ';
         $sql.= 'where id='.$params['ticket_id'].' ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);

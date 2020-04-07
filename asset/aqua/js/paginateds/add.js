@@ -36,7 +36,7 @@
         })
         .done(function(res){
             console.log('Result',settings.url,res)
-            $("#clientsite").append(res);
+            _this.append(res);
         })
         .fail(function(err){
             console.log("Error",err)
@@ -47,6 +47,7 @@
 function selectClient(client_id,val) {
     $("#client_id").val(val);
     $("#dugaanpelanggan").hide();
+    $("#clientid").val(client_id);
     populateClientSites(client_id);
 }
 function populateClientSites(client_id){

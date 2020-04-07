@@ -37,12 +37,12 @@ Class Paginated extends CI_Model{
     }
     function save($params){
         $sql = 'insert into tickets ';
-        $sql.= '() ';
+        $sql.= '(client_id,client_site_id,clientname,reporter,reporterphone,ticketstart,base64description,requesttype) ';
         $sql.= 'values ';
-        $sql.= '()';
+        $sql.= '("'.$params['client_id'].'","'.$params['client_site_id'].'","'.$params['clientname'].'","'.$params['reporter'].'","'.$params['reporterphone'].'","'.$params['ticketstart'].'","'.base64_encode($params['description']).'","pelanggan")';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         $obj = $que->result();
-        return $obj[0]->cnt;
+        return $ci->db->insert_id();
     }
 }

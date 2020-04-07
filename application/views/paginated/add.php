@@ -24,19 +24,19 @@
                         <div class="row-form clearfix">
                             <div class="span5">Pelapor:</div>
                             <div class="span7">
-                                <input type="text" name="picname" id="picname" />
+                                <input type="text" name="reporter" id="reporter" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telp:</div>
                             <div class="span7">
-                            <input type="text" name="picphone" id="picphone" />
+                            <input type="text" name="reporterphone" id="reporterphone" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" name="followUpDate" id="followUpDate" class="mask_date"/> 
+                                <input type="text" name="ticketstart" id="ticketstart" class="mask_date"/> 
                                 <span>Example: 31/12/2020 12:15</span>
                             </div>
                         </div>
@@ -59,14 +59,15 @@
                         <div class="row-form clearfix dauto">
                             <div class="span5">Nama Pelanggan:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Nama Pelanggan..." name="client_id" id="client_id" />
+                                <input type="text" placeholder="Nama Pelanggan..." name="clientname" id="client_id" />
+                                <input type="hidden" name="client_id" id="clientid">
                             </div>
                             <div name="dugaanpelanggan" id="dugaanpelanggan" ></div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Site:</div>
                             <div class="span7">
-                                <select name="clientsite" id="clientsite"></select>
+                                <select name="client_site_id" id="client_site_id"></select>
                             </div>
                         </div>
                     </div>

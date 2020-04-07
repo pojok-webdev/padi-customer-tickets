@@ -35,6 +35,10 @@ Class Paginateds extends CI_Controller{
     }
     function save(){
         $params = $this->input->post();
+        $dt = $params['ticketstart'];
+        $dtarray = explode(' ',$dt);
+        $date = explode("/",$dtarray[0]);
+        $params['ticketstart'] = $date[2].'-'.$date[1].'-'.$date[0].' '.$dtarray[1];
         $this->paginated->save($params);
     }
     function clients(){
@@ -54,7 +58,7 @@ Class Paginateds extends CI_Controller{
         $objs = $this->client->getClientSiteByClientId($client_id);
         $out = '';
         foreach($objs['res'] as $obj){
-            $out.= '<option val='.$obj->id.'>'.$obj->address.'</option>';
+            $out.= '<option value='.$obj->id.'>'.$obj->address.'</option>';
         }
         echo $out;
     }}
