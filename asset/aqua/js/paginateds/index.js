@@ -40,11 +40,11 @@
                 str+= '<li><a href="/downtimes/add/'+b.id+'" target="_blank">Add Down Time</a></li>';
                 str+= '<li><a href="/followups/history/'+b.id+'" target="blank">History</a></li>';
                 str+= '<li class="divider"></li>';
-                str+= '<li><a href="#">Remove</a></li>';
+                str+= '<li class="removeTicket"><a>Remove</a></li>';
                 str+= '</ul>';
                 str+= '</div>';
                 str+= '</td>';
-                str+= '<td>';
+                str+= '<td class="kdticket">';
                 str+= b.kdticket;
                 str+= '</td>';
                 str+= '<td>';
@@ -75,6 +75,23 @@
             console.log("Err",err);
         });
     }
+    confirm = function(obj,callback){
+        callback(obj);
+    }
+    $('#tTicket').on('click','tbody tr .removeTicket',function(){
+        tr = $(this).stairUp({level:4});
+        ticketid = tr.attr('thisid');
+        kdticket = tr.find('.kdticket').text();
+        console.log($(this).text(),tr.attr('thisid'));
+        obj = {
+            'question':'Are you sure to remove ticket number '+kdticket+' ?',
+            'key':''
+        }
+        confirm(obj,function(){
+            $("#question").html(obj.question);
+            $("#confirmModal").modal();
+        })
+    })
     loadTicketData(0,10,function(str){
         $('#tTicket tbody').append(str);
     })

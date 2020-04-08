@@ -54,6 +54,8 @@
             </div>
         </div>
     </div>
+    <?php $this->load->view('commons/confirmmodal');?>
+    <script src="/asset/padi.common.js"></script>
     <script src="/asset/aqua/js/paginateds/index.js"></script>
 </body>
 </html>
