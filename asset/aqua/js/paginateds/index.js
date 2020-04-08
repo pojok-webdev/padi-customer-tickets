@@ -75,23 +75,45 @@
             console.log("Err",err);
         });
     }
-    confirm = function(obj,callback){
+    showConfirmationModal = function(obj,callback){
         callback(obj);
+    }
+    backupTicket = function(obj,callback){
+        $.ajax({
+            url:'/tickets/backup/'+obj.id,
+            type:'get',
+            dataType:'json'
+        })
+        .done(function(result){
+            callback(result);
+        })
+        .fail(function(error){})
+    }
+    removeTicket = function(obj,callback){
+        $.ajax({
+            url:'/tickets/remove/'+obj.id,
+            type:'get',
+            dataType:'json'
+        })
+        .done(function(result){callback(result)})
+        .fail(function(error){callback(error)});
     }
     $('#tTicket').on('click','tbody tr .removeTicket',function(){
         tr = $(this).stairUp({level:4});
         ticketid = tr.attr('thisid');
         kdticket = tr.find('.kdticket').text();
-        console.log($(this).text(),tr.attr('thisid'));
-        obj = {
+        showConfirmationModal({
             'question':'Are you sure to remove ticket number '+kdticket+' ?',
-            'key':''
-        }
-        confirm(obj,function(){
+        },function(){
             $("#question").html(obj.question);
             $("#confirmModal").modal();
         })
     })
+    $("#confirmYes").click(function(){
+        backupTicket({id:$('#key').val()},function(){
+            removeTicket({id:$('#key').val()});
+        })
+    });
     loadTicketData(0,10,function(str){
         $('#tTicket tbody').append(str);
     })

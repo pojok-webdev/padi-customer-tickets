@@ -7,7 +7,7 @@
             <p><span id="question"></span></p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Yes</button> 
+            <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true" id="confirmYes">Yes</button> 
             <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>            
         </div>
     </div>                            

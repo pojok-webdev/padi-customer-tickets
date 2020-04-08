@@ -91,4 +91,18 @@ Class Ticket extends CI_Model{
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }
+    function backup($ticketid){
+        $sql = 'insert into deletedtickets  ';
+        $sql.= 'select * from tickets where id= '.$ticketid.' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
+    function remove($ticketid){
+        $sql = 'delete from tickets  ';
+        $sql.= 'where id= '.$ticketid.' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
 }

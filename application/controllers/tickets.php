@@ -32,4 +32,12 @@ Class Tickets extends CI_Controller{
         $params = $this->input->post();
         echo $this->ticket->save($params,'ticketmains');
     }
+    function backup(){
+        $ticketid = $this->uri->segment(3);
+        $this->ticket->backup($ticketid);
+    }
+    function remove(){
+        $ticketid = $this->uri->segment(3);
+        $this->ticket->remove($ticketid);
+    }
 }
