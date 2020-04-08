@@ -37,7 +37,7 @@
                 str+= '<ul class="dropdown-menu">';
                 str+= '<li><a href="/followups/create/'+b.id+'" target="_blank">Follow Up</a></li>';
                 str+= '<li><a href="#">Troubleshoot</a></li>';
-                str+= '<li><a href="/paginateds/downtimeadd/'+b.id+'" target="_blank">Add Down Time</a></li>';
+                str+= '<li><a href="/downtimes/add/'+b.id+'" target="_blank">Add Down Time</a></li>';
                 str+= '<li><a href="/followups/history/'+b.id+'" target="blank">History</a></li>';
                 str+= '<li class="divider"></li>';
                 str+= '<li><a href="#">Remove</a></li>';
