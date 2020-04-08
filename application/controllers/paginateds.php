@@ -61,4 +61,15 @@ Class Paginateds extends CI_Controller{
             $out.= '<option value='.$obj->id.'>'.$obj->address.'</option>';
         }
         echo $out;
-    }}
+    }
+    function downtimeadd(){
+        $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Downtime'),
+                '1'=>array('url'=>'/','label'=>'Add')
+            ),
+            'pagetitle'=>'Add Downtime'
+        );
+        $this->load->view('paginated/downtimeadd',$data);
+    }
+}
