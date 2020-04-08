@@ -28,7 +28,7 @@ Class Followups extends CI_Controller{
         $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
         $this->updateticket($params);
         $this->followup->save($params);
-        redirect('/paginateds/2');
+        redirect('/paginateds');
     }
     function updateticket($params){
         echo $this->followup->updateticket($params);
