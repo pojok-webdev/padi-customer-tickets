@@ -11,7 +11,7 @@
     </div>
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
-    <?php $this->load->view('tickets/breadline');?>
+    <?php $this->load->view('paginated/breadline');?>
         <div class="workplace">
             <div class="row-fluid">
                 <div class="span12">

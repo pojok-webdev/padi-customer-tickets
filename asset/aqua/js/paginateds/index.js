@@ -30,7 +30,7 @@
         .done(function(res){
             console.log("Res",res);
             $.each(res,function(a,b){
-                str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
+                str = '<tr thisid='+b.id+' class="'+b.statuslabel+'" dayamount=0>';
                 str+= '<td>';
                 str+= '<div class="btn-group">';
                 str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
@@ -232,6 +232,14 @@
                 }
                 dura = getduration(_start,_end,function(x){
                     if(status==="ticketOpen"){
+                    }
+                    tr.attr('dayamount',x.dayval);
+                    if($('#withcolorcheckbox').prop('checked')){
+                        if(x.dayval>3){
+                            tr.find('td').css('background-color','red');
+                        }
+                    }else{
+                        tr.find('td').css('background-color','#F9F9F9');
                     }
                     tr.find(".dura").html(x.str);
                 });

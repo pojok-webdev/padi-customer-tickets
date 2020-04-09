@@ -5,7 +5,9 @@
     </ul>
     <ul class="buttons">
         <li>
-            <button type="submit" class="btn btn-primary"><span class="text">Save</span></button>
+        <label class="checkbox inline">
+            <input type="checkbox" id="withcolorcheckbox" value="withcolor"/> With Color
+        </label>
         </li>
     </ul>
 </div>
