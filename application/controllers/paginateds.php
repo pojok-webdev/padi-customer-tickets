@@ -32,7 +32,8 @@ Class Paginateds extends CI_Controller{
                 '0'=>array('url'=>'/','label'=>'Ticket'),
                 '1'=>array('url'=>'/','label'=>'Add')
             ),
-            'pagetitle'=>'Add Ticket'
+            'pagetitle'=>'Add Ticket',
+            'username'=>$_SESSION['username']
         );
         $this->load->view('paginated/add',$data);
     }
@@ -42,7 +43,7 @@ Class Paginateds extends CI_Controller{
         $dtarray = explode(' ',$dt);
         $date = explode("/",$dtarray[0]);
         $params['ticketstart'] = $date[2].'-'.$date[1].'-'.$date[0].' '.$dtarray[1];
-        $this->paginated->save($params);
+        echo $this->paginated->save($params);
     }
     function clients(){
         $params = $this->input->post();

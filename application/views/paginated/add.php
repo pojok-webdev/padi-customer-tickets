@@ -36,12 +36,12 @@
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" name="ticketstart" id="ticketstart" class="mask_date"/> 
+                                <input type="text" name="ticketstart" id="ticketstart" class="mask_date" value="<?php echo date('d/m/Y h:i');?>" /> 
                                 <span>Example: 31/12/2020 12:15</span>
                             </div>
                         </div>
                         <div class="row-form clearfix">
-                            <div class="span5">Action:</div>
+                            <div class="span5">Description:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container">
                                     <textarea id="description" class="wysiwyg" name="description" style="height: 300px;"></textarea>
@@ -68,6 +68,11 @@
                             <div class="span5">Site:</div>
                             <div class="span7">
                                 <select name="client_site_id" id="client_site_id"></select>
+                            </div>
+                        </div>
+                        <div class="row-form clearfix">
+                            <div class="span12">
+                                <button type="submit" class="btn" name="save">Save</button>
                             </div>
                         </div>
                     </div>

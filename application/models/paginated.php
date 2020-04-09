@@ -41,8 +41,8 @@ Class Paginated extends CI_Model{
         $sql.= 'values ';
         $sql.= '("'.$params['client_id'].'","'.$params['client_site_id'].'","'.$params['clientname'].'","'.$params['reporter'].'","'.$params['reporterphone'].'","'.$params['ticketstart'].'","'.base64_encode($params['description']).'","pelanggan")';
         $ci = & get_instance();
+        echo $sql;
         $que = $ci->db->query($sql);
-        $obj = $que->result();
         return $ci->db->insert_id();
     }
 }
