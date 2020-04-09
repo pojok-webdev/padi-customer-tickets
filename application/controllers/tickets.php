@@ -2,6 +2,8 @@
 Class Tickets extends CI_Controller{
     function __construct(){
         parent::__construct();
+        $this->load->model('padiauth');
+        $this->padiauth->checklogin();
     }
     function index(){
         $data['objs'] = $this->ticket->gets();

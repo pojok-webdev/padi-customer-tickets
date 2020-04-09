@@ -3,6 +3,9 @@ Class Main extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('padiauth');
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
     function login(){
         $this->load->view('main/login');
@@ -15,7 +18,9 @@ Class Main extends CI_Controller{
             redirect('/main/login');
         }
     }
-    function newline(){
-        echo '<br />';
+    function logout(){
+        session_unset();
+        session_destroy();
+        redirect('/main/login');
     }
 }

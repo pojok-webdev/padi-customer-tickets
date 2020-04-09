@@ -3,12 +3,16 @@ Class Followups extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('followup');
+        $this->load->model('padiauth');
+        $this->padiauth->checklogin();
     }
     function create(){
+        $this->padiauth->checklogin();
         $ticketid = $this->uri->segment(3);
         $data = array(
             'obj'=>$this->followup->getbyticketid($ticketid),
-            'categories'=>$this->followup->getticketcausescategories()
+            'categories'=>$this->followup->getticketcausescategories(),
+            'username'=>$_SESSION['username']
         );
         $this->load->view('followups/create',$data);
     }
@@ -50,7 +54,8 @@ Class Followups extends CI_Controller{
                 '1'=>array('url'=>'/','label'=>'History')
             ),
             'ticketid'=>$ticketid,
-            'objs'=>$this->followup->getbyticketid($ticketid)
+            'objs'=>$this->followup->getbyticketid($ticketid),
+            'username'=>$_SESSION['username']
         );
         $this->load->view('followups/history',$data);
     }

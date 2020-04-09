@@ -3,10 +3,13 @@ Class Paginateds extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('paginated');
+        $this->load->model('padiauth');
+        $this->padiauth->checklogin();
     }
     function index(){
         $data = array(
-            'pagetitle'=>'List of Ticket'
+            'pagetitle'=>'List of Ticket',
+            'username'=>$_SESSION['username']
         );
         $this->load->view('paginated/index',$data);
     }

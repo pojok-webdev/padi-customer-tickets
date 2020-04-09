@@ -3,6 +3,8 @@ Class Downtimes extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('downtime');
+        $this->load->model('padiauth');
+        $this->padiauth->checklogin();
     }
     function index(){
         $data = array(
@@ -19,7 +21,8 @@ Class Downtimes extends CI_Controller{
             ),
             'pagetitle'=>'Add Downtime',
             'ticket_id'=>$this->uri->segment(3),
-            'downtimes'=>$downtimes['res']
+            'downtimes'=>$downtimes['res'],
+            'username'=>$_SESSION['username']
         );
         $this->load->view('downtimes/add',$data);
     }

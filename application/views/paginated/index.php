@@ -9,7 +9,7 @@
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>    
     </div>
-    <?php $this->load->view('tickets/menu');?>
+    <?php $this->load->view('paginated/menu');?>
     <div class="content">
     <?php $this->load->view('tickets/breadline');?>
         <div class="workplace">

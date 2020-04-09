@@ -2,7 +2,7 @@
     <div class="breadLine">            
         <div class="arrow"></div>
         <div class="adminControl active">
-            Hi
+            Hi <?php echo $username;?>
         </div>
     </div>
     <div class="admin">
@@ -12,10 +12,10 @@
         <ul class="control">                
             <li><span class="icon-comment"></span> <a href="#">Messages</a> <a href="#" class="caption red">12</a></li>
             <li><span class="icon-cog"></span> <a href="#">Settings</a></li>
-            <li><span class="icon-share-alt"></span> <a href="#">Logout</a></li>
+            <li><span class="icon-share-alt"></span> <a href="/main/logout">Logout</a></li>
         </ul>
         <div class="info">
-            <span>Welcome back! PadiNET</span>
+            <span>Welcome back! <?php echo $username?></span>
         </div>
     </div>
     
