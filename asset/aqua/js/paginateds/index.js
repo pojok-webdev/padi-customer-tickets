@@ -30,7 +30,7 @@
         .done(function(res){
             console.log("Res",res);
             $.each(res,function(a,b){
-                str = '<tr thisid='+b.id+' class="'+b.statuslabel+'" dayamount=0>';
+                str = '<tr thisid='+b.id+' class="'+b.statuslabel+' '+b.requesttype+'" dayamount=0>';
                 str+= '<td>';
                 str+= '<div class="btn-group">';
                 str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
@@ -246,7 +246,17 @@
                 obj.row.find('td').css('background-color','yellow');
             }
             else if(obj.dayamount>7){
-                obj.row.find('td').css('background-color','red');
+                if(tr.hasClass('backbone')){
+                    obj.row.find('td').css('background-color','purple');    
+                }else if(tr.hasClass('BTS')){
+                    obj.row.find('td').css('background-color','blue');    
+                }else if(tr.hasClass('lastmile')){
+                    obj.row.find('td').css('background-color','pink');    
+                }else if(tr.hasClass('local')){
+                    obj.row.find('td').css('background-color','yellow');    
+                }else{
+                    obj.row.find('td').css('background-color','red');
+                }
             }
         }else{
             obj.row.find('td').css('background-color','#F9F9F9');
