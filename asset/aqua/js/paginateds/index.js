@@ -40,7 +40,7 @@
                 str+= '<li><a href="/downtimes/add/'+b.id+'" target="_blank">Add Down Time</a></li>';
                 str+= '<li><a href="/followups/history/'+b.id+'" target="blank">History</a></li>';
                 str+= '<li class="divider"></li>';
-                str+= '<li class="removeTicket"><a>Remove</a></li>';
+                str+= '<li class="removeTicket warning"><a>Remove</a></li>';
                 str+= '</ul>';
                 str+= '</div>';
                 str+= '</td>';
@@ -98,20 +98,37 @@
         .done(function(result){callback(result)})
         .fail(function(error){callback(error)});
     }
+    clearSelected = function(rows,callback){
+        rows.each(function(){
+            console.log('Row : ',rows.html());
+            $(this).removeClass('selected');
+        });
+        callback();
+    }
     $('#tTicket').on('click','tbody tr .removeTicket',function(){
         tr = $(this).stairUp({level:4});
+        clearSelected($('#tTicket tbody tr'),function(){
+            console.log('tr selected',tr.html());
+            tr.addClass('selected');
+        });
         ticketid = tr.attr('thisid');
         kdticket = tr.find('.kdticket').text();
-        showConfirmationModal({
+        obj = {
             'question':'Are you sure to remove ticket number '+kdticket+' ?',
-        },function(){
+        };
+        showConfirmationModal(obj,function(){
             $("#question").html(obj.question);
             $("#confirmModal").modal();
         })
     })
     $("#confirmYes").click(function(){
-        backupTicket({id:$('#key').val()},function(){
-            removeTicket({id:$('#key').val()});
+        tr = $('#tTicket tbody tr.selected');
+        ticketid = tr.attr('thisid');
+        backupTicket({id:ticketid},function(){
+            removeTicket({id:ticketid},function(res){
+                console.log("Remove success",res);
+                tr.remove();
+            });
         })
     });
     loadTicketData(0,10,function(str){
