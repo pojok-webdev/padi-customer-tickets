@@ -234,17 +234,21 @@
                     if(status==="ticketOpen"){
                     }
                     tr.attr('dayamount',x.dayval);
-                    if($('#withcolorcheckbox').prop('checked')){
-                        if(x.dayval>3){
-                            tr.find('td').css('background-color','red');
-                        }
-                    }else{
-                        tr.find('td').css('background-color','#F9F9F9');
-                    }
+                    defineColor({row:tr,dayamount:x.dayval});
                     tr.find(".dura").html(x.str);
                 });
             }
         });
+    }
+    defineColor = function(obj){
+        if($('#withcolorcheckbox').prop('checked')){
+            if(obj.dayamount>3){
+                obj.row.find('td').css('background-color','red');
+            }
+        }else{
+            obj.row.find('td').css('background-color','#F9F9F9');
+        }
+
     }
     createPages = function(activePage){
         out = '';

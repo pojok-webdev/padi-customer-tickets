@@ -6,7 +6,7 @@ Class Paginated extends CI_Model{
     function gets($segment,$offset){
         $sql = 'select a.id,kdticket,clientname name,ticketstart,ticketend,a.status,';
         $sql.= 'case a.status when "0" then "Open" when "1" then "Closed" end statuslabel,';
-        $sql.= 'e.name subrootcause,f.name mainrootcause, ';
+        $sql.= 'e.name subrootcause,f.name mainrootcause, requesttype,';
         $sql.= "case d.clientcategory ";
         $sql.= "when '1' then 'FFR' ";
         $sql.= "when '2' then 'Platinum' ";
