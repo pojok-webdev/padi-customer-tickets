@@ -242,7 +242,10 @@
     }
     defineColor = function(obj){
         if($('#withcolorcheckbox').prop('checked')){
-            if(obj.dayamount>3){
+            if((obj.dayamount>3)&&(obj.dayamount<=7)){
+                obj.row.find('td').css('background-color','yellow');
+            }
+            else if(obj.dayamount>7){
                 obj.row.find('td').css('background-color','red');
             }
         }else{
