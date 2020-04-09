@@ -17,15 +17,15 @@
                 <div class="span12">
                     <div class="head clearfix">
                         <div class="isw-grid"></div>
-                        <h1>Follow up Hstory</h1>
+                        <h1>Follow up Hstory <span id="kdticket"></span></h1>
                     </div>
                     <div class="block-fluid">
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tTicket">
                             <thead>
                                 <tr>
                                     <th width=5%>Tanggal</th>
-                                    <th width="8%">PIC</th>
-                                    <th width="20%">Jabatan</th>
+                                    <th width="8%">Narasi</th>
+                                    <th width="20%">PIC</th>
                                     <th width="10%">Telepon</th>
                                     <th width="20%">Status</th>
                                     <th width="10%">Petugas</th>

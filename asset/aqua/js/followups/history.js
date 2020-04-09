@@ -9,33 +9,25 @@
         })
         .done(function(res){
             console.log("Res",res);
+            $("#kdticket").html(res[0].kdticket+' '+res[0].clientname);
             $.each(res,function(a,b){
                 str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
                 str+= '<td>';
-                str+= '<div class="btn-group">';
-                str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
-                str+= '<ul class="dropdown-menu">';
-                str+= '<li><a href="/followups/create/'+b.id+'" target="_blank">Follow Up</a></li>';
-                str+= '<li><a href="#">Troubleshoot</a></li>';
-                str+= '<li><a href="/followups/history/'+b.id+'" target="blank">History</a></li>';
-                str+= '<li class="divider"></li>';
-                str+= '<li><a href="#">Remove</a></li>';
-                str+= '</ul>';
-                str+= '</div>';
+                str+= b.followupDate;
                 str+= '</td>';
                 str+= '<td>';
-                str+= b.kdticket;
+                str+= atob(b.fdescription);
                 str+= '</td>';
                 str+= '<td>';
-                str+= b.reporter;
-                str+= '</td>';
-                str+= '<td>';
-                str+= b.complaint;
+                str+= b.picname;
                 str+= '</td>';
                 str+= '<td>';
                 str+= b.reporterphone;
+                str+= '</td>';
+                str+= '<td>';
+                str+= b.status;
                 str+= '<br >';
-                str+= b.solution;
+                str+= atob(b.conclusion);
                 str+= '</td>';
                 str+= '<td class="ticketstart">';
                 str+= b.user;
