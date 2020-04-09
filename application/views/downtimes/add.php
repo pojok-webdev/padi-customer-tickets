@@ -9,7 +9,7 @@
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>
     </div>
-    <?php $this->load->view('paginated/menu');?>
+    <?php $this->load->view('downtimes/menu');?>
     <div class="content">
         <form action='/downtimes/save' method='post'>
         <input type="hidden" name="createuser" value="puji" />

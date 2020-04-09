@@ -21,7 +21,7 @@
     
     <ul class="navigation">            
         <li>
-            <a href="index.html">
+            <a href="/">
                 <span class="isw-grid"></span><span class="text">Tickets</span>
             </a>
         </li>
