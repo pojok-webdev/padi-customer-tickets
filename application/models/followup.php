@@ -24,7 +24,7 @@ Class Followup extends CI_Model{
         $sql.= 'case b.result when "0" then "Progress" when "1" then "OK" when "3" then "Tidak dapat dihubungi" end status,';
         $sql.= 'b.base64confirmationresult confirmationresult ';
         $sql.= 'from tickets a left outer join ticket_followups b on b.ticket_id=a.id ';
-        $sql.= 'where a.id = ' . $ticketid . ' ';
+        $sql.= 'where a.id = ' . $ticketid . ' and b.ticket_id is not null ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         $res = $que->result();

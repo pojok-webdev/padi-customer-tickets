@@ -20,6 +20,14 @@
                         <h1>Ticket PadiApp</h1>
                         <ul class="buttons">
                             <li><a href="/paginateds/add" target="_blank" class="isw-plus"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <div class="block-fluid">
@@ -42,13 +50,15 @@
                     </div>
                     <div class="dataTables_info" id="tTicket_info"></div>
                         <div class="dataTables_paginate paging_two_button" id="tTicket_paginate">
-                            <span id="pageid">1</span>
+                        Row Per Page 
+                            <?php echo form_dropdown('pageamount',$rowAmounts,'1','id="pageamount" class="pageoption" ');?>
+                            <span style="display:none" id="pageid">1</span>
                             <button class="btn" id="btnFirst">First</button>
                             <button class="btn" id="tTicket_previous">Previous</button>
                             <span id="paginationbuttons" class="btn-group"></span>
                             <button class="btn" id="tTicket_next">Next</button>
                             <button class="btn" id="btnLast" disabled>Last</button>
-                            <?php echo form_dropdown('pageoption',array(),'1','id="pageoption" class="pageoption" width="40" ');?>
+                            <?php echo form_dropdown('pageoption',array(),'1','id="pageoption" class="pageoption" ');?>
                         </div>
                 </div>
             </div>

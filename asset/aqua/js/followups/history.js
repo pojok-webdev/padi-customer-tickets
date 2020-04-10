@@ -9,38 +9,40 @@
         })
         .done(function(res){
             console.log("Res",res);
-            $("#kdticket").html(res[0].kdticket+' '+res[0].clientname);
-            $.each(res,function(a,b){
-                str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
-                str+= '<td>';
-                str+= b.followupDate;
-                str+= '</td>';
-                str+= '<td>';
-                str+= atob(b.fdescription);
-                str+= '</td>';
-                str+= '<td>';
-                str+= b.picname;
-                str+= '</td>';
-                str+= '<td>';
-                str+= b.reporterphone;
-                str+= '</td>';
-                str+= '<td>';
-                str+= b.status;
-                str+= '<br >';
-                str+= atob(b.conclusion);
-                str+= '</td>';
-                str+= '<td class="ticketstart">';
-                str+= b.user;
-                str+= '</td>';
-                str+= '<td class="ticketend">';
-                str+= b.followupDate;
-                str+= '</td>';
-                str+= '<td class="dura">';
-                str+= atob(b.description);
-                str+= '</td>';
-                str+= '</tr>';    
-                callback(str)
-            })
+            if(res.length>0){
+                $("#kdticket").html(res[0].kdticket+' '+res[0].clientname);
+                $.each(res,function(a,b){
+                    str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
+                    str+= '<td>';
+                    str+= b.followupDate;
+                    str+= '</td>';
+                    str+= '<td>';
+                    str+= atob(b.fdescription);
+                    str+= '</td>';
+                    str+= '<td>';
+                    str+= b.picname;
+                    str+= '</td>';
+                    str+= '<td>';
+                    str+= b.reporterphone;
+                    str+= '</td>';
+                    str+= '<td>';
+                    str+= b.status;
+                    str+= '<br >';
+                    str+= atob(b.conclusion);
+                    str+= '</td>';
+                    str+= '<td class="ticketstart">';
+                    str+= b.username;
+                    str+= '</td>';
+                    str+= '<td class="ticketend">';
+                    str+= b.followupDate;
+                    str+= '</td>';
+                    str+= '<td class="dura">';
+                    str+= atob(b.description);
+                    str+= '</td>';
+                    str+= '</tr>';    
+                    callback(str)
+                })
+            }
         })
         .fail(function(err){
             console.log("Err",err);

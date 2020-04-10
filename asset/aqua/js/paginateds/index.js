@@ -31,14 +31,14 @@
             console.log("Res",res);
             $.each(res,function(a,b){
                 str = '<tr thisid='+b.id+' class="'+b.statuslabel+' '+b.requesttype+'" dayamount=0>';
-                str+= '<td>';
+                str+= '<td class="action">';
                 str+= '<div class="btn-group">';
                 str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
                 str+= '<ul class="dropdown-menu">';
                 str+= '<li><a href="/followups/create/'+b.id+'" target="_blank">Follow Up</a></li>';
                 str+= '<li><a href="#">Troubleshoot</a></li>';
                 str+= '<li><a href="/downtimes/add/'+b.id+'" target="_blank">Add Down Time</a></li>';
-                str+= '<li><a href="/followups/history/'+b.id+'" target="blank">History</a></li>';
+                str+= '<li><a href="/followups/history/'+b.id+'" target="blank"><span class="history">History</span></a></li>';
                 str+= '<li class="divider"></li>';
                 str+= '<li class="removeTicket warning"><a>Remove</a></li>';
                 str+= '</ul>';
@@ -131,7 +131,7 @@
             });
         })
     });
-    loadTicketData(0,10,function(str){
+    loadTicketData(0,$('#pageamount').val(),function(str){
         $('#tTicket tbody').append(str);
     })
     loadNextPage = function(pageid,nextpage){
@@ -140,7 +140,7 @@
         });
         $("#pageid").text(nextpage);
         clearTable();
-        loadTicketData(pageid*10,10,function(str){
+        loadTicketData(pageid*$('#pageamount').val(),$('#pageamount').val(),function(str){
             $('#tTicket tbody').append(str);
         })
     }
@@ -235,6 +235,7 @@
                     }
                     tr.attr('dayamount',x.dayval);
                     defineColor({row:tr,dayamount:x.dayval});
+                    getFollowupsCount({row:tr});
                     tr.find(".dura").html(x.str);
                 });
             }
@@ -247,13 +248,13 @@
             }
             else if(obj.dayamount>7){
                 if(tr.hasClass('backbone')){
-                    obj.row.find('td').css('background-color','purple');    
+                    obj.row.find('td').css('background-color','purple');
                 }else if(tr.hasClass('BTS')){
-                    obj.row.find('td').css('background-color','blue');    
+                    obj.row.find('td').css('background-color','blue');
                 }else if(tr.hasClass('lastmile')){
-                    obj.row.find('td').css('background-color','pink');    
+                    obj.row.find('td').css('background-color','pink');
                 }else if(tr.hasClass('local')){
-                    obj.row.find('td').css('background-color','yellow');    
+                    obj.row.find('td').css('background-color','yellow');
                 }else{
                     obj.row.find('td').css('background-color','red');
                 }
@@ -261,7 +262,18 @@
         }else{
             obj.row.find('td').css('background-color','#F9F9F9');
         }
-
+    }
+    getFollowupsCount = function(obj){
+        $.ajax({
+            url:'/followups/gethistorycount/'+obj.row.attr('thisid'),
+            dataType:'json'
+        })
+        .done(function(res){
+            obj.row.find('.action .history').html('History '+res.cnt);
+        })
+        .fail(function(err){
+            console.log("Error get fo count",err);
+        });
     }
     createPages = function(activePage){
         out = '';
@@ -313,5 +325,11 @@
     $("#pageoption").change(function(){
         pageid = $(this).val();
         loadNextPage(1*pageid-1,pageid);
+    });
+    $("#pageamount").change(function(){
+        clearTable();
+        loadTicketData(1*$('#pageid').val()*$('#pageamount').val(),1*$('#pageamount').val(),function(str){
+            $('#tTicket tbody').append(str);
+        })
     });
 }(jQuery))

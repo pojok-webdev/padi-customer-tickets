@@ -12,7 +12,7 @@
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
         <form action='/paginateds/save' method='post'>
-        <?php $this->load->view('paginated/breadline');?>
+        <?php $this->load->view('commons/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
                 <div class="span6">

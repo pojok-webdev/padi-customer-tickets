@@ -9,7 +9,8 @@ Class Paginateds extends CI_Controller{
     function index(){
         $data = array(
             'pagetitle'=>'List of Ticket',
-            'username'=>$_SESSION['username']
+            'username'=>$_SESSION['username'],
+            'rowAmounts'=>array('5'=>'5','10'=>'10','15'=>'15','20'=>'20','25'=>'25')
         );
         $this->load->view('paginated/index',$data);
     }

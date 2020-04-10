@@ -64,4 +64,9 @@ Class Followups extends CI_Controller{
         $objs = $this->followup->getfollowupsbyticketid($ticketid);
         echo json_encode($objs['res']);
     }
+    function gethistorycount(){
+        $ticketid = $this->uri->segment(3);
+        $obj = $this->followup->getfollowupsbyticketid($ticketid);
+        echo json_encode($obj);
+    }
 }
