@@ -4,10 +4,15 @@ Class Paginateds extends CI_Controller{
         parent::__construct();
         $this->load->model('paginated');
         $this->load->model('padiauth');
+        $this->load->model('backbone');
         $this->padiauth->checklogin();
     }
     function index(){
         $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Ticket'),
+                '1'=>array('url'=>'/','label'=>'Add')
+            ),
             'pagetitle'=>'List of Ticket',
             'username'=>$_SESSION['username'],
             'rowAmounts'=>array('5'=>'5','10'=>'10','15'=>'15','20'=>'20','25'=>'25')
@@ -37,6 +42,27 @@ Class Paginateds extends CI_Controller{
             'username'=>$_SESSION['username']
         );
         $this->load->view('paginated/add',$data);
+    }
+    function getbackbones(){
+        $objs = $this->backbone->gets();
+        $out = array();
+        foreach($objs['res'] as $obj){
+            $out[$obj->id]=$obj->name;
+        }
+        return $out;
+    }
+    function addbackbone(){
+        $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Ticket'),
+                '1'=>array('url'=>'/','label'=>'Add Backbone Ticket')
+            ),
+            'backbones'=>$this->getbackbones(),
+            'pagetitle'=>'Add Backbone Ticket',
+            'clients'=>array(),
+            'username'=>$_SESSION['username']
+        );
+        $this->load->view('paginated/addbackbone',$data);
     }
     function save(){
         $params = $this->input->post();
