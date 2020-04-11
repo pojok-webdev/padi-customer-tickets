@@ -2,6 +2,7 @@
 <html lang="en">
     <?php $this->load->view('paginated/head');?>
     <link rel="stylesheet"  href="/asset/aqua/css/autocomplete.css" />
+    <script src="/asset/padi.common.js"></script>
 <body>
     <div class="header">
         <a class="logo" href="#"><img src="/asset/aqua/img/logo.png" alt="PadiApp Ticket" title="PadiApp Ticket"/></a>
@@ -85,32 +86,19 @@
                                 <input type="text" name="client" id="client" />
                             </div>
                             <div class="span2">
-                                <a class="btn" id="btnAssociateClientBackbone">Add to Affected Client</a>
+                                <a class="btn" id="btnAssociateClientBackbone" title="Add to Affected Clients">Add</a>
                             </div>
                         </div>
                             <table cellpadding="0" cellspacing="0" width="100%" class="table images" id="tClient">
                                 <thead>
                                     <tr>
-                                        <th width="30">ID</th>
-                                        <th>Downtime</th>
-                                        <th width="60">Size</th>
+                                        <th width="30">No</th>
+                                        <th>Name</th>
+                                        <th width="60">Address</th>
                                         <th width="40">Actions</th>                                
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($clients as $client){?>
-                                    <tr>
-                                        <td><?php echo $client->id;?></td>
-                                        <td class="info">
-                                            <span>Start: <?php echo $client->name;?></span> 
-                                            <span>End: <?php echo $client->address;?></span>
-                                        </td>
-                                        <td><?php echo $client->createuser;?></td>
-                                        <td>
-                                            <a type="btn" href="/downtimes/remove/<?php echo $ticket_id;?>/<?php echo $downtime->id;?>">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <?php }?>
                                 </tbody>
                             </table>                    
                             <div class="toolbar bottom-toolbar clearfix">
