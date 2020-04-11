@@ -17,16 +17,22 @@ $('#btnAssociateClientBackbone').click(function(){
             tr+= '</td>';
         tr+= '</tr>';
         $("#tClient tbody").append(tr);
+        $('#clientamount').html(rownum);
     })
 })
 $('#tClient').on('click','.removeRow',function(){
-    $(this).stairUp({level:2}).remove();
+    removeRow($(this),function(x){
+        $('#clientamount').html(x);
+    })
+})
+removeRow = function(row,callback){
+    row.stairUp({level:2}).remove();
     x = 0;
     $('#tClient tbody tr').each(function(){
         $(this).find('.rownum').html(++x);
     });
-})
-
+    callback(x);
+}
 $("#client_id").keyup(function(){
     console.log('Client Name sent',$(this).val());
     $.ajax({

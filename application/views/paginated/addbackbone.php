@@ -78,7 +78,7 @@
                 <div class="span6">
                         <div class="head clearfix">
                             <div class="isw-list"></div>
-                            <h1>List Client Affected</h1>
+                            <h1>List of Client Affected (<span id="clientamount"></span>)</h1>
                         </div>
                         <div class="block-fluid without-head">
                         <div class="row-form clearfix dauto">
@@ -111,19 +111,7 @@
                                 </thead>
                                 <tbody>
                                 </tbody>
-                            </table>                    
-                            <div class="toolbar bottom-toolbar clearfix">
-                                <div class="right">
-                                    <div class="pagination pagination-mini">
-                                        <ul>
-                                            <li class="disabled"><a href="#">Prev</a></li>
-                                            <li class="disabled"><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">Next</a></li>
-                                        </ul>
-                                    </div>                             
-                                </div>                        
-                            </div>                    
+                            </table>
                         </div>
                     </div>
                 </div>
