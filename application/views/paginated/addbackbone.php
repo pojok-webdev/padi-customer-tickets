@@ -64,7 +64,8 @@
                         <div class="row-form clearfix">
                             <div class="span5">Site:</div>
                             <div class="span7">
-                                <select name="client_site_id" id="client_site_id"></select>
+                            <input type="text" placeholder="Nama Pelanggan..." name="clientname" id="client_id_" />
+                                <input type="hidden" name="client" id="clientid_">
                             </div>
                         </div>
                         <div class="row-form clearfix">
@@ -83,8 +84,10 @@
                         <div class="row-form clearfix">
                             <div class="span5">Pelanggan:</div>
                             <div class="span5">
-                                <input type="text" name="client" id="client" />
+                            <input type="text" placeholder="Nama Pelanggan..." name="clientname" id="client_id" />
+                                <input type="hidden" name="client_id" id="clientid">
                             </div>
+                            <div name="dugaanpelanggan" id="dugaanpelanggan" ></div>
                             <div class="span2">
                                 <a class="btn" id="btnAssociateClientBackbone" title="Add to Affected Clients">Add</a>
                             </div>
