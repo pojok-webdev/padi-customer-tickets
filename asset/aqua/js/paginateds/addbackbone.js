@@ -3,14 +3,15 @@ getTableRownums = function(callback){
 }
 $('#btnAssociateClientBackbone').click(function(){
     console.log("Add Client Backbone Assciation invoked");
+    console.log('Client Site Id',$('#client_site_id').val());
     getTableRownums(function(rownum){
         tr = '<tr>';
-        tr+= '<td>'+rownum+'</td>';
+        tr+= '<td class="rownum">'+rownum+'</td>';
         tr+= '<td class="info">';
-        tr+= '<span>Start:satu</span> ';
-        tr+= '<span>End: dua</span>';
+        tr+= '<span>'+$('#client_id').val()+'</span> ';
+        tr+= '<span>'+$('#client_site_id').text()+'</span>';
         tr+= '</td>';
-        tr+= '<td>tiga</td>';
+        tr+= '<td>'+$('#client_site_id').val()+'</td>';
         tr+= '<td>';
         tr+= '<a type="btn" class="removeRow">Hapus</a>';
             tr+= '</td>';
@@ -20,6 +21,10 @@ $('#btnAssociateClientBackbone').click(function(){
 })
 $('#tClient').on('click','.removeRow',function(){
     $(this).stairUp({level:2}).remove();
+    x = 0;
+    $('#tClient tbody tr').each(function(){
+        $(this).find('.rownum').html(++x);
+    });
 })
 
 $("#client_id").keyup(function(){
@@ -70,6 +75,7 @@ function selectClient(client_id,val) {
     populateClientSites(client_id);
 }
 function populateClientSites(client_id){
+    $("#client_site_id").empty();
     $("#client_site_id").populate({
         url:'/teknis-tickets/paginateds/getclientsites/'+client_id,
     })

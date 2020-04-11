@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row-form clearfix dauto">
+                        <div class="row-form clearfix">
                             <div class="span5">Nama Backbone:</div>
                             <div class="span7">
                                 <?php echo form_dropdown('backbone',$backbones,1,'')?>
@@ -81,14 +81,22 @@
                             <h1>List Client Affected</h1>
                         </div>
                         <div class="block-fluid without-head">
-                        <div class="row-form clearfix">
+                        <div class="row-form clearfix dauto">
                             <div class="span5">Pelanggan:</div>
-                            <div class="span5">
+                            <div class="span7">
                             <input type="text" placeholder="Nama Pelanggan..." name="clientname" id="client_id" />
                                 <input type="hidden" name="client_id" id="clientid">
                             </div>
                             <div name="dugaanpelanggan" id="dugaanpelanggan" ></div>
-                            <div class="span2">
+                        </div>
+                        <div class="row-form clearfix">
+                            <div class="span5">Site:</div>
+                            <div class="span7">
+                                <select name="client_site_id" id="client_site_id"></select>
+                            </div>
+                        </div>
+                        <div class="row-form clearfix">
+                        <div class="span12">
                                 <a class="btn" id="btnAssociateClientBackbone" title="Add to Affected Clients">Add</a>
                             </div>
                         </div>
@@ -97,7 +105,7 @@
                                     <tr>
                                         <th width="30">No</th>
                                         <th>Name</th>
-                                        <th width="60">Address</th>
+                                        <th width="60">Id</th>
                                         <th width="40">Actions</th>                                
                                     </tr>
                                 </thead>

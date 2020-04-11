@@ -30,12 +30,13 @@
             url:'/'
         },options);
         _this = $(this);
+        _this.empty();
         $.ajax({
             url:'/'+settings.url,
             type:'get'
         })
         .done(function(res){
-            console.log('Result',settings.url,res)
+            console.log('Result of site populate',settings.url,res)
             _this.append(res);
         })
         .fail(function(err){
@@ -51,6 +52,7 @@ function selectClient(client_id,val) {
     populateClientSites(client_id);
 }
 function populateClientSites(client_id){
+    $("#client_site_id").empty();
     $("#client_site_id").populate({
         url:'/teknis-tickets/paginateds/getclientsites/'+client_id,
     })
