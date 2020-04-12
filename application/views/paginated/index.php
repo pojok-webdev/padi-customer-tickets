@@ -41,8 +41,9 @@
                                     <th width=5%>Act</th>
                                     <th width="8%">Kdticket</th>
                                     <th width="20%">Name</th>
+                                    <th width="10%">Type</th>
                                     <th width="10%">Status</th>
-                                    <th width="20%">Cause</th>
+                                    <th width="10%">Cause</th>
                                     <th width="10%">Start</th>
                                     <th width="10%">End</th>
                                     <th>Dura</th>

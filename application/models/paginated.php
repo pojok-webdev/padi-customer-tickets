@@ -66,4 +66,11 @@ Class Paginated extends CI_Model{
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }
+    function getchildrentickets($parentid){
+        $sql = 'select id,clientname from tickets ';
+        $sql.= 'where parentid = ' . $parentid . ' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array('res'=>$que->result(),'cnt'=>$que->num_rows());
+    }
 }

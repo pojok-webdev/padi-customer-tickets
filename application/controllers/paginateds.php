@@ -103,4 +103,9 @@ Class Paginateds extends CI_Controller{
         );
         $this->load->view('paginated/downtimeadd',$data);
     }
+    function getchildrentickets(){
+        $parentid = $this->uri->segment(3);
+        $obj = $this->paginated->getchildrentickets($parentid);
+        echo json_encode($obj);
+    }
 }

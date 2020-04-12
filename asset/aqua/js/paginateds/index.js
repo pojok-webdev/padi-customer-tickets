@@ -50,6 +50,9 @@
                 str+= '<td>';
                 str+= b.name;
                 str+= '</td>';
+                str+= '<td class="requesttype">';
+                str+= b.requesttype + '<span class="childrenamount"></span>';
+                str+= '</td>';
                 str+= '<td>';
                 str+= b.statuslabel;
                 str+= '</td>';
@@ -236,6 +239,7 @@
                     tr.attr('dayamount',x.dayval);
                     defineColor({row:tr,dayamount:x.dayval});
                     getFollowupsCount({row:tr});
+                    getChildrenCount({row:tr});
                     tr.find(".dura").html(x.str);
                 });
             }
@@ -273,6 +277,23 @@
         })
         .fail(function(err){
             console.log("Error get fo count",err);
+        });
+    }
+    getChildrenCount = function(obj){
+        console.log("idID",obj.row.attr('thisid'));
+        $.ajax({
+            url:'/paginateds/getchildrentickets/'+obj.row.attr('thisid'),
+            dataType:'json'
+        })
+        .done(function(res){
+            if(res.cnt>0){
+                console.log("ChildrenCOunt",res);
+                requesttype = obj.row.find('.requesttype').html();
+                obj.row.find('.childrenamount').html(' ('+res.cnt+')');
+            }
+        })
+        .fail(function(err){
+            console.log("Errp get Childresn Count",err);
         });
     }
     createPages = function(activePage){

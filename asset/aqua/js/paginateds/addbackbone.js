@@ -4,14 +4,18 @@ getTableRownums = function(callback){
 $('#btnAssociateClientBackbone').click(function(){
     console.log("Add Client Backbone Assciation invoked");
     console.log('Client Site Id',$('#client_site_id').val());
+    console.log('Client Id',$('#clientid').val());
     getTableRownums(function(rownum){
-        tr = '<tr>';
+        tr = '<tr clientid='+$('#clientid').val()+' client_site_id='+$('#client_site_id').val()+'>';
         tr+= '<td class="rownum">'+rownum+'</td>';
         tr+= '<td class="info">';
         tr+= '<span class="client">'+$('#client_id').val()+'</span> ';
         tr+= '<span class="client_site">'+$('#client_site_id').text()+'</span>';
         tr+= '</td>';
-        tr+= '<td class="client_site_id">'+$('#client_site_id').val()+'</td>';
+        tr+= '<td>';
+        tr+= '<span class="client_id">'+$('#clientid').val()+'</span>';
+        tr+= '<span class="client_site_id">'+$('#client_site_id').val()+'</span>';
+        tr+= '</td>';
         tr+= '<td>';
         tr+= '<a type="btn" class="removeRow">Hapus</a>';
             tr+= '</td>';
@@ -90,9 +94,7 @@ $('#saveBackbone').click(function(){
     $.ajax({
         url:'/backbones/save',
         data:{
-            'parentid':0,
-            'client_id':$('#backboneid :selected').val(),
-            'client_site_id':0,
+            'backbone_id':$('#backboneid').val(),
             'clientname':$('#backboneid :selected').text(),
             'reporter':$('#reporter').val(),
             'reporterphone':$('#reporterphone').val(),
@@ -115,12 +117,14 @@ $('#saveBackbone').click(function(){
 insertClients = function(parentid){
     $('#tClient tbody tr').each(function(){
         console.log('Client Name',$(this).find('.client').text());
+        console.log('Client ID',$(this).attr('clientid'));
+        console.log('Client Site ID',$(this).attr('client_site_id'));
         $.ajax({
-            url:'/backbones/save',
+            url:'/backbones/clientsave',
             data:{
                 'parentid':parentid,
-                'client_id':$('#client_id').val(),
-                'client_site_id':$(this).find('.client_site_id').val(),
+                'client_id':$(this).attr('clientid'),
+                'client_site_id':$(this).attr('client_site_id'),
                 'clientname':$(this).find('.client').text(),
                 'reporter':$('#reporter').val(),
                 'reporterphone':$('#reporterphone').val(),
