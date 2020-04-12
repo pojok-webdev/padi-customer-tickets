@@ -37,11 +37,32 @@ Class Paginated extends CI_Model{
     }
     function save($params){
         $sql = 'insert into tickets ';
-        $sql.= '(client_id,client_site_id,clientname,reporter,reporterphone,ticketstart,base64description,requesttype) ';
+        $sql.= '(';
+        $sql.= 'parentid,';
+        $sql.= 'client_id,';
+        $sql.= 'client_site_id,';
+        $sql.= 'clientname,';
+        $sql.= 'reporter,';
+        $sql.= 'reporterphone,';
+        $sql.= 'ticketstart,';
+        $sql.= 'base64complaint,';
+        $sql.= 'base64description,';
+        $sql.= 'requesttype';
+        $sql.= ') ';
         $sql.= 'values ';
-        $sql.= '("'.$params['client_id'].'","'.$params['client_site_id'].'","'.$params['clientname'].'","'.$params['reporter'].'","'.$params['reporterphone'].'","'.$params['ticketstart'].'","'.base64_encode($params['description']).'","pelanggan")';
+        $sql.= '(';
+        $sql.= ''.$params['parentid'].',';
+        $sql.= '"'.$params['client_id'].'",';
+        $sql.= '"'.$params['client_site_id'].'",';
+        $sql.= '"'.$params['clientname'].'",';
+        $sql.= '"'.$params['reporter'].'",';
+        $sql.= '"'.$params['reporterphone'].'",';
+        $sql.= '"'.$params['ticketstart'].'",';
+        $sql.= '"'.base64_encode($params['complain']).'",';
+        $sql.= '"'.base64_encode($params['description']).'",';
+        $sql.= '"'.$params['requesttype'].'"';
+        $sql.= ')';
         $ci = & get_instance();
-        echo $sql;
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }

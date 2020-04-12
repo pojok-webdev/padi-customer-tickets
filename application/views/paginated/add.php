@@ -12,6 +12,8 @@
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
         <form action='/paginateds/save' method='post'>
+        <input type="hidden" name="requesttype" value="pelanggan" />
+        <input type="hidden" name="parentid" value="" />
         <?php $this->load->view('commons/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
@@ -38,6 +40,12 @@
                             <div class="span7">
                                 <input type="text" name="ticketstart" id="ticketstart" class="mask_date" value="<?php echo date('d/m/Y h:i');?>" /> 
                                 <span>Example: 31/12/2020 12:15</span>
+                            </div>
+                        </div>
+                        <div class="row-form clearfix">
+                            <div class="span5">Complain:</div>
+                            <div class="span7">
+                            <input type="text" name="complain" id="complain" />
                             </div>
                         </div>
                         <div class="row-form clearfix">

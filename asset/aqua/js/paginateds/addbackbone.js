@@ -8,10 +8,10 @@ $('#btnAssociateClientBackbone').click(function(){
         tr = '<tr>';
         tr+= '<td class="rownum">'+rownum+'</td>';
         tr+= '<td class="info">';
-        tr+= '<span>'+$('#client_id').val()+'</span> ';
-        tr+= '<span>'+$('#client_site_id').text()+'</span>';
+        tr+= '<span class="client">'+$('#client_id').val()+'</span> ';
+        tr+= '<span class="client_site">'+$('#client_site_id').text()+'</span>';
         tr+= '</td>';
-        tr+= '<td>'+$('#client_site_id').val()+'</td>';
+        tr+= '<td class="client_site_id">'+$('#client_site_id').val()+'</td>';
         tr+= '<td>';
         tr+= '<a type="btn" class="removeRow">Hapus</a>';
             tr+= '</td>';
@@ -84,5 +84,60 @@ function populateClientSites(client_id){
     $("#client_site_id").empty();
     $("#client_site_id").populate({
         url:'/teknis-tickets/paginateds/getclientsites/'+client_id,
+    })
+}
+$('#saveBackbone').click(function(){
+    $.ajax({
+        url:'/backbones/save',
+        data:{
+            'parentid':0,
+            'client_id':$('#backboneid :selected').val(),
+            'client_site_id':0,
+            'clientname':$('#backboneid :selected').text(),
+            'reporter':$('#reporter').val(),
+            'reporterphone':$('#reporterphone').val(),
+            'ticketstart':$('#ticketstart').val(),
+            'complaint':$('#complain').val(),
+            'description':$('#description').val(),
+            'requesttype':'backbone'
+        },
+        type:'post',
+        dataType:'json'
+    })
+    .done(function(parent){
+       insertClients(parent.id);
+       console.log("Success ssave backbone",parent.id);
+    })
+    .fail(function(err){
+        console.log("Error ssave backbone",err);
+    });
+});
+insertClients = function(parentid){
+    $('#tClient tbody tr').each(function(){
+        console.log('Client Name',$(this).find('.client').text());
+        $.ajax({
+            url:'/backbones/save',
+            data:{
+                'parentid':parentid,
+                'client_id':$('#client_id').val(),
+                'client_site_id':$(this).find('.client_site_id').val(),
+                'clientname':$(this).find('.client').text(),
+                'reporter':$('#reporter').val(),
+                'reporterphone':$('#reporterphone').val(),
+                'ticketstart':$('#ticketstart').val(),
+                'complaint':$('#complain').val(),
+                'description':$('#description').val(),
+                'requesttype':'pelanggan'
+            },
+            type:'post',
+            dataType:'json'
+        })
+        .done(function(res){
+            console.log("Success saveBackboneClient",res);
+        })
+        .fail(function(err){
+            console.log("Failed saveBackboneClient",err);
+        });
+    ;
     })
 }

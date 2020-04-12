@@ -24,12 +24,12 @@
                             <li title="Add Upstream Ticket">
                                 <a href="#" class="isw-up"></a>
                                 <ul class="dd-list">
-                                    <li title="Add Backbone Ticket"><a href="/paginateds/addbackbone"><span class="isw-plus"></span> Backbone</a></li>
-                                    <li title="Add BTS Ticket"><a href="/paginateds/addbts"><span class="isw-plus"></span> BTS</a></li>
-                                    <li title="Add Datacenter Ticket"><a href="/paginateds/adddatacenter"><span class="isw-plus"></span> Datacenter</a></li>
-                                    <li title="Add PTP Ticket"><a href="/paginateds/addptp"><span class="isw-plus"></span> PTP</a></li>
-                                    <li title="Add Core Ticket"><a href="/paginateds/addcore"><span class="isw-plus"></span> Core</a></li>
-                                    <li title="Add AP Ticket"><a href="/paginateds/addap"><span class="isw-plus"></span> AP</a></li>
+                                    <li title="Add Backbone Ticket"><a href="/paginateds/addbackbone" target="_blank"><span class="isw-plus"></span> Backbone</a></li>
+                                    <li title="Add BTS Ticket"><a href="/paginateds/addbts" target="_blank"><span class="isw-plus"></span> BTS</a></li>
+                                    <li title="Add Datacenter Ticket"><a href="/paginateds/adddatacenter" target="_blank"><span class="isw-plus"></span> Datacenter</a></li>
+                                    <li title="Add PTP Ticket"><a href="/paginateds/addptp" target="_blank"><span class="isw-plus"></span> PTP</a></li>
+                                    <li title="Add Core Ticket"><a href="/paginateds/addcore" target="_blank"><span class="isw-plus"></span> Core</a></li>
+                                    <li title="Add AP Ticket"><a href="/paginateds/addap" target="_blank"><span class="isw-plus"></span> AP</a></li>
                                 </ul>
                             </li>
                         </ul>

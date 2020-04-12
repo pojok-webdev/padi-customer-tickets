@@ -12,7 +12,6 @@
     </div>
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
-        <form action='/paginateds/save' method='post'>
         <?php $this->load->view('commons/breadline');?>
         <div class="workplace">
             <div class="row-fluid">
@@ -58,19 +57,12 @@
                         <div class="row-form clearfix">
                             <div class="span5">Nama Backbone:</div>
                             <div class="span7">
-                                <?php echo form_dropdown('backbone',$backbones,1,'')?>
-                            </div>
-                        </div>
-                        <div class="row-form clearfix">
-                            <div class="span5">Site:</div>
-                            <div class="span7">
-                            <input type="text" placeholder="Nama Pelanggan..." name="clientname" id="client_id_" />
-                                <input type="hidden" name="client" id="clientid_">
+                                <?php echo form_dropdown('backbone',$backbones,1,'id="backboneid"')?>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span12">
-                                <button type="submit" class="btn" name="save">Save</button>
+                                <button type="submit" class="btn" name="save" id="saveBackbone">Save</button>
                             </div>
                         </div>
                     </div>
@@ -118,7 +110,10 @@
                 </div>
             </div>
         </div>
-    </form>
+
+
+
+
     <script src="/asset/aqua/js/paginateds/addbackbone.js"></script>
     <script src="/asset/aqua/js/followups/wysiwygs.js"></script>
 </body>
