@@ -53,13 +53,36 @@ Class Followup extends CI_Model{
     }
     function save($params){
         $sql = 'insert into ticket_followups ';
-        $sql.= '(ticket_id,picname,picphone,followUpDate,base64description) ';
+        $sql.= '(ticket_id,picname,position,picphone,followUpDate,result,base64conclusion,base64confirmationresult,base64description) ';
         $sql.= 'values ';
         $sql.= '(';
         $sql.= ''.$params['ticket_id'].',';
         $sql.= '"'.$params['picname'].'",';
+        $sql.= '"'.$params['position'].'",';
         $sql.= '"'.$params['picphone'].'",';
         $sql.= '"'.$params['followUpDate'].'",';
+        $sql.= '"'.$params['result'].'",';
+        $sql.= '"'.base64_encode($params['solution']).'",';
+        $sql.= '"'.base64_encode($params['confirmationresult']).'",';
+        $sql.= '"'.base64_encode($params['description']).'",';
+        $sql.= ') ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
+    function saveresult(){
+        $sql = 'insert into ticket_followups ';
+        $sql.= '(ticket_id,picname,position,picphone,followUpDate,result,base64conclusion,base64confirmationresult,base64description) ';
+        $sql.= 'values ';
+        $sql.= '(';
+        $sql.= ''.$params['ticket_id'].',';
+        $sql.= '"'.$params['picname'].'",';
+        $sql.= '"'.$params['position'].'",';
+        $sql.= '"'.$params['picphone'].'",';
+        $sql.= '"'.$params['followUpDate'].'",';
+        $sql.= '"'.$params['result'].'",';
+        $sql.= '"'.base64_encode($params['solution']).'",';
+        $sql.= '"'.base64_encode($params['confirmationresult']).'",';
         $sql.= '"'.base64_encode($params['description']).'"';
         $sql.= ') ';
         $ci = & get_instance();

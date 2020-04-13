@@ -11,7 +11,7 @@
     <?php $this->load->view('tickets/menu');?>
     <div class="content">
         <form action='/followups/save' method='post'>
-        <input type="hidden" name="ticket_id" value="<?php echo $obj->ticket_id;?>" />
+        <input type="hidden" name="ticket_id" id="ticket_id" value="<?php echo $obj->ticket_id;?>" />
         <?php $this->load->view('followups/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
@@ -36,7 +36,7 @@
                         <div class="row-form clearfix">
                             <div class="span5">Tanggal:</div>
                             <div class="span7">
-                                <input type="text" name="followUpDate" id="followUpDate" class="mask_date"/> 
+                                <input type="text" name="followUpDate" id="followUpDate" class="mask_date" value="<?php echo date('d/m/Y h:i');?>"/> 
                                 <span>Example: 31/12/2020 12:15</span>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="span5">Kesimpulan:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container2">
-                                    <textarea id="wysiwyg2" class="wysiwyg" name="solution" style="height: 300px;"></textarea>
+                                    <textarea id="solution" class="wysiwyg" name="solution" style="height: 300px;"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             <div class="span5">Hasil Konfirmasi:</div>
                             <div class="span7">
                                 <div class="block-fluid" id="wysiwyg_container3">
-                                    <textarea id="wysiwyg3" class="wysiwyg" name="confirmationresult" style="height: 300px;"></textarea>
+                                    <textarea id="confirmationresult" class="wysiwygx" name="confirmationresult" style="height: 300px;" onchange="textareachange"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -114,20 +114,23 @@
                             <div class="span5">Konfirmasi Pelanggan:</div>
                             <div class="span7">
                                 <div class="btn-group">
-                                    <button class="btn" type="button">OK</button>
-                                    <button class="btn" type="button">Belum OK</button>
-                                    <button class="btn" type="button">Belum bisa dihubungi</button>
-                                </div>                                
+                                    <button class="btn confirmResult" id="confirmResultOK" type="button" value="1">OK</button>
+                                    <button class="btn confirmResult" id="confirmResultBelumOK" type="button" value="0">Belum OK</button>
+                                    <button class="btn confirmResult" id="confirmResultBelumBisaDihubungi" type="button" value="3">Belum bisa dihubungi</button>
+                                </div>
+                                <input type="hidden" value="0" id="result" name="result">                                
                             </div>
                         </div>
                         <div class="row-form clearfix">
-                            <div class="span5">Konfirmasi Pelanggan:</div>
+                            <div class="span5"></div>
                             <div class="span7">
                                 <div class="btn-group">
-                                    <button class="btn" type="button">Reset</button>
-                                    <button class="btn" type="button">History</button>
-                                    <button class="btn" type="button">Tutup Ticket</button>
-                                    <button class="btn" type="button">Progress</button>
+                                    <button class="btn" type="reset" id="btnResetInput">Reset</button>
+                                    <a href="/followups/history/<?php echo $obj->ticket_id;?>" target="_blank" class="btn">
+                                        History <span id="followupAmount"></span>
+                                    </a>
+                                    <button class="btn btnFinal" id="btnCloseTicket" type="button" disabled>Tutup Ticket</button>
+                                    <button class="btn btnFinal" id="btnProgressTicket" type="button" disabled>Progress</button>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +140,7 @@
         </div>
     </div>
     </form>
-    <script src="/asset/aqua/js/followups/index.js"></script>
+    <script src="/asset/aqua/js/followups/create.js"></script>
     <script src="/asset/aqua/js/followups/wysiwygs.js"></script>
 </body>
 </html>

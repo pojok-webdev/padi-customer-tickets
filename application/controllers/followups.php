@@ -69,4 +69,8 @@ Class Followups extends CI_Controller{
         $obj = $this->followup->getfollowupsbyticketid($ticketid);
         echo json_encode($obj);
     }
+    function saveresult(){
+        $params = $this->input->post();
+        echo $this->followup->saveresult($params);
+    }
 }
