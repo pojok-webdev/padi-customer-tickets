@@ -104,6 +104,7 @@
         })
         .done(function(res){
             console.log('Success update ticket',res);
+            window.location.href = '/'
         })
         .fail(function(err){
             console.log('Failed update ticket',err);

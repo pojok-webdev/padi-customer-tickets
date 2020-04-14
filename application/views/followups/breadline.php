@@ -3,9 +3,4 @@
         <li><a href="#">Tickets</a> <span class="divider">></span></li>
         <li class="active">Follow Up</li>
     </ul>
-    <ul class="buttons">
-        <li>
-            <button type="submit" class="btn btn-primary"><span class="text">Save</span></button>
-        </li>
-    </ul>
 </div>
