@@ -30,15 +30,19 @@ Class Followups extends CI_Controller{
     function save(){
         $params = $this->input->post();
         $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
-        $this->updateticket($params);
+        $this->updateticketsolution($params);
         $this->followup->save($params);
         redirect('/paginateds');
     }
-    function updateticket($params){
+    function updateticketsolution($params){
+        echo $this->followup->updateticketsolution($params);
+    }
+    function updateticket(){
+        $params = $this->input->post();
         echo $this->followup->updateticket($params);
     }
     function save_(){
-        $allowable = array('ticket_id','picname','picphone','followUpDate','description');
+        $allowable = array('ticket_id','picname','picphone','followUpDate','description','confirmationresult','solution');
         $params = $this->input->post();
         $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
         foreach($allowable as $alw){

@@ -24,13 +24,13 @@
                         <div class="row-form clearfix">
                             <div class="span5">Pelapor:</div>
                             <div class="span7">
-                                <input type="text" name="picname" id="picname" />
+                                <input type="text" name="reporter" id="reporter" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telp:</div>
                             <div class="span7">
-                            <input type="text" name="picphone" id="picphone" />
+                            <input type="text" name="reporterphone" id="reporterphone" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
@@ -87,19 +87,19 @@
                         <div class="row-form clearfix">
                             <div class="span5">PIC:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Nama PIC..." name="picname" value="<?php echo $obj->reporter;?>" />
+                                <input type="text" placeholder="Nama PIC..." name="picname" id="picname" value="<?php echo $obj->reporter;?>" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Jabatan:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Jabatan..." name="position" />
+                                <input type="text" placeholder="Jabatan..." name="position" id="position"/>
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span5">Telepon:</div>
                             <div class="span7">
-                                <input type="text" placeholder="Telepon..." name="picphone" />
+                                <input type="text" placeholder="Telepon..." name="picphone" id="picphone" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
@@ -118,7 +118,7 @@
                                     <button class="btn confirmResult" id="confirmResultBelumOK" type="button" value="0">Belum OK</button>
                                     <button class="btn confirmResult" id="confirmResultBelumBisaDihubungi" type="button" value="3">Belum bisa dihubungi</button>
                                 </div>
-                                <input type="hidden" value="0" id="result" name="result">                                
+                                <input type="hidden" value="0" id="result" name="result">
                             </div>
                         </div>
                         <div class="row-form clearfix">

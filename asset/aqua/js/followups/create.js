@@ -46,13 +46,29 @@
     disableFinalButton = function(booleanVar){
         $('.btnFinal').attr('disabled',booleanVar);
     }
+    validateInput = function(callback){
+        out = true;
+        if($("#confirmationresult").val()==''){
+            console.log('confirmationresult is false');
+            out = false;
+        }else if($("#picphone").val().trim()==''){
+            console.log('picphone is false');
+            out = false;
+        }else if($("#position").val().trim()==''){
+            console.log('position is false');
+            out = false;
+        }
+        callback(out);
+    }
     $('.confirmResult').click(function(){
         console.log('Confirm result',$(this).val());
-        if($("#confirmationresult").val().trim()==''){
-            alert("Hasil Konfirmasi tidak boleh kosong");
-        }else{
-            disableFinalButton(false);
-        }
+        validateInput(function(ok){
+            if(ok){
+                disableFinalButton(false);
+            }else{
+                alert('Hasil Konfirmasi tidak boleh kosong');
+            }
+        })
         $('#result').val($(this).val());
     });
     $('#btnHistory').on('click',function(){
@@ -79,5 +95,46 @@
         var v = this.$area.context.value;
         console.log('im changed',v);
     });
-
+    updateTicket = function(obj){
+        console.log('OBJ',obj);
+        $.ajax({
+            url:'/followups/updateticket',
+            data:obj,
+            type:'post'
+        })
+        .done(function(res){
+            console.log('Success update ticket',res);
+        })
+        .fail(function(err){
+            console.log('Failed update ticket',err);
+        });
+    }
+    $('#btnCloseTicket').click(function(){
+        $.ajax({
+            url:'/followups/save',
+            data:{
+                reporter:$('#reporter').val(),
+                reporterphone:$('#reporterphone').val(),
+                followUpDate:$('#followUpDate').val(),
+                description:$('#description').val(),
+                mainrootcause:$('#mainrootcause').val(),
+                subcause:$('#subcause').val(),
+                solution:$('#solution').val(),
+                picname:$('#picname').val(),
+                position:$('#position').val(),
+                picphone:$('#picphone').val(),
+                confirmationresult:$('#confirmationresult').val(),
+                result:$('#result').val(),
+                ticket_id:$('#ticket_id').val()
+            },
+            type:'post'
+        })
+        .done(function(res){
+            console.log('saveFu done',res);
+            updateTicket({id:$('#ticket_id').val(),status:'1'});
+        })
+        .fail(function(err){
+            console.log('saveFu err',err);
+        })
+    })
 }(jQuery))

@@ -64,7 +64,7 @@ Class Followup extends CI_Model{
         $sql.= '"'.$params['result'].'",';
         $sql.= '"'.base64_encode($params['solution']).'",';
         $sql.= '"'.base64_encode($params['confirmationresult']).'",';
-        $sql.= '"'.base64_encode($params['description']).'",';
+        $sql.= '"'.base64_encode($params['description']).'"';
         $sql.= ') ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
@@ -90,6 +90,16 @@ Class Followup extends CI_Model{
         return $ci->db->insert_id();
     }
     function updateticket($params){
+        $out = array();
+        foreach($params as $key=>$val){
+            array_push($out,$key.'="'.$val.'"');
+        }
+        $sql = 'update tickets set ' . implode(',',$out). ' ';
+        $sql.= 'where id = ' . $params['id'] . ' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+    }
+    function updateticketsolution($params){
         $sql = 'update tickets ';
         $sql.= 'set base64solution="'.base64_encode($params['solution']).'" ';
         $sql.= 'where id='.$params['ticket_id'].' ';
