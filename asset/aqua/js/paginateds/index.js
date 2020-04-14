@@ -36,7 +36,7 @@
                 str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
                 str+= '<ul class="dropdown-menu">';
                 str+= '<li><a href="/followups/create/'+b.id+'" target="_blank">Follow Up</a></li>';
-                str+= '<li><a href="#">Troubleshoot</a></li>';
+                str+= '<li><a href="/troubleshoots/add/'+b.id+'">Troubleshoot</a></li>';
                 str+= '<li><a href="/downtimes/add/'+b.id+'" target="_blank">Add Down Time</a></li>';
                 str+= '<li><a href="/followups/history/'+b.id+'" target="blank"><span class="history">History</span></a></li>';
                 str+= '<li class="divider"></li>';

@@ -6,41 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('commons/head')?>
-<script type='text/javascript' src='<?php echo base_url();?>js/aquarius/troubleshoot_add.js'></script>
+<script type='text/javascript' src='/js/aquarius/troubleshoot_add.js'></script>
 <body>
-    <!-- start of Notifikasi modal -->
-    <div id="dModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Konfirmasi</h3>
-        </div>
-        <div class="modal-body">
-            <p>Data telah tersimpan.</p>
-        </div>
-    </div>
-	<!-- end of notifikasi modal -->
-    
-
-    <!-- start of konfirmasi -->
-    <div id="dconfirmation" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-header">
-            <h3 id="myModalLabel"> Konfirmasi</h3>
-        </div>
-        <div class="modal-body">
-            <p>Untuk menambah kantor cabang, Anda harus menyimpan permintaan troubleshoot ini terlebih dahulu. Setelah itu lakukan penambahan kantor cabang melalui menu Edit, pada tabel permintaan troubleshoot</p>
-            <p>Apakah anda akan menyimpannya sekarang ?</p>
-            <p></p>
-            <p>
-				<div class="button-group">
-					<button type="button" class="btn btn-small btn-warning tip btnconfirmation" id="troubleshoot_save"><span class="icon-ok"></span> Simpan</button>
-					<button type="button" class="btn btn-small btn-warning tip btnconfirmation" id="cancel_install_save"><span class="icon-remove"></span> Batal</button>
-				</div>
-			</p>
-            
-        </div>
-    </div>
+    <?php $this->load->view('troubleshoots/notification');?>
+    <?php $this->load->view('troubleshoots/confirmation');?>
     <div class="header">
-        <a class="logo" href="/"><img src="/asset/aqua/img/logo.png" alt="PadiNET Internal App" title="Aquarius -  responsive admin panel"/></a>
+        <a class="logo" href="/"><img src="/asset/aqua/img/logo.png" alt="PadiNET Internal App" title="Troubleshoot"/></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
         </ul>    
@@ -55,10 +26,10 @@
             </ul>
 		</div>
         <div class="workplace" id="workplace">
-            
-            <div class="row-fluid">                
-                <div class="span12">                                        
-                    <div class="block-fluid without-head">                        
+            <form action='/troubleshoots/save' method='POST' >
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="block-fluid without-head">
                         <div class="toolbar clearfix">
                             <div class="left">
                                 <div class="btn-group">
@@ -66,86 +37,72 @@
                             </div>
                             <div class="right">
                                 <div class="btn-group">
-                                    <button class="btn btn-small btnsavetroubleshoot" title="Simpan Pengajuan Troubleshoot" type="button"><span class="icon-ok icon-white"></span> Simpan</button>
+                                    <button class="btn btn-small" title="Simpan Pengajuan Troubleshoot" type="submit">
+                                    <span class="icon-ok icon-white"></span> Simpan</button>
                                 </div>
                             </div>
                         </div>
 					</div>
 				</div>
 			</div>
-
-            <div class="row-fluid">                
-                <div class="span6">                                        
-                    <div class="block-fluid without-head">                        
-                        <!-- tempat form -->
-
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="block-fluid without-head">
                         <div class="row-form clearfix">
                             <div class="span3">Nama Pelanggan</div>
                             <div class="span9">
-                                <input type="text" />
+                                <input type="text" name="name" id="name" value="<?php echo $obj->name;?>" />
 							</div>
                         </div>
-
                         <div class="row-form clearfix">
                             <div class="span3">Alamat</div>
                             <div class="span9">
-                            <input type="text" />
-								</div>
+                                <input type="text" name="address" id="address" value="<?php echo $obj->address;?>" />
+							</div>
                         </div>
-
                         <div class="row-form clearfix">
                             <div class="span3">Nama PIC</div>
                             <div class="span9">
-                                <input type="text" />
+                                <input type="text" name="pic_name" id="pic_name" value="<?php echo $obj->reporter;?>" />
                             </div>
                         </div>
-
                         <div class="row-form clearfix">
                             <div class="span3">Telepon</div>
-                            <div class="span2">
-                            <input type="text" />
-							</div>
-                            <div class="span7">
-                            <input type="text" />
+                            <div class="span9">
+                            <input type="text" name="pic_phone" id="pic_phone" value="<?php echo $obj->reporterphone;?>" />
 							</div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span3">Jabatan PIC</div>
                             <div class="span9">
-                            <input type="text" />
+                            <input type="text" name="pic_position" id="pic_position" />
                             </div>
                         </div>
                         <div class="row-form clearfix">
                             <div class="span3">Email</div>
                             <div class="span9">
-                            <input type="text" />
+                            <input type="text" name="pic_email" id="pic_email" />
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
-                <div class="span6">                                        
-                    <div class="block-fluid without-head">                        
+                <div class="span6">
+                    <div class="block-fluid without-head">
                         <div class="row-form clearfix">
                             <div class="span3">Waktu Troubleshoot</div>
                             <div class="span9">
-                            <input type="text" />
+                            <input type="text" name="troubleshoot_date" id="troubleshoot_date" class="mask_date" value="<?php echo date('d/m/Y h:i');?>"/> 
                             </div>
                         </div>
                         <div class="row-form clearfix">
-                            <div class="span3">Layanan</div>
-                            <div class="span9">
-                            <input type="text" />
-							</div>
-                        </div>                        
-                        <div class="row-form clearfix">
                             <div class="span3">Berbayar ?</div>
                             <div class="span9">
-								<select name='is_paid' id='is_paid'>
+								<select name='is_payable' id='is_payable'>
 									<option value='1'>Ya</option>
 									<option value='0'>Tidak</option>
 								</select>
 							</div>
-                        </div>                        
+                        </div>
                         <div class="row-form clearfix">
                             <div class="span3">Keterangan</div>
                             <div class="span9">
@@ -153,58 +110,8 @@
                         </div>
 					</div>
 				</div>
-            </div>                        
-            <div class="row-fluid">
-                <div class="span6">
-                </div>
-                <div class="span6">
-                <!-- begin of kolom kanan -->
-                    <div class="block-fluid without-head">
-                        <div class="toolbar nopadding-toolbar clearfix">
-                            <h4>Cabang kantor klien</h4>
-                        </div>
-                        <div class="toolbar clearfix">
-                            <div class="left">
-                                <div class="btn-group">
-									<a href="#dAddSite" role="button" data-toggle="modal" class="btn btn-small btn-danger tip">
-										<span class="icon-plus icon-white"></span>
-									</a>
-                                </div>                                
-                            </div>                        
-                        </div>
-
-                        <table cellpadding="0" cellspacing="0" width="100%" class="table images" id="site">
-                            <thead>
-                                <tr>
-                                    <th width="30"><input type="checkbox" name="checkall"/></th>
-                                    <th width="60">Alamat</th>
-                                    <th>PIC</th>
-                                    <th width="60">Keterangan</th>
-                                    <th width="40"><span class="icon-th centered"></span></th>
-                                </tr>
-                            </thead>
-                            <tbody class='site'>
-                                <tr>
-                                    <td><input type="checkbox" name="checkbox"/></td>
-                                    <td class="info">
-                                    <a>Addr</a><span>City</span>
-                                    </td>
-                                    <td class="info">
-                                    <a>PIC</a> <span>Phone</span> <span>Email</span>
-                                    </td>
-                                    <td>Description</td>
-                                    <td>
-                                    <a href="#">
-                                    <span class="icon-pencil"></span>
-                                    </a> 
-                                    <a>
-                                    <span class="icon-remove pointer link_navRemSurveySite" survey_id='' site_id='' ></span></a></td>                                    
-                                </tr>
-                            </tbody>
-                        </table>                    
-                    </div>
-                </div>
-            </div>            
+            </div>
+            </form>
         </div>
     </div>   
 </body>
