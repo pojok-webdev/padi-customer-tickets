@@ -5,7 +5,7 @@ Class Downtime extends CI_Model{
     }
     function gets($ticket_id){
         $sql = 'select id,start,end,createuser, ';
-        $sql.= 'CONCAT(FLOOR(HOUR(TIMEDIFF(StartDate,EndDate)) / 24), " Hari ",MOD(HOUR(TIMEDIFF(StartDate,EndDate)), 24), " jam ", MINUTE(TIMEDIFF(StartDate,EndDate)), " menit ") AS size';
+        $sql.= 'CONCAT(FLOOR(HOUR(TIMEDIFF(StartDate,EndDate)) / 24), " Hari ",MOD(HOUR(TIMEDIFF(StartDate,EndDate)), 24), " jam ", MINUTE(TIMEDIFF(StartDate,EndDate)), " menit ") AS size ';
         $sql.= 'from downtimes ';
         $sql.= 'where ticket_id = "'.$ticket_id.'"';
         $ci = & get_instance();
