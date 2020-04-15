@@ -72,6 +72,10 @@ Class Paginateds extends CI_Controller{
         $params['ticketstart'] = $date[2].'-'.$date[1].'-'.$date[0].' '.$dtarray[1];
         echo $this->paginated->save($params);
     }
+    function getpropsbyparentid(){
+        $parentid = $this->uri->segment(3);
+        echo json_encode($this->paginated->getpropsbyparentid($parentid));
+    }
     function clients(){
         $params = $this->input->post();
         $this->load->model('client');

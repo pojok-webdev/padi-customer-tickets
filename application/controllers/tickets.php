@@ -42,4 +42,8 @@ Class Tickets extends CI_Controller{
         $ticketid = $this->uri->segment(3);
         $this->ticket->remove($ticketid);
     }
+    function getbyid(){
+        $id = $this->uri->segment(3);
+        echo json_encode($this->ticket->getbyid($id));
+    }
 }

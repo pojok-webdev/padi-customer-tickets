@@ -37,13 +37,13 @@ Class Downtimes extends CI_Controller{
         $params = $this->input->post();
         $params = $this->getMysqlDate($params,'downtimestart');
         $params = $this->getMysqlDate($params,'downtimeend');
-        $this->downtime->save($params);
-        redirect('/downtimes/add/'.$params['ticket_id']);
+        $params['createuser'] = $_SESSION['username'];
+        echo json_encode($this->downtime->save($params));
     }
     function remove(){
-        $ticket_id = $this->uri->segment(3);
-        $id = $this->uri->segment(4);
+        //$ticket_id = $this->uri->segment(3);
+        $id = $this->uri->segment(3);
         $this->downtime->remove($id);
-        redirect('/downtimes/add/'.$ticket_id.'/'.$id);
+       // redirect('/downtimes/add/'.$ticket_id.'/'.$id);
     }
 }

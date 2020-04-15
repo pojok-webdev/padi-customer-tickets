@@ -7,6 +7,7 @@ Class Paginated extends CI_Model{
         $sql = 'select a.id,kdticket,clientname name,ticketstart,ticketend,a.status,';
         $sql.= 'case a.status when "0" then "Open" when "1" then "Closed" end statuslabel,';
         $sql.= 'e.name subrootcause,f.name mainrootcause, requesttype,';
+        $sql.= 'case when parentid is null then false else  parentid end parentid,';
         $sql.= "case d.clientcategory ";
         $sql.= "when '1' then 'FFR' ";
         $sql.= "when '2' then 'Platinum' ";
@@ -23,6 +24,15 @@ Class Paginated extends CI_Model{
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return array('res'=>$que->result());
+    }
+    function getpropsbyparentid($parentid){
+        $sql = 'select b.name from tickets a ';
+        $sql.= 'left outer join ticketcauses b on b.id=a.cause_id ';
+        $sql.= 'where a.id = ' . $parentid . ' ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array('res'=>$que->result());
+
     }
     function getRowAmount(){
         $sql = 'select count(id) cnt from tickets ';

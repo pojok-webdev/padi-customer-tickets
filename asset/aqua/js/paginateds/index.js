@@ -30,7 +30,7 @@
         .done(function(res){
             console.log("Res",res);
             $.each(res,function(a,b){
-                str = '<tr thisid='+b.id+' class="'+b.statuslabel+' '+b.requesttype+'" dayamount=0>';
+                str = '<tr thisid='+b.id+' class="'+b.statuslabel+' '+b.requesttype+'" dayamount=0 parentid='+b.parentid+'>';
                 str+= '<td class="action">';
                 str+= '<div class="btn-group">';
                 str+= '<button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>';
@@ -240,10 +240,33 @@
                     defineColor({row:tr,dayamount:x.dayval});
                     getFollowupsCount({row:tr});
                     getChildrenCount({row:tr});
+                    checkIsHasParent({row:tr});
                     tr.find(".dura").html(x.str);
                 });
             }
         });
+    }
+    getRowProps = function(parentid,callback){
+        $.ajax({
+            url:'/paginateds/getpropsbyparentid/'+parentid,
+            type:'get',
+            dataType:'json'
+        })
+        .done(function(res){
+            callback(res);
+        })
+        .fail(function(err){
+            console.log('Error',err);
+        })
+    }
+    checkIsHasParent = function(obj){
+        parentid = obj.row.attr('parentid');
+        console.log('Paerntid',parentid);
+        if(parentid!==0){
+            getRowProps(parentid,function(res){
+                console.log('Props',res);
+            });
+        }
     }
     defineColor = function(obj){
         if($('#withcolorcheckbox').prop('checked')){
@@ -280,7 +303,7 @@
         });
     }
     getChildrenCount = function(obj){
-        console.log("idID",obj.row.attr('thisid'));
+        //console.log("idID",obj.row.attr('thisid'));
         $.ajax({
             url:'/paginateds/getchildrentickets/'+obj.row.attr('thisid'),
             dataType:'json'
@@ -333,6 +356,7 @@
     loadPagination(1,function(result){
         $("#paginationbuttons").append(result);
     });
+    setdura();
     setInterval(function(){ setdura(); }, 3000);
     $(".paging_two_button").on("click",".pagebutton",function(){
         pageid = $(this).text();

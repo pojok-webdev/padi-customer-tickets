@@ -105,4 +105,10 @@ Class Ticket extends CI_Model{
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }
+    function getbyid($id){
+        $sql = 'select clientname from tickets where id='.$id.'';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array('res'=>$que->result(),'cnt'=>$que->num_rows());
+    }
 }
