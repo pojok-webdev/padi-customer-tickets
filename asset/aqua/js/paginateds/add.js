@@ -1,4 +1,30 @@
 (function($){
+    $('#btnSave').click(function(){
+        $.ajax({
+            url:'/paginateds/save',
+            data:{
+                parentid:$('#parentid').val(),
+                reporter:$('#reporter').val(),
+                reporterphone:$('#reporterphone').val(),
+                ticketstart:$('#ticketstart').val(),
+                complain:$('#complain').val(),
+                description:$('#description').val(),
+                client_id:$('#clientid').val(),
+                client_site_id:$('#client_site_id').val(),
+                clientname:$('#client_id').val(),
+                requesttype:'pelanggan'
+            },
+            type:'post',
+            dataType:'json'
+        })
+        .done(function(res){
+            console.log(res);
+            window.location.href = '/paginateds/'
+        })
+        .fail(function(err){
+            console.log('Error save',err);
+        })
+    })
     $('#client_id').on('change',function(){
         console.log($(this).val());
     })

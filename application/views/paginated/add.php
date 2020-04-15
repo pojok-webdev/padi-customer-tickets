@@ -11,9 +11,8 @@
     </div>
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
-        <form action='/paginateds/save' method='post'>
         <input type="hidden" name="requesttype" value="pelanggan" />
-        <input type="hidden" name="parentid" value="" />
+        <input type="hidden" name="parentid" id='parentid' value="0" />
         <?php $this->load->view('commons/breadline');?>
         <div class="workplace">            
             <div class="row-fluid">
@@ -80,7 +79,7 @@
                         </div>
                         <div class="row-form clearfix">
                             <div class="span12">
-                                <button type="submit" class="btn" name="save">Save</button>
+                                <button type="button" class="btn" id="btnSave" name="save">Save</button>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,6 @@
             </div>
         </div>
     </div>
-    </form>
     <script src="/asset/aqua/js/paginateds/add.js"></script>
     <script src="/asset/aqua/js/followups/wysiwygs.js"></script>
 </body>
