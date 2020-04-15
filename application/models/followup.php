@@ -19,9 +19,9 @@ Class Followup extends CI_Model{
     function getfollowupsbyticketid($ticketid){
         $sql = 'select a.id,a.kdticket,a.clientname,a.reporter,a.complaint,a.reporterphone,a.solution,b.followupDate,username, ';
         $sql.= 'picname,';
-        $sql.= 'a.base64description description,';
-        $sql.= 'b.base64description fdescription,';
-        $sql.= 'b.base64conclusion conclusion,';
+        $sql.= 'case when a.base64description is null then "" else a.base64description end description,';
+        $sql.= 'case when b.base64description is null then "" else b.base64description end fdescription,';
+        $sql.= 'case when b.base64conclusion is null then "" else b.base64conclusion end conclusion,';
         $sql.= 'case b.result when "0" then "Progress" when "1" then "OK" when "3" then "Tidak dapat dihubungi" end status,';
         $sql.= 'b.base64confirmationresult confirmationresult ';
         $sql.= 'from tickets a left outer join ticket_followups b on b.ticket_id=a.id ';
