@@ -68,7 +68,7 @@
                                         <span>Start: <?php echo $downtime->start;?></span> 
                                         <span>End: <?php echo $downtime->end;?></span>
                                     </td>
-                                    <td><?php echo $downtime->createuser;?></td>
+                                    <td><?php echo $downtime->size;?></td>
                                     <td>
                                         <a type="btn" href="/downtimes/remove/<?php echo $ticket_id;?>/<?php echo $downtime->id;?>">Hapus</a>
                                     </td>
