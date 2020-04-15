@@ -58,7 +58,7 @@ Class Followups extends CI_Controller{
                 '1'=>array('url'=>'/','label'=>'History')
             ),
             'ticketid'=>$ticketid,
-            'objs'=>$this->followup->getbyticketid($ticketid),
+            'objs'=>$this->followup->getfollowupsbyticketid($ticketid),
             'username'=>$_SESSION['username']
         );
         $this->load->view('followups/history',$data);

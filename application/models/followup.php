@@ -4,7 +4,8 @@ Class Followup extends CI_Model{
         parent::__construct();
     }
     function getbyticketid($ticketid){
-        $sql = 'select a.id ticket_id,a.kdticket,a.clientname,reporter,complaint,reporterphone,solution,b.followUpDate from tickets a ';
+        $sql = 'select a.id ticket_id,a.kdticket,a.clientname,reporter,complaint,reporterphone,solution,b.followUpDate ';
+        $sql.= 'from tickets a ';
         $sql.= 'left outer join ticket_followups b on b.ticket_id=a.id  ';
         $sql.= 'where a.id = ' . $ticketid . ' ';
         $ci = & get_instance();
