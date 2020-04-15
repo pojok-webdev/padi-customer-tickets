@@ -27,7 +27,7 @@
                     str+= '</td>';
                     str+= '<td>';
                     str+= b.status;
-                    str+= '<br >';
+                    str+= '<p>';
                     str+= atob(b.conclusion);
                     str+= '</td>';
                     str+= '<td class="ticketstart">';
