@@ -138,4 +138,9 @@
             console.log('saveFu err',err);
         })
     })
+    $('#btnProgressTicket').click(function(){
+        $.ajax({
+            url:'/'
+        })
+    })
 }(jQuery))

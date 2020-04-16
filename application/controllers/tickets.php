@@ -3,6 +3,7 @@ Class Tickets extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('padiauth');
+        $this->load->model('ticket');
         $this->padiauth->checklogin();
     }
     function index(){
@@ -45,5 +46,8 @@ Class Tickets extends CI_Controller{
     function getbyid(){
         $id = $this->uri->segment(3);
         echo json_encode($this->ticket->getbyid($id));
+    }
+    function getamount(){
+        echo json_encode($this->ticket->getAmount());
     }
 }

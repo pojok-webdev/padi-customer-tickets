@@ -261,10 +261,9 @@
     }
     checkIsHasParent = function(obj){
         parentid = obj.row.attr('parentid');
-        console.log('Paerntid',parentid);
         if(parentid!==0){
             getRowProps(parentid,function(res){
-                console.log('Props',res);
+                //console.log('Props',res);
             });
         }
     }
@@ -310,7 +309,6 @@
         })
         .done(function(res){
             if(res.cnt>0){
-                console.log("ChildrenCOunt",res);
                 requesttype = obj.row.find('.requesttype').html();
                 obj.row.find('.childrenamount').html(' ('+res.cnt+')');
             }
@@ -377,4 +375,31 @@
             $('#tTicket tbody').append(str);
         })
     });
+    initDataAmount = function(callback){
+        $.ajax({
+            url:'/tickets/getamount',
+            dataType:'json'
+        })
+        .done(function(res){
+            callback(res)
+        })
+        .fail(function(err){
+            console.log('get Amount failed',err);
+        })
+    }
+
+    initDataAmount(function(amount){
+        console.log('Init Amount',amount.cnt);
+        let _amount = amount;
+        setInterval(function(){
+            initDataAmount(function(newAmount){
+                if(newAmount.cnt>amount.cnt){
+                    console.log('there are new tickets',1*newAmount.cnt - 1*_amount.cnt);
+                    $("#newTicket").html(1*newAmount.cnt - 1*_amount.cnt);
+                    document.title = 'List of Ticket (' + (1*newAmount.cnt - 1*_amount.cnt)+')';
+                    amount = newAmount;
+                }
+            })
+        },3000);
+    })
 }(jQuery))

@@ -111,4 +111,11 @@ Class Ticket extends CI_Model{
         $que = $ci->db->query($sql);
         return array('res'=>$que->result(),'cnt'=>$que->num_rows());
     }
+    function getAmount(){
+        $sql = 'select count(id)cnt from tickets ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $res = $que->result();
+        return array('cnt'=>$res[0]->cnt);
+    }
 }
