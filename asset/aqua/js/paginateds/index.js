@@ -387,17 +387,21 @@
             console.log('get Amount failed',err);
         })
     }
-
+    getNewTicketAmount = function(before,after,callback){
+        callback(1*before-1*after);
+    }
     initDataAmount(function(amount){
         console.log('Init Amount',amount.cnt);
         let _amount = amount;
         setInterval(function(){
             initDataAmount(function(newAmount){
                 if(newAmount.cnt>amount.cnt){
-                    console.log('there are new tickets',1*newAmount.cnt - 1*_amount.cnt);
-                    $("#newTicket").html(1*newAmount.cnt - 1*_amount.cnt);
-                    document.title = 'List of Tickets (' + (1*newAmount.cnt - 1*_amount.cnt)+')';
-                    amount = newAmount;
+                    getNewTicketAmount(newAmount.cnt,_amount.cnt,function(lastamount){
+                        console.log('there are new tickets',lastamount);
+                        $("#newTicket").html('New Tickets ('+lastamount+')');
+                        document.title = 'List of Tickets (' + lastamount+')';
+                        amount = newAmount;
+                    })
                 }
             })
         },3000);

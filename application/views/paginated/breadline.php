@@ -5,7 +5,9 @@
     </ul>
     <ul class="buttons">
         <li>
-            <a type="button" class="red"><span class="caption" style="color:red" id="newTicket"></span></a>
+            <a type="button">
+                <span class="caption" style="color:red;cursor:pointer" title="Click to reload new tickets" id="newTicket"></span>
+            </a>
         </li>                
         <li>
         <label class="checkbox inline">
