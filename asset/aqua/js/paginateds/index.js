@@ -396,10 +396,22 @@
                 if(newAmount.cnt>amount.cnt){
                     console.log('there are new tickets',1*newAmount.cnt - 1*_amount.cnt);
                     $("#newTicket").html(1*newAmount.cnt - 1*_amount.cnt);
-                    document.title = 'List of Ticket (' + (1*newAmount.cnt - 1*_amount.cnt)+')';
+                    document.title = 'List of Tickets (' + (1*newAmount.cnt - 1*_amount.cnt)+')';
                     amount = newAmount;
                 }
             })
         },3000);
     })
+    $('#newTicket').click(function(){
+        $('#newTicket').html('');
+        document.title = 'List of Tickets';
+        clearTable();
+        loadTicketData(0,$('#pageamount').val(),function(str){
+            $('#tTicket tbody').append(str);
+        })
+        loadPagination(1,function(result){
+            $("#paginationbuttons").append(result);
+        });
+    
+    });
 }(jQuery))
