@@ -1,5 +1,6 @@
 (function($){
     console.log("Vreate js invoked");
+    document.title = 'Follow Up '+ $('#kdticketclientname').html();
     populateCauses = function(category_id,callback){
         $.ajax({
             url:'/followups/getcausesajax/'+category_id,
@@ -15,11 +16,11 @@
         });
     }
     $('#mainrootcause').change(function(){
-        $("#subcause").empty();
+        $("#cause_id").empty();
         populateCauses($(this).val(),function(res){
             console.log("mainrootchange",res);
             $.each(res,function(a,b){
-                $("#subcause").append('<option value='+b.id+'>'+b.name+'</option>');
+                $("#cause_id").append('<option value='+b.id+'>'+b.name+'</option>');
             })
             
         });
@@ -104,13 +105,13 @@
         })
         .done(function(res){
             console.log('Success update ticket',res);
-            window.location.href = '/'
+            //window.location.href = '/'
         })
         .fail(function(err){
             console.log('Failed update ticket',err);
         });
     }
-    $('#btnCloseTicket').click(function(){
+    saveFu = function(obj,callback){
         $.ajax({
             url:'/followups/save',
             data:{
@@ -119,28 +120,33 @@
                 followUpDate:$('#followUpDate').val(),
                 description:$('#description').val(),
                 mainrootcause:$('#mainrootcause').val(),
-                subcause:$('#subcause').val(),
                 solution:$('#solution').val(),
                 picname:$('#picname').val(),
                 position:$('#position').val(),
                 picphone:$('#picphone').val(),
                 confirmationresult:$('#confirmationresult').val(),
                 result:$('#result').val(),
+                cause_id:$('#cause_id').val(),
                 ticket_id:$('#ticket_id').val()
             },
             type:'post'
         })
         .done(function(res){
             console.log('saveFu done',res);
-            updateTicket({id:$('#ticket_id').val(),status:'1'});
+            callback();
         })
         .fail(function(err){
             console.log('saveFu err',err);
         })
+    }
+    $('#btnCloseTicket').click(function(){
+        saveFu({},function(res){
+            updateTicket({id:$('#ticket_id').val(),ticketend:$('#followUpDate').val(),status:'1'});
+        })
     })
     $('#btnProgressTicket').click(function(){
-        $.ajax({
-            url:'/'
+        saveFu({},function(res){
+            //updateTicket({id:$('#ticket_id').val(),status:'0'});
         })
     })
 }(jQuery))

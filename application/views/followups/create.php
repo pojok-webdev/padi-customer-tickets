@@ -18,7 +18,7 @@
                 <div class="span6">
                     <div class="head clearfix">
                         <div class="isw-list"></div>
-                        <h1><?php echo $obj->kdticket.'-'.$obj->clientname;?></h1>
+                        <h1><span id="kdticketclientname"><?php echo $obj->kdticket.'-'.$obj->clientname;?></span></h1>
                     </div>
                     <div class="block-fluid">
                         <div class="row-form clearfix">
@@ -72,7 +72,7 @@
                         <div class="row-form clearfix">
                             <div class="span5">Sub Root Cause:</div>
                             <div class="span7">
-                                <select name="cause" id="subcause">
+                                <select name="cause" id="cause_id">
                                 </select>
                             </div>
                         </div>

@@ -31,14 +31,15 @@ Class Followups extends CI_Controller{
         $params = $this->input->post();
         $params['followUpDate'] = $this->fixdateformat($params['followUpDate']);
         $this->updateticketsolution($params);
-        $this->followup->save($params);
-        redirect('/paginateds');
+        echo $this->followup->save($params);
+        //redirect('/paginateds');
     }
     function updateticketsolution($params){
         echo $this->followup->updateticketsolution($params);
     }
     function updateticket(){
         $params = $this->input->post();
+        $params['ticketend'] = $this->fixdateformat($params['ticketend']);
         echo $this->followup->updateticket($params);
     }
     function save_(){

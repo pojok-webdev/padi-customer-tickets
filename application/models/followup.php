@@ -17,15 +17,17 @@ Class Followup extends CI_Model{
         return false;
     }
     function getfollowupsbyticketid($ticketid){
-        $sql = 'select a.id,a.kdticket,a.clientname,a.reporter,a.complaint,a.reporterphone,a.solution,b.followupDate,username, ';
-        $sql.= 'picname,';
-        $sql.= 'case when a.base64description is null then "" else a.base64description end description,';
-        $sql.= 'case when b.base64description is null then "" else b.base64description end fdescription,';
-        $sql.= 'case when b.base64conclusion is null then "" else b.base64conclusion end conclusion,';
-        $sql.= 'case b.result when "0" then "Progress" when "1" then "OK" when "3" then "Tidak dapat dihubungi" end status,';
-        $sql.= 'b.base64confirmationresult confirmationresult ';
-        $sql.= 'from tickets a left outer join ticket_followups b on b.ticket_id=a.id ';
-        $sql.= 'where a.id = ' . $ticketid . ' and b.ticket_id is not null ';
+        $sql = 'select b.id,b.kdticket,b.clientname,b.reporter,b.complaint,b.reporterphone,b.solution,a.followupDate,username, ';
+        $sql.= 'picname,c.name subcause,d.name rootcause,';
+        $sql.= 'case when b.base64description is null then "" else b.base64description end description,';
+        $sql.= 'case when a.base64description is null then "" else a.base64description end fdescription,';
+        $sql.= 'case when a.base64conclusion is null then "" else a.base64conclusion end conclusion,';
+        $sql.= 'case a.result when "0" then "Progress" when "1" then "OK" when "3" then "Tidak dapat dihubungi" end status,';
+        $sql.= 'a.base64confirmationresult confirmationresult ';
+        $sql.= 'from ticket_followups a left outer join tickets b on a.ticket_id=b.id ';
+        $sql.= 'left outer join ticketcauses c on c.id=a.cause_id ';
+        $sql.= 'left outer join ticketcausecategories d on d.id=c.category_id ';
+        $sql.= 'where b.id = ' . $ticketid . '  ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         $res = $que->result();
@@ -54,7 +56,18 @@ Class Followup extends CI_Model{
     }
     function save($params){
         $sql = 'insert into ticket_followups ';
-        $sql.= '(ticket_id,picname,position,picphone,followUpDate,result,base64conclusion,base64confirmationresult,base64description) ';
+        $sql.= '(';
+        $sql.= 'ticket_id,';
+        $sql.= 'picname,';
+        $sql.= 'position,';
+        $sql.= 'picphone,';
+        $sql.= 'followUpDate,';
+        $sql.= 'result,';
+        $sql.= 'cause_id,';
+        $sql.= 'base64conclusion,';
+        $sql.= 'base64confirmationresult,';
+        $sql.= 'base64description';
+        $sql.= ') ';
         $sql.= 'values ';
         $sql.= '(';
         $sql.= ''.$params['ticket_id'].',';
@@ -63,6 +76,7 @@ Class Followup extends CI_Model{
         $sql.= '"'.$params['picphone'].'",';
         $sql.= '"'.$params['followUpDate'].'",';
         $sql.= '"'.$params['result'].'",';
+        $sql.= '"'.$params['cause_id'].'",';
         $sql.= '"'.base64_encode($params['solution']).'",';
         $sql.= '"'.base64_encode($params['confirmationresult']).'",';
         $sql.= '"'.base64_encode($params['description']).'"';

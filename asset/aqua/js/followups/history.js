@@ -26,12 +26,15 @@
                     str+= b.reporterphone;
                     str+= '</td>';
                     str+= '<td>';
+                    str+= b.subcause+' '+b.rootcause;
+                    str+= '</td>';
+                    str+= '<td>';
                     str+= b.status;
                     str+= '<p>';
                     str+= atob(b.conclusion);
                     str+= '</td>';
                     str+= '<td class="ticketstart">';
-                    str+= b.username;
+                    str+= b.reporter;
                     str+= '</td>';
                     str+= '<td class="ticketend">';
                     str+= b.followupDate;
