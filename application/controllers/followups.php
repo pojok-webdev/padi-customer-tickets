@@ -71,8 +71,7 @@ Class Followups extends CI_Controller{
     }
     function gethistorycount(){
         $ticketid = $this->uri->segment(3);
-        $obj = $this->followup->getfollowupsbyticketid($ticketid);
-        echo json_encode($obj);
+        echo json_encode($this->followup->getfollowupsbyticketid($ticketid));
     }
     function saveresult(){
         $params = $this->input->post();

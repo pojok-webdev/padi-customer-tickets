@@ -112,4 +112,10 @@ Class Paginateds extends CI_Controller{
         $obj = $this->paginated->getchildrentickets($parentid);
         echo json_encode($obj);
     }
+    function getticketstatus(){
+        $ticketid = $this->uri->segment(3);
+        $this->load->model('followup');
+        echo json_encode($this->followup->getbyticketid($ticketid));
+    }
+
 }

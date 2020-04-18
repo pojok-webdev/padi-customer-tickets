@@ -53,7 +53,7 @@
                 str+= '<td class="requesttype">';
                 str+= b.requesttype + '<span class="childrenamount"></span>';
                 str+= '</td>';
-                str+= '<td>';
+                str+= '<td class="status">';
                 str+= b.statuslabel;
                 str+= '</td>';
                 str+= '<td>';
@@ -241,9 +241,25 @@
                     getFollowupsCount({row:tr});
                     getChildrenCount({row:tr});
                     checkIsHasParent({row:tr});
+                    getStatus({id:id,row:tr},function(row,res){
+                        console.log('Rezzz',res.statuslabel);
+                        row.find('.status').html(res.statuslabel);
+                    })
                     tr.find(".dura").html(x.str);
                 });
             }
+        });
+    }
+    getStatus = function(obj,callback){
+        $.ajax({
+            url:'/paginateds/getticketstatus/'+obj.id,
+            dataType:'json'
+        })
+        .done(function(res){
+            callback(obj.row,res);
+        })
+        .fail(function(err){
+            console.log('Error get Ticket status',err);
         });
     }
     getRowProps = function(parentid,callback){
@@ -295,6 +311,7 @@
             dataType:'json'
         })
         .done(function(res){
+            console.log('History count',res);
             obj.row.find('.action .history').html('History '+res.cnt);
         })
         .fail(function(err){
