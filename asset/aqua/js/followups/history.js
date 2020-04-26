@@ -2,7 +2,7 @@
     console.log("History Ticket");
     setTableHeadInformation = function(obj,callback){
         out = 'Kdticket:'+obj.kdticket+' ';
-        out+= 'Name:'+obj.clientname+' ';
+        out+= 'Name:'+obj.clientname+' ('+obj.clientcategory+') ';
         out+= 'complaint:'+(!obj.complaint)?'-':obj.complaint+' ';
         out+= 'Reporter:'+obj.reporter+' ';
         out+= 'Address:'+obj.address+' ';
@@ -20,6 +20,7 @@
                 setTableHeadInformation({
                     kdticket:res[0].kdticket,
                     clientname:res[0].clientname,
+                    clientcategory:res[0].clientcategory,
                     complaint:res[0].complaint,
                     reporter:res[0].reporter,
                     address:res[0].address
