@@ -1,6 +1,13 @@
 (function($){
     console.log("History Ticket");
-
+    setTableHeadInformation = function(obj,callback){
+        out = 'Kdticket:'+obj.kdticket+' ';
+        out+= 'Name:'+obj.clientname+' ';
+        out+= 'complaint:'+(!obj.complaint)?'-':obj.complaint+' ';
+        out+= 'Reporter:'+obj.reporter+' ';
+        out+= 'Address:'+obj.address+' ';
+        callback(out);
+    }
     loadTicketData = function(segment,offset,callback){
         $.ajax({
             url:'/followups/historyajaxsource/'+$('#ticketid').val(),
@@ -10,7 +17,15 @@
         .done(function(res){
             console.log("Res",res);
             if(res.length>0){
-                $("#kdticket").html(res[0].kdticket+' '+res[0].clientname);
+                setTableHeadInformation({
+                    kdticket:res[0].kdticket,
+                    clientname:res[0].clientname,
+                    complaint:res[0].complaint,
+                    reporter:res[0].reporter,
+                    address:res[0].address
+                },function(headtext){
+                    $('#kdticket').html(headtext);
+                })
                 $.each(res,function(a,b){
                     str = '<tr thisid='+b.id+' class="'+b.statuslabel+'">';
                     str+= '<td>';

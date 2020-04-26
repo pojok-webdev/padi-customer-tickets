@@ -19,7 +19,7 @@ Class Followup extends CI_Model{
     }
     function getfollowupsbyticketid($ticketid){
         $sql = 'select b.id,b.kdticket,b.clientname,b.reporter,b.complaint,b.reporterphone,b.solution,a.followupDate,username, ';
-        $sql.= 'picname,c.name subcause,d.name rootcause,';
+        $sql.= 'picname,c.name subcause,d.name rootcause,e.address,';
         $sql.= 'case when b.base64description is null then "" else b.base64description end description,';
         $sql.= 'case when a.base64description is null then "" else a.base64description end fdescription,';
         $sql.= 'case when a.base64conclusion is null then "" else a.base64conclusion end conclusion,';
@@ -28,6 +28,7 @@ Class Followup extends CI_Model{
         $sql.= 'from ticket_followups a left outer join tickets b on a.ticket_id=b.id ';
         $sql.= 'left outer join ticketcauses c on c.id=a.cause_id ';
         $sql.= 'left outer join ticketcausecategories d on d.id=c.category_id ';
+        $sql.= 'left outer join client_sites e on e.id=b.client_site_id ';
         $sql.= 'where b.id = ' . $ticketid . '  ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
