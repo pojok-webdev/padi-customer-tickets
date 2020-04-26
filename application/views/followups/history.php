@@ -23,14 +23,12 @@
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tTicket">
                             <thead>
                                 <tr>
-                                    <th width=5%>Tanggal</th>
-                                    <th width="8%">Narasi</th>
-                                    <th width="20%">PIC</th>
-                                    <th width="10%">Telepon</th>
-                                    <th width="10%">Cause</th>
-                                    <th width="20%">Status</th>
+                                    <th width="10%">Tanggal</th>
+                                    <th width="10%">PIC</th>
+                                    <th width="35%">Narasi</th>
+                                    <th width="20%">Cause</th>
+                                    <th width="10%">Status</th>
                                     <th width="10%">Petugas</th>
-                                    <th width="10%">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>

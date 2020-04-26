@@ -18,7 +18,7 @@ Class Followup extends CI_Model{
         return false;
     }
     function getfollowupsbyticketid($ticketid){
-        $sql = 'select b.id,b.kdticket,b.clientname,b.reporter,b.complaint,b.reporterphone,b.solution,a.followupDate,username, ';
+        $sql = 'select b.id,b.kdticket,b.clientname,b.reporter,b.complaint,b.reporterphone,b.solution,a.followupDate,a.username, ';
         $sql.= 'case f.clientcategory ';
         $sql.= 'when "1" then "FFR" ';
         $sql.= 'when "2" then "Platinum" ';
