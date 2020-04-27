@@ -30,6 +30,7 @@ Class Followup extends CI_Model{
         $sql.= 'picname,c.name subcause,d.name rootcause,e.address,';
         $sql.= 'case when b.base64description is null then "" else b.base64description end description,';
         $sql.= 'case when a.base64description is null then "" else a.base64description end fdescription,';
+        $sql.= 'case when a.description is null then "" else a.description end fudescription,';
         $sql.= 'case when a.base64conclusion is null then "" else a.base64conclusion end conclusion,';
         $sql.= 'case a.result when "0" then "Progress" when "1" then "OK" when "3" then "Tidak dapat dihubungi" end status,';
         $sql.= 'a.base64confirmationresult confirmationresult ';
@@ -163,5 +164,25 @@ Class Followup extends CI_Model{
             return $sql;
         }
         return false;
+    }
+    function convertalldescription(){
+        $sql = 'select id,description from ticket_followups ';
+        $sql.= 'where description is not null and base64description is null ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $res = $que->result();
+        foreach($res as $rawtext){
+            $sql = 'update ticket_followups ';
+            $sql.= 'set base64description="'.base64_encode($rawtext->description).'" ';
+            $sql.= 'where id='.$rawtext->id.' ';
+            $que = $ci->db->query($sql);
+        }
+    }
+    function getallfus(){
+        $sql = 'select id,description,base64description from ticket_followups ';
+        $sql.= 'where description is not null and base64description is null ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $que->result();
     }
 }

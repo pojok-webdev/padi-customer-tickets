@@ -83,4 +83,26 @@ Class Paginated extends CI_Model{
         $que = $ci->db->query($sql);
         return array('res'=>$que->result(),'cnt'=>$que->num_rows());
     }
+    function search($params){
+        $sql = 'select a.id,kdticket,clientname name,ticketstart,ticketend,a.status,';
+        $sql.= 'case a.status when "0" then "Open" when "1" then "Closed" end statuslabel,';
+        $sql.= 'e.name subrootcause,f.name mainrootcause, requesttype,';
+        $sql.= 'case when parentid is null then false else  parentid end parentid,';
+        $sql.= "case d.clientcategory ";
+        $sql.= "when '1' then 'FFR' ";
+        $sql.= "when '2' then 'Platinum' ";
+        $sql.= "when '3' then 'Gold' ";
+        $sql.= "when '4' then 'Silver' ";
+        $sql.= "when '5' then 'Bronze' end clientcategory ";
+        $sql.= 'from tickets a ';
+        $sql.= ' left outer join client_sites c on c.id=a.client_site_id ';
+        $sql.= ' left outer join clients d on d.id=a.client_id ';
+        $sql.= ' left outer join ticketcauses e on e.id=a.cause_id ';
+        $sql.= ' left outer join ticketcausecategories f on f.id=e.category_id ';
+        $sql.= 'order by a.create_date desc ';
+        $sql.= 'limit ' . $segment . ',' . $offset;
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array('res'=>$que->result());
+    }
 }

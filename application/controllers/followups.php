@@ -81,4 +81,10 @@ Class Followups extends CI_Controller{
         $id = $this->uri->segment(3);
         echo $this->followup->convertchartobase64($id);
     }
+    function convertalldescription(){
+        $this->followup->convertalldescription();
+    }
+    function getallfus(){
+        echo json_encode($this->followup->getallfus());
+    }
 }

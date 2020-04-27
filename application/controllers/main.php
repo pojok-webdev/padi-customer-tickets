@@ -7,6 +7,9 @@ Class Main extends CI_Controller{
             session_start();
         }
     }
+    function index(){
+
+    }
     function login(){
         $this->load->view('main/login');
     }
@@ -22,5 +25,16 @@ Class Main extends CI_Controller{
         session_unset();
         session_destroy();
         redirect('/main/login');
+    }
+    function showdescription(){
+
+        $data = array(
+            'breadcrumb'=>array(
+                '0'=>array('url'=>'/','label'=>'Main'),
+                '1'=>array('url'=>'/','label'=>'Compare Description')
+            ),
+            'username'=>$_SESSION['username']
+        );
+        $this->load->view('main/showdescription',$data);
     }
 }

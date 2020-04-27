@@ -19,6 +19,7 @@
         $("#tTicket tbody").empty();
     }
     loadTicketData = function(segment,offset,callback){
+        $('#paginationbuttons .btn').attr('disabled',true);
         $.ajax({
             url:'/paginateds/ajaxsource',
             data:{
@@ -75,6 +76,7 @@
             })
         })
         .fail(function(err){
+            $('#paginationbuttons .btn').attr('disabled',false);
             console.log("Err",err);
         });
     }
@@ -135,6 +137,7 @@
         })
     });
     loadTicketData(0,$('#pageamount').val(),function(str){
+        $('#paginationbuttons .btn').attr('disabled',false);
         $('#tTicket tbody').append(str);
     })
     loadNextPage = function(pageid,nextpage){
@@ -242,7 +245,6 @@
                     getChildrenCount({row:tr});
                     checkIsHasParent({row:tr});
                     getStatus({id:id,row:tr},function(row,res){
-                        console.log('Rezzz',res.statuslabel);
                         row.find('.status').html(res.statuslabel);
                     })
                     tr.find(".dura").html(x.str);
@@ -311,7 +313,6 @@
             dataType:'json'
         })
         .done(function(res){
-            console.log('History count',res);
             obj.row.find('.action .history').html('History '+res.cnt);
         })
         .fail(function(err){
@@ -435,4 +436,21 @@
         });
     
     });
+    $("#searchbar").keyup(function(){
+        console.log("keyp",$(this).val());
+    })
+    $("#searchbutton").click(function(){
+        $.ajax({
+            url:'/paginateds/search',
+            data:{},
+            dataType:'json',
+            type:'post'
+        })
+        .done(function(res){
+            console.log("success search",res);
+        })
+        .fail(function(err){
+            console.log("failed search",err);
+        })
+    })
 }(jQuery))

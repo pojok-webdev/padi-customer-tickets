@@ -117,5 +117,8 @@ Class Paginateds extends CI_Controller{
         $this->load->model('followup');
         echo json_encode($this->followup->getbyticketid($ticketid));
     }
-
+    function search(){
+        $params = $this->input->post();
+        echo json_encode($this->paginated->search($params));
+    }
 }

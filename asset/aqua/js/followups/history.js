@@ -64,4 +64,24 @@
         $('#tTicket tbody').append(str);
     })
     $('#tTicket_info').hide();
+    executeAll = function(){
+        $.ajax({
+            url:'/followups/getallfus',
+            dataType:'json'
+        })
+        .done(function(objs){
+            objs.forEach(function(obj){
+                $.ajax({
+                    url:'/followups/convertchartobase64/'+obj.id,
+                })
+                .done(function(res){
+                    console.log('Updateres',res);
+                })
+                .fail(function(err){
+                    console.log('Err update',err);
+                });
+            })
+        })
+        .fail();    
+    }
 }(jQuery))
