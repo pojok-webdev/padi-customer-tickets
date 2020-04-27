@@ -35,7 +35,7 @@
                     str+= '<td>';
                     str+= b.picname+'<p>'+b.reporterphone;
                     str+= '</td>';
-                    str+= '<td>';
+                    str+= '<td click="description()">';
                     str+= atob(b.fdescription);
                     str+= '</td>';
                     str+= '<td>';

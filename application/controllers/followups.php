@@ -77,4 +77,8 @@ Class Followups extends CI_Controller{
         $params = $this->input->post();
         echo $this->followup->saveresult($params);
     }
+    function convertchartobase64(){
+        $id = $this->uri->segment(3);
+        echo $this->followup->convertchartobase64($id);
+    }
 }

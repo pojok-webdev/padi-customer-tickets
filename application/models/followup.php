@@ -147,4 +147,21 @@ Class Followup extends CI_Model{
         $que = $ci->db->query($sql);
         return $ci->db->insert_id();
     }
+    function convertchartobase64($id){
+        $sql = 'select description from ticket_followups ';
+        $sql.= 'where id='.$id;
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $res = $que->result();
+        if($que->num_rows()>0){
+            $obj = $res[0];
+
+            $sql = 'update ticket_followups ';
+            $sql.= 'set base64description="'.base64_encode($obj->description).'" ';
+            $sql.= 'where id='.$id.' ';
+            $que = $ci->db->query($sql);
+            return $sql;
+        }
+        return false;
+    }
 }
