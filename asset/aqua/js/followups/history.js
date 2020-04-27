@@ -48,7 +48,7 @@
                     str+= b.status;
                     str+= '</td>';
                     str+= '<td class="dura">';
-                    str+= a.username;
+                    str+= b.username;
                     str+= '</td>';
                     str+= '</tr>';    
                     callback(str)
@@ -63,5 +63,5 @@
         console.log("Result of Load Ticket Data",res);
         $('#tTicket tbody').append(str);
     })
-
+    $('#tTicket_info').hide();
 }(jQuery))
