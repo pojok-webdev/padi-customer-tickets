@@ -36,7 +36,7 @@
                     str+= b.picname+'<p>'+b.reporterphone;
                     str+= '</td>';
                     str+= '<td click="description()">';
-                    str+= atob(b.fdescription);
+                    str+= b.fudescription;
                     str+= '</td>';
                     str+= '<td>';
                     str+= '<strong>'+b.rootcause+'</strong><p> <span style="color:#777;">'+b.subcause+'</span>';
