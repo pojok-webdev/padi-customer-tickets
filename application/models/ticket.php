@@ -118,4 +118,13 @@ Class Ticket extends CI_Model{
         $res = $que->result();
         return array('cnt'=>$res[0]->cnt);
     }
+    function savelog($params){
+        $sql = 'insert into ticketlogs ';
+        $sql.= '(ticketid,description,userid) ';
+        $sql.= 'values ';
+        $sql.= '('.$params['ticketid'].',"'.$params['description'].'",'.$params['userid'].')';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return $ci->db->insert_id();
+    }
 }

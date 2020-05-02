@@ -103,6 +103,24 @@
         .done(function(result){callback(result)})
         .fail(function(error){callback(error)});
     }
+    saveTicketLog = function(obj,callback){
+        $.ajax({
+            url:'/tickets/savelog',
+            type:'post',
+            dataType:'json',
+            data:{
+                ticketid:obj.ticketid,
+                description:obj.description,
+                userid:obj.userid
+            }
+        })
+        .done(function(res){
+            callback(res);
+        })
+        .fail(function(err){
+            callback(err);
+        });
+    };
     clearSelected = function(rows,callback){
         rows.each(function(){
             console.log('Row : ',rows.html());
@@ -133,6 +151,13 @@
             removeTicket({id:ticketid},function(res){
                 console.log("Remove success",res);
                 tr.remove();
+                saveTicketLog({
+                    ticketid:ticketid,
+                    description:'remove ticket',
+                    userid:17
+                },function(log){
+                    console.log(log);
+                });
             });
         })
     });
@@ -221,10 +246,14 @@
                 year = dt[0];
                 month = dt[1]-1;
                 day = dt[2];
-                tm = dttimesplit[1].split(":");
-                hour = tm[0];
-                minute = tm[1];
-                second = tm[2];
+                if(dttimesplit.length>1){
+                    tm = dttimesplit[1].split(":");
+                    hour = tm[0];
+                    minute = tm[1];
+                    second = tm[2];
+                }else{
+                    hour = '00';minute='00';second='00';
+                }
                 _start = new Date(year,month,day,hour,minute,second);
                 status = $(this).hasClass("Open")?"ticketOpen":"ticketClosed";
                 showalert= $(this).hasClass("showalert")?true:false;

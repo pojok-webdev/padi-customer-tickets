@@ -50,4 +50,8 @@ Class Tickets extends CI_Controller{
     function getamount(){
         echo json_encode($this->ticket->getAmount());
     }
+    function savelog(){
+        $params = $this->input->post();
+        echo json_encode($this->ticket->savelog($params));
+    }
 }
