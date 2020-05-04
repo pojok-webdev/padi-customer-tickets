@@ -8,7 +8,6 @@
     .done(function(res){
         console.log("Success getlastpage",res);
         $("#btnLast").attr("lastpage",res.lastpage);
-        $("#btnLast").removeAttr("disabled");
         _lastpage = res.lastpage;
         populatePageOptions(_lastpage);
     })
@@ -19,7 +18,6 @@
         $("#tTicket tbody").empty();
     }
     loadTicketData = function(segment,offset,callback){
-        $('#paginationbuttons .btn').attr('disabled',true);
         $.ajax({
             url:'/paginateds/ajaxsource',
             data:{
@@ -76,7 +74,6 @@
             })
         })
         .fail(function(err){
-            $('#paginationbuttons .btn').attr('disabled',false);
             console.log("Err",err);
         });
     }
@@ -162,7 +159,6 @@
         })
     });
     loadTicketData(0,$('#pageamount').val(),function(str){
-        $('#paginationbuttons .btn').attr('disabled',false);
         $('#tTicket tbody').append(str);
     })
     loadNextPage = function(pageid,nextpage){
