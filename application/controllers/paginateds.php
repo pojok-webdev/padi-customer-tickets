@@ -5,7 +5,7 @@ Class Paginateds extends CI_Controller{
         $this->load->model('paginated');
         $this->load->model('padiauth');
         $this->load->model('backbone');
-        $this->padiauth->checklogin();
+        //$this->padiauth->checklogin();
     }
     function index(){
         $data = array(
@@ -119,6 +119,7 @@ Class Paginateds extends CI_Controller{
     }
     function search(){
         $params = $this->input->post();
-        echo json_encode($this->paginated->search($params));
+        $objs = $this->paginated->search($params);
+        echo json_encode($objs['res']);
     }
 }

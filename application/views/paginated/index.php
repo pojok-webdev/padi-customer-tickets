@@ -54,6 +54,9 @@
                         </table>
                     </div>
                     <div class="dataTables_info" id="tTicket_info"></div>
+                        <input type="text" placeholder="Search by name" id="searchbar">
+                        <button class="btn" id="searchbutton">Search</button>
+                        <button class="btn" id="clearsearchbutton">Clear Search</button>
                         <div class="dataTables_paginate paging_two_button" id="tTicket_paginate">
                         Row Per Page 
                             <?php echo form_dropdown('pageamount',$rowAmounts,'1','id="pageamount" class="pageoption" ');?>
@@ -72,5 +75,6 @@
     <?php $this->load->view('commons/confirmmodal');?>
     <script src="/asset/padi.common.js"></script>
     <script src="/asset/aqua/js/paginateds/index.js"></script>
+    <script src="/asset/aqua/js/paginateds/search.js"></script>
 </body>
 </html>

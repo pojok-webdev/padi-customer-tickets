@@ -13,3 +13,9 @@
 .pageoption option{
     width: 50px;
 }
+#searchbar{
+    margin-top:5px;
+}
+.pageoption{
+    margin-top:5px;
+}

@@ -461,21 +461,4 @@
         });
     
     });
-    $("#searchbar").keyup(function(){
-        console.log("keyp",$(this).val());
-    })
-    $("#searchbutton").click(function(){
-        $.ajax({
-            url:'/paginateds/search',
-            data:{},
-            dataType:'json',
-            type:'post'
-        })
-        .done(function(res){
-            console.log("success search",res);
-        })
-        .fail(function(err){
-            console.log("failed search",err);
-        })
-    })
 }(jQuery))
