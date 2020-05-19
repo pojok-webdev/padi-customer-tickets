@@ -5,7 +5,7 @@ Class Paginateds extends CI_Controller{
         $this->load->model('paginated');
         $this->load->model('padiauth');
         $this->load->model('backbone');
-        //$this->padiauth->checklogin();
+        $this->padiauth->checklogin();
     }
     function index(){
         $data = array(
