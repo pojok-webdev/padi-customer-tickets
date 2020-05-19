@@ -175,6 +175,7 @@
         loadNextPage(0,1);
     });
     $('#btnLast').click(function(){
+        console.log("lastpage",$(this).attr('lastpage'));
         lastpage = $(this).attr('lastpage');
         loadNextPage(lastpage-1,lastpage)
     });
