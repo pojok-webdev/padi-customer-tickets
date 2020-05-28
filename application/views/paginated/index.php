@@ -2,17 +2,25 @@
 <html lang="en">
     <?php $this->load->view('paginated/head');?>
     <link rel="stylesheet" href="/asset/aqua/css/app/paginated/padicustom.css" />
+    <style>
+        .checker{
+            display:block;
+        }
+    </style>
 <body>
     <div class="header">
         <a class="logo" href="/"><img src="/asset/aqua/img/logo.png" alt="Ticket" title="Tikets"/></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
-        </ul>    
+        </ul>
     </div>
     <?php $this->load->view('paginated/menu');?>
     <div class="content">
     <?php $this->load->view('paginated/breadline');?>
         <div class="workplace">
+        <?php $this->load->view('paginated/modalFilterCategory');?>
+        <?php $this->load->view('paginated/modalFilter');?>
+        <?php $this->load->view('paginated/modalFilterKdticket');?>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="head clearfix">
@@ -30,6 +38,14 @@
                                     <li title="Add PTP Ticket"><a href="/paginateds/addptp" target="_blank"><span class="isw-plus"></span> PTP</a></li>
                                     <li title="Add Core Ticket"><a href="/paginateds/addcore" target="_blank"><span class="isw-plus"></span> Core</a></li>
                                     <li title="Add AP Ticket"><a href="/paginateds/addap" target="_blank"><span class="isw-plus"></span> AP</a></li>
+                                </ul>
+                            </li>
+                            <li title="Search Ticket">
+                                <a href="#" class="isw-zoom"></a>
+                                <ul class="dd-list search-toggler">
+                                    <li title="Search Ticket By Year">
+                                        <a class="search"><span class="isw-zoom"></span> By Year</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>

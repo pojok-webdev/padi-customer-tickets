@@ -399,7 +399,11 @@
         $("#paginationbuttons").append(result);
     });
     setdura();
-    setInterval(function(){ setdura(); }, 3000);
+    //intervalId = setInterval(function(){ setdura(); }, 3000);
+    intervalId = setTimeout(function gto(){
+        setdura();
+        intervalId = setTimeout(gto,3000);
+    },3000);
     $(".paging_two_button").on("click",".pagebutton",function(){
         pageid = $(this).text();
         loadNextPage(1*pageid-1,pageid);
@@ -461,5 +465,27 @@
             $("#paginationbuttons").append(result);
         });
     
+    });
+    $(".search").on("click",function(){
+        $("#dFilter").modal();
+        $(".search-toggler").hide();
+    })
+    $("#searchbyfilter").on("click",function(){
+        console.log("search invoked",$("#categoryfilter").val());
+        console.log("search invoked",$("#yearfilter").val());
+    })
+    $(".yearclass").on("click",function(){
+        console.log("yearclass",$(this).val());
+    })
+    $(".filter").on("click",function(){
+        console.log("filter",$(this).val());
+        that = $(this);
+        if(that.prop('checked')){
+            console.log('',that.val());
+        }
+    })
+    $("#searchByKdticket").click(function(){
+        //$('#dFilterKdticket').modal();
+        $('#fModal').modal();
     });
 }(jQuery))

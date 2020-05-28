@@ -157,8 +157,6 @@ $(document).ready(function(){
         }
         
     });
-
-
     $("#menuDatepicker").datepicker();
     
     

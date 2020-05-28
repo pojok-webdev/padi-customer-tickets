@@ -22,5 +22,5 @@
                 <span class="isw-grid"></span><span class="text">Tickets</span>
             </a>
         </li>
-    </ul>    
+    </ul>
 </div>
