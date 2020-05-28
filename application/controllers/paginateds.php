@@ -15,7 +15,9 @@ Class Paginateds extends CI_Controller{
             ),
             'pagetitle'=>'List of Ticket',
             'username'=>$_SESSION['username'],
-            'rowAmounts'=>array('5'=>'5','10'=>'10','15'=>'15','20'=>'20','25'=>'25')
+            'rowAmounts'=>array('5'=>'5','10'=>'10','15'=>'15','20'=>'20','25'=>'25'),
+            'categories'=>array('1'=>'FFFFR','2'=>'Platinum','3'=>'Gold','4'=>'Bronze','5'=>'Silver',"6"=>"Others"),
+            'years'=>array('1'=>date("Y"),'2'=>date("Y")-1,'3'=>date("Y")-2)
         );
         $this->load->view('paginated/index',$data);
     }
@@ -120,6 +122,9 @@ Class Paginateds extends CI_Controller{
     function search(){
         $params = $this->input->post();
         $objs = $this->paginated->search($params);
-        echo json_encode($objs['res']);
+        echo json_encode($objs);
+    }
+    function searchByKdTicket(){
+        echo json_encode($this->paginated->searchByKdTicket($this->uri->segment(3)));
     }
 }
