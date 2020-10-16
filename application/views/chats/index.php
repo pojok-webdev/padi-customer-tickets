@@ -21,7 +21,7 @@
                 <div class="span6">
                     <div class="head clearfix">
                         <div class="isw-chats"></div>
-                        <h1><span id='messagingtitle' chat_id=''>Messaging</span></h1>
+                        <h1><span id='messagingtitle' chat_id='' targettyppe=''>Messaging</span></h1>
                         <ul class="buttons">
                             <li>
                                 <a href="#" class="isw-attachment"></a>                            

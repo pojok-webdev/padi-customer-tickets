@@ -22,5 +22,10 @@
                 <span class="isw-grid"></span><span class="text">Tickets</span>
             </a>
         </li>
+        <li>
+            <a href="/chats">
+                <span class="isw-grid"></span><span class="text">Chats</span>
+            </a>
+        </li>
     </ul>
 </div>

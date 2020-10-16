@@ -4,8 +4,8 @@ class Chat extends CI_Model{
         parent::__construct();
     }
     function getChat(){
-        $sql = 'select a.id,a.parentid,a.content,a.user_id,b.username,a.createdate from padichats a ';
-        $sql.= 'left outer join users b on b.id=a.user_id ';
+        $sql = 'select a.id,a.parentid,a.content,a.creator_id,b.username,a.createdate from zchats a ';
+        $sql.= 'left outer join users b on b.id=a.creator_id ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return array(
@@ -13,8 +13,8 @@ class Chat extends CI_Model{
         );
     }
     function getnewchats(){
-        $sql = 'select a.id,a.parentid,a.content,a.user_id,b.username,a.createdate from padichats a ';
-        $sql.= 'left outer join users b on b.id=a.user_id ';
+        $sql = 'select a.id,a.parentid,a.content,a.creator_id,b.username,a.createdate from zchats a ';
+        $sql.= 'left outer join users b on b.id=a.creator_id ';
         //$sql.= 'where ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
@@ -22,21 +22,35 @@ class Chat extends CI_Model{
             'res'=>$que->result(),'cnt'=>$que->num_rows()
         );
     }
-    function getgroupchat($group_id){
-        $sql = 'select a.id,a.parentid,a.content,a.user_id,b.username,a.createdate from padichats a ';
-        $sql.= 'left outer join users b on b.id=a.user_id ';
-        $sql.= 'where a.group_id='.$group_id.' ';
+    function getgroupchat($target_id){
+        $sql = 'select a.id,a.parentid,a.content,a.creator_id,b.username,a.createdate from zchats a ';
+        $sql.= 'left outer join users b on b.id=a.creator_id ';
+        $sql.= 'where a.target_id='.$target_id.' ';
+        $sql.= 'and a.targettype="0" ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return array(
             'res'=>$que->result(),'cnt'=>$que->num_rows()
         );
     }
+    function getuserchat($user_id,$target_id){
+        $sql = 'select a.id,a.parentid,a.content,a.creator_id,b.username,a.createdate from zchats a ';
+        $sql.= 'left outer join users b on b.id=a.creator_id ';
+        $sql.= 'where a.creator_id='.$user_id.' ';
+        $sql.= 'and a.target_id='.$target_id.' ';
+        $sql.= 'and a.targettype="1" ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array(
+            'res'=>$que->result(),'cnt'=>$que->num_rows()
+            //'res'=>$sql,'cnt'=>$que->num_rows()
+        );
+    }
     function getGroups($user_id){
-        $sql = 'select b.id,b.name,b.description from padiuserchats a left outer join padigroupchats b ';
-        $sql.= 'on b.id=a.group_id ';
-        $sql.= 'where b.id is not null ';
-        $sql.= 'and a.user_id = ' . $user_id . ' ';
+        $sql = 'select a.id,a.name,a.description from zgroups a left outer join zgroups_users b ';
+        $sql.= 'on a.id=b.group_id ';
+        $sql.= 'where b.group_id is not null ';
+        $sql.= 'and b.user_id = ' . $user_id . ' ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);
         return array(
@@ -55,12 +69,13 @@ class Chat extends CI_Model{
         );
     }
     function sendmessage($params){
-        $sql = 'insert into padichats ';
-        $sql.= '(content,user_id)';
+        $sql = 'insert into zchats ';
+        $sql.= '(content,creator_id,target_id,targettype)';
         $sql.= 'values ';
-        $sql.= '("'.$params['content'].'",'.$params['user_id'].')';
+        $sql.= '("'.$params['content'].'",'.$params['user_id'].','.$params['target_id'].','.$params['targettype'].')';
         $ci = & get_instance();
         $ci = $ci->db->query($sql);
-        return $ci->db->insert_id();
+        return 0;
+//        return $ci->db->insert_id();
     }
 }

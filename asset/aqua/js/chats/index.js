@@ -42,7 +42,9 @@ $("#btnSendMessage").click(function(){
         url:'/chats/sendmessage',
         data:{
             content:$("#txtMessage").val(),
-            user_id:user_id
+            user_id:user_id,
+            target_id:$('#messagingtitle').attr('chat_id'),
+            targettype:$('.chatgroup.selected').attr('targettype')
         },
         type:'post'
     })
@@ -79,6 +81,7 @@ messageTray = function(){
 }
 messageTray();
 getgroups = function(callback){
+    console.log('User_ID',user_id);
     $.ajax({
         url:'/chats/getgroups/'+user_id,
         dataType:'json'
@@ -108,7 +111,7 @@ getusers = function(callback){
 }
 getgroups(function(chatgroups){
     chatgroups.forEach(function(cg){
-        str = '<div class="item clearfix chatgroup" id = "'+cg.id+'">';
+        str = '<div class="item clearfix chatgroup" id = "'+cg.id+'" targettype="0">';
         str+= '<div class="image chatid"><a><img src="/img/users/aqvatarius.jpg" class="img-polaroid"/></a></div>';
         str+= '<div class="info">';
         str+= '<a href="#" class="name">'+cg.name+'</a>';
@@ -121,7 +124,7 @@ getgroups(function(chatgroups){
 });
 getusers(function(chatgroups){
     chatgroups.forEach(function(cg){
-        str = '<div class="item clearfix chatgroup" id = "'+cg.id+'">';
+        str = '<div class="item clearfix chatgroup" id = "'+cg.id+'" targettype="1">';
         str+= '<div class="image chatid"><a><img src="/img/users/aqvatarius.jpg" class="img-polaroid"/></a></div>';
         str+= '<div class="info">';
         str+= '<a href="#" class="name">'+cg.username+'</a>';
@@ -136,10 +139,11 @@ $('.chatgroups').on('click','.chatid',function(){
     $('.chatgroup').removeClass('selected');
     console.log('chatid clicked');
     _block = $(this).stairUp({level:1});
+    target_id = _block.attr('id');
     _block.addClass('selected');
     $('#messagingtitle').attr('chat_id',_block.attr('id'));
-    $('#messagingtitle').html('Chat : '+_block.find('.name').html());
-    getgroupchats({id:_block.attr('id')},function(messages){
+    $('#messagingtitle').html('Chat to '+_block.find('.name').html());
+    getgroupchats({id:_block.attr('id'),targettype:_block.attr('targettype')},function(messages){
         $('.padichats').empty();
         messages.forEach(function(x){
             var aa = (x.user_id==user_id)?"itemIn":"itemOut";
@@ -161,7 +165,7 @@ $('.chatgroups').on('click','.chatid',function(){
 });
 getgroupchats = function(obj,callback){
     $.ajax({
-        url:'/chats/getgroupchat/'+obj.id,
+        url:'/chats/getgroupchat/'+obj.id+'/'+obj.targettype,
         dataType:'json'
     })
     .done(function(res){

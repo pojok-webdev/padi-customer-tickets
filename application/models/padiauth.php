@@ -20,6 +20,7 @@ Class Padiauth extends CI_Model{
         $db_password =  $salt . substr(sha1($salt . $password), 0, -10);
         if($db_password===$obj->password){
             $_SESSION["username"] = $obj->username;
+            $_SESSION["user_id"] = $obj->id;
             return true;
         }else{
             return false;

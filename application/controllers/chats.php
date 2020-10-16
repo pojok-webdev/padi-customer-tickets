@@ -37,7 +37,12 @@ Class Chats extends CI_Controller{
     }
     function getgroupchat(){
         $group_id = $this->uri->segment(3);
-        $objs = $this->chat->getgroupchat($group_id);
+        $targettype = $this->uri->segment(4);
+        if($targettype=='0'){
+            $objs = $this->chat->getgroupchat($group_id);
+        }else{
+            $objs = $this->chat->getuserchat($_SESSION['user_id'],$group_id);
+        }
         echo json_encode($objs['res']);
     }
     function sendmessage(){
