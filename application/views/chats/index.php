@@ -237,7 +237,10 @@
             
         </div>        
     </div>
-    <script>var user_id=<?php echo $_SESSION['user_id'];?></script>
+    <script>
+    var user_id=<?php echo $_SESSION['user_id'];?>;
+    var username='<?php echo $_SESSION['username'];?>';
+    </script>
     <script src="/asset/padi.common.js"></script>
     <script src="/asset/aqua/js/chats/index.js"></script>
 </body>

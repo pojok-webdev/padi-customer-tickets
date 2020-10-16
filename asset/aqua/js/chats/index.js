@@ -1,6 +1,6 @@
 appendRow = function(x,callback){
-    var aa = (x.user_id==user_id)?"itemIn":"itemOut";
-    cr = '<div class="'+aa+'">';
+    var itemType = (parseInt(x.user_id)==parseInt(user_id))?"itemIn":"itemOut";
+    cr = '<div class="'+itemType+'">';
     cr+= '<a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>';
     cr+= '<div class="text">';
     cr+= '<div class="info clearfix">';
@@ -12,31 +12,6 @@ appendRow = function(x,callback){
     cr+= '</div>';
     callback(cr);
 }
-$.ajax({
-    url:'/chats/getchat/'+$('.chatgroups .chatgroup.selected').attr('id'),
-    dataType:'json'
-})
-.done(function(res){
-    console.log("Res",res);
-    res.forEach(function(x){
-        var aa = (x.user_id==user_id)?"itemIn":"itemOut";
-        cr = '<div class="'+aa+'">';
-        cr+= '<a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>';
-        cr+= '<div class="text">';
-        cr+= '<div class="info clearfix">';
-        cr+= '<span class="name">'+x.username+'</span>';
-        cr+= '<span class="date">10 min ago</span>';
-        cr+= '</div>  ';
-        cr+= ''+x.content+'';
-        cr+= '</div>';
-        cr+= '</div>';
-        $('.padichats').append(cr);
-
-    });
-})
-.fail(function(err){
-    console.log("Err",err);
-});
 $("#btnSendMessage").click(function(){
     $.ajax({
         url:'/chats/sendmessage',
@@ -50,7 +25,7 @@ $("#btnSendMessage").click(function(){
     })
     .done(function(res){
         console.log('Res',res);
-        appendRow(res,function(row){
+        appendRow({user_id:user_id,username:username,content:$("#txtMessage").val()},function(row){
             $('.padichats').append(row);
         })
     })
@@ -146,8 +121,8 @@ $('.chatgroups').on('click','.chatid',function(){
     getgroupchats({id:_block.attr('id'),targettype:_block.attr('targettype')},function(messages){
         $('.padichats').empty();
         messages.forEach(function(x){
-            var aa = (x.user_id==user_id)?"itemIn":"itemOut";
-            cr = '<div class="'+aa+'">';
+            var itemType = (parseInt(x.creator_id)==parseInt(user_id))?"itemIn":"itemOut";
+            cr = '<div class="'+itemType+'">';
             cr+= '<a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>';
             cr+= '<div class="text">';
             cr+= '<div class="info clearfix">';
