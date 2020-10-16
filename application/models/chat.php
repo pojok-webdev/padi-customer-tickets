@@ -36,8 +36,9 @@ class Chat extends CI_Model{
     function getuserchat($user_id,$target_id){
         $sql = 'select a.id,a.parentid,a.content,a.creator_id,b.username,a.createdate from zchats a ';
         $sql.= 'left outer join users b on b.id=a.creator_id ';
-        $sql.= 'where a.creator_id='.$user_id.' ';
-        $sql.= 'and a.target_id='.$target_id.' ';
+        $sql.= 'where (a.creator_id='.$user_id.' ';
+        $sql.= 'and a.target_id='.$target_id.') ';
+        $sql.= 'or (a.target_id='.$user_id.' and a.creator_id='.$target_id.') ';
         $sql.= 'and a.targettype="1" ';
         $ci = & get_instance();
         $que = $ci->db->query($sql);

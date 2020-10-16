@@ -49,9 +49,7 @@ checkNewMessage = function(callback){
 messageTray = function(){
     setInterval(function(){
         checkNewMessage(function(messages){
-            //console.log("Messages",messages);
         });
-        //console.log('Interval');
     },3000);
 }
 messageTray();
@@ -117,6 +115,7 @@ $('.chatgroups').on('click','.chatid',function(){
     target_id = _block.attr('id');
     _block.addClass('selected');
     $('#messagingtitle').attr('chat_id',_block.attr('id'));
+    $('#messagingtitle').attr('targettype',_block.attr('targettype'));
     $('#messagingtitle').html('Chat to '+_block.find('.name').html());
     getgroupchats({id:_block.attr('id'),targettype:_block.attr('targettype')},function(messages){
         $('.padichats').empty();
@@ -139,6 +138,7 @@ $('.chatgroups').on('click','.chatid',function(){
     })
 });
 getgroupchats = function(obj,callback){
+    console.log('OBJ',obj);
     $.ajax({
         url:'/chats/getgroupchat/'+obj.id+'/'+obj.targettype,
         dataType:'json'
@@ -152,3 +152,24 @@ getgroupchats = function(obj,callback){
         callback(err);
     })
 }
+$('#reloadchat').click(function(){
+    getgroupchats({id:$('#messagingtitle').attr('chat_id'),targettype:$('#messagingtitle').attr('targettype')},function(messages){
+        $('.padichats').empty();
+        messages.forEach(function(x){
+            console.log('X',x);
+            var itemType = (parseInt(x.creator_id)==parseInt(user_id))?"itemIn":"itemOut";
+            cr = '<div class="'+itemType+'">';
+            cr+= '<a href="#" class="image"><img src="img/users/olga.jpg" class="img-polaroid"/></a>';
+            cr+= '<div class="text">';
+            cr+= '<div class="info clearfix">';
+            cr+= '<span class="name">'+x.username+'</span>';
+            cr+= '<span class="date">10 min ago</span>';
+            cr+= '</div>  ';
+            cr+= ''+x.content+'';
+            cr+= '</div>';
+            cr+= '</div>';
+            $('.padichats').append(cr);
+    
+        });
+    });
+});

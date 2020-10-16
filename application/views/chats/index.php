@@ -24,7 +24,10 @@
                         <h1><span id='messagingtitle' chat_id='' targettyppe=''>Messaging</span></h1>
                         <ul class="buttons">
                             <li>
-                                <a href="#" class="isw-attachment"></a>                            
+                                <a class="isw-attachment" id="reloadchat"></a>
+                            </li>                            
+                            <li>
+                                <a href="#" class="isw-attachment"></a>
                             </li>                            
                             <li>
                                 <a href="#" class="isw-settings"></a>
