@@ -134,9 +134,20 @@ $('.chatgroups').on('click','.chatid',function(){
             $('.padichats').append(cr);
     
         });
-    
+        $('.padichats').scrollTop($('.padichats').height());
     })
 });
+setChatRead = function(obj,callback){
+    $.ajax({
+        url:'/chats/setchatread/'+obj.target_id+'/'+obj.targettype
+    })
+    .done(function(res){
+        callback(res);
+    })
+    .fail(function(err){
+        callback(err);
+    });
+};
 getgroupchats = function(obj,callback){
     console.log('OBJ',obj);
     $.ajax({
@@ -145,7 +156,10 @@ getgroupchats = function(obj,callback){
     })
     .done(function(res){
         console.log('Res',res);
-        callback(res);
+        setChatRead({target_id:obj.id,targettype:obj.targettype},function(x){
+            callback(res);
+        });
+//        callback(res);
     })
     .fail(function(err){
         console.log(err);

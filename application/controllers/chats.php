@@ -53,4 +53,18 @@ Class Chats extends CI_Controller{
         $objs = $this->chat->getnewchats();
         echo json_encode($objs['res']);
     }
+    function setchatread(){
+        $target_id = $this->uri->segment(3);
+        $targettype = $this->uri->segment(4);
+        $this->chat->setchatread($target_id,$targettype);
+        echo 'set read done';
+/*        switch($targettype){
+            case '0':
+
+            break;
+            case '1':
+                $this->chat->setchatread($chat_id,$user_id);
+            break;
+        }*/
+    }
 }

@@ -5,6 +5,13 @@
 .selected{
     background:'red';
 }
+.selected .name {
+    color: red !important;
+}
+.div250{
+    height: 250px;
+    overflow-y:scroll;
+}
 </style>
 <body>
 <div class="header">
@@ -24,7 +31,7 @@
                         <h1><span id='messagingtitle' chat_id='' targettyppe=''>Messaging</span></h1>
                         <ul class="buttons">
                             <li>
-                                <a class="isw-attachment" id="reloadchat"></a>
+                                <a class="isw-refresh" id="reloadchat" title="Reload"></a>
                             </li>                            
                             <li>
                                 <a href="#" class="isw-attachment"></a>
@@ -39,10 +46,10 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="block messaging padichats">
+                    <div class="block messaging padichats div250">
                     </div>
                     <div class="bloc messaging">
-                    <div class="controls">
+                        <div class="controls">
                             <div class="control">
                                 <textarea name="textarea" id="txtMessage" placeholder="Your message..." style="height: 70px; width: 100%;"></textarea>
                             </div>
@@ -56,7 +63,7 @@
                         <div class="isw-list"></div>
                         <h1>Your Groups</h1>    
                     </div>
-                    <div class="block messages chatgroups">
+                    <div class="block messages chatgroups div250">
                     </div>
                 </div>                
                 
@@ -171,7 +178,7 @@
                 <div class="span6">
                     <div class="head clearfix">
                         <div class="isw-users"></div>
-                        <h1>Contacts</h1>
+                        <h1>Your Clients</h1>
                         <ul class="buttons">
                             <li>
                                 <a href="#" class="isw-user"></a>                            
@@ -181,52 +188,52 @@
                             </li>                                                                              
                         </ul>
                     </div>
-                    
                     <div class="block-fluid users">                                                
-
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/aqvatarius_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Aqvatarius</a>                                    
-                                    <span>online</span>
+                                    <a href="#" class="name">Suspect</a>                                    
+                                    <span>23</span>
                                 </div>
                             </div>
 
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/olga_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Olga</a>                                
-                                    <span>online</span>
+                                    <a href="#" class="name">Prospect</a>                                
+                                    <span>5</span>
                                 </div>
                             </div>                        
 
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/alexey_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Alexey</a>  
-                                    <span>online</span>
+                                    <a href="#" class="name">Survey</a>  
+                                    <span>106</span>
                                 </div>
                             </div>                              
                         
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/dmitry_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Dmitry</a>                                    
-                                    <span>online</span>
+                                    <a href="#" class="name">Install</a>                                    
+                                    <span>350</span>
                                 </div>
                             </div>                         
 
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/helen_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Helen</a>                                                                        
+                                    <a href="#" class="name">Ticket</a>                                                                        
+                                    <span>6</span>
                                 </div>
                             </div>                                  
 
                             <div class="item clearfix">
                                 <div class="image"><a href="#"><img src="/img/users/alexander_s.jpg" width="32"/></a></div>
                                 <div class="info">
-                                    <a href="#" class="name">Alexander</a>                                                                        
+                                    <a href="#" class="name">Troubleshoot</a>                                                                        
+                                    <span>5</span>
                                 </div>
                             </div>                                                          
                         
