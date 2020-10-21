@@ -14,6 +14,7 @@ Class Paginateds extends CI_Controller{
                 '1'=>array('url'=>'/','label'=>'Add')
             ),
             'pagetitle'=>'List of Ticket',
+            'ticketcauses'=>array(),'ticketcausecategories'=>array(),
             'username'=>$_SESSION['username'],
             'rowAmounts'=>array('5'=>'5','10'=>'10','15'=>'15','20'=>'20','25'=>'25'),
             'categories'=>array('1'=>'FFFFR','2'=>'Platinum','3'=>'Gold','4'=>'Bronze','5'=>'Silver',"6"=>"Others"),
