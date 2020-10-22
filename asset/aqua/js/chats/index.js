@@ -1,3 +1,40 @@
+hideMessenger = function(){
+    $('.padichats').hide();
+}
+showMessenger = function(){
+    $('.padichats').show();
+}
+disableSendButton = function(){
+    $('#btnSendMessage').attr('disabled','disabled');
+}
+enableSendButton = function(){
+    $('#btnSendMessage').attr('disabled',false);
+}
+stopMessaging = function(){
+    hideMessenger();
+    disableSendButton();    
+}
+stopMessaging();
+$('#stopMessaging').click(function(){
+    stopMessaging();
+    hideList();
+});
+
+
+hideList = function(){
+    var dropdown = $(".dd-list");
+    if(dropdown.is(":visible")){
+        dropdown.hide();
+        //parent.removeClass('active');
+    }else{
+        dropdown.show();
+        //parent.addClass('active');
+    }
+}
+
+
+
+
 appendRow = function(x,callback){
     var itemType = (parseInt(x.user_id)==parseInt(user_id))?"itemIn":"itemOut";
     cr = '<div class="'+itemType+'">';
@@ -46,11 +83,31 @@ checkNewMessage = function(callback){
         callback(err);
     })
 }
+getUnreadChat = function(){
+    $.ajax({
+        url:'/chats/getunreadchats/'+user_id,
+        dataType:'json'
+    })
+    .done(function(unreads){
+        console.log(unreads);
+        unreads.forEach(function(chat){
+            console.log('Unreaad Chat creatorid',chat.creator_id);
+            console.log('Unreaad Chat cnt',chat.cnt);
+            $('.chatgroups .61').html('x');
+        })
+    })
+    .fail(function(err){
+        console.log('Err',err);
+    });
+}
 messageTray = function(){
     setInterval(function(){
         checkNewMessage(function(messages){
         });
     },3000);
+    setInterval(function(){
+        getUnreadChat();
+    },3000)
 }
 messageTray();
 getgroups = function(callback){
@@ -87,7 +144,7 @@ getgroups(function(chatgroups){
         str = '<div class="item clearfix chatgroup" id = "'+cg.id+'" targettype="0">';
         str+= '<div class="image chatid"><a><img src="/img/users/aqvatarius.jpg" class="img-polaroid"/></a></div>';
         str+= '<div class="info">';
-        str+= '<a href="#" class="name">'+cg.name+'</a>';
+        str+= '<a href="#" class="name">'+cg.name+'<sup class="unreadamount '+cg.id+'">3</sup></a>';
         str+= '<p>'+cg.description+'</p>';
         str+= '<span>19 feb 2012 12:45</span>';
         str+= '</div>';
@@ -100,7 +157,7 @@ getusers(function(chatgroups){
         str = '<div class="item clearfix chatgroup" id = "'+cg.id+'" targettype="1">';
         str+= '<div class="image chatid"><a><img src="/img/users/aqvatarius.jpg" class="img-polaroid"/></a></div>';
         str+= '<div class="info">';
-        str+= '<a href="#" class="name">'+cg.username+'</a>';
+        str+= '<a href="#" class="name">'+cg.username+'<sup class="unreadamount '+cg.id+'"></sup></a>';
         str+= '<p>'+cg.username+'</p>';
         str+= '<span>19 feb 2012 12:45</span>';
         str+= '</div>';
@@ -109,6 +166,8 @@ getusers(function(chatgroups){
     });
 })
 $('.chatgroups').on('click','.chatid',function(){
+    showMessenger();
+    enableSendButton();
     $('.chatgroup').removeClass('selected');
     console.log('chatid clicked');
     _block = $(this).stairUp({level:1});

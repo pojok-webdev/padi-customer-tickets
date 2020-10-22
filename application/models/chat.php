@@ -97,6 +97,17 @@ class Chat extends CI_Model{
         $sql.= 'delimiter ;';
         return $sql;
     }
+    function getunreadchats($userid){
+        $sql = 'select b.creator_id,count(id)cnt from zchats_users a ';
+        $sql.= 'left outer join zchats b on b.id=a.chat_id ';
+        $sql.= 'where a.status="0" and a.user_id='.$userid.' and b.targettype="1" ';
+        $sql.= 'group by b.creator_id';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        $res = $que->result();
+        return $res;
+
+    }
     function setchatread($chat_id,$target_id){
         $sql = 'update zchats_users ';
         $sql.= 'set status="1" ';

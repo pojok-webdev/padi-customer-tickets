@@ -67,4 +67,8 @@ Class Chats extends CI_Controller{
             break;
         }*/
     }
+    function getunreadchats(){
+        $user_id = $this->uri->segment(3);
+        echo json_encode($this->chat->getunreadchats($user_id));
+    }
 }

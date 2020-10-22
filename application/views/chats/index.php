@@ -41,7 +41,7 @@
                                 <ul class="dd-list">
                                     <li><a href="#"><span class="isw-plus"></span> New document</a></li>
                                     <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
-                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                    <li><a id='stopMessaging'><span class="isw-delete"></span> Stop Messaging</a></li>
                                 </ul>
                             </li>
                         </ul>
