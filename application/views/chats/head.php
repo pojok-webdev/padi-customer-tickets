@@ -27,10 +27,6 @@
     
     <script type='text/javascript' src='/asset/aqua/js/plugins/bootstrap.min.js'></script>
     
-    <script type='text/javascript' src='/asset/aqua/js/plugins/charts/jquery.flot.js'></script>    
-    <script type='text/javascript' src='/asset/aqua/js/plugins/charts/jquery.flot.stack.js'></script>    
-    <script type='text/javascript' src='/asset/aqua/js/plugins/charts/jquery.flot.pie.js'></script>
-    <script type='text/javascript' src='/asset/aqua/js/plugins/charts/jquery.flot.resize.js'></script>
     
     <script type='text/javascript' src='/asset/aqua/js/plugins/sparklines/jquery.sparkline.min.js'></script>
     
