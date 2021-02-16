@@ -22,4 +22,12 @@ Class Client extends CI_Model{
             'res'=>$que->result(),'cnt'=>$que->num_rows()
         );
     }
+    function getall(){
+        $sql = 'select id,name from clients where active="1" ';
+        $ci = & get_instance();
+        $que = $ci->db->query($sql);
+        return array(
+            'res'=>$que->result(),'cnt'=>$que->num_rows()
+        );
+    }
 }
